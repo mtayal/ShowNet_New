@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    @*<meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")*@
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShowNet</title>
+    <link href="~/html/css/bootstrap.css" type="text/css" rel="stylesheet">
+    <link href="~/html/css/style.css" type="text/css" rel="stylesheet">
+    <link href="~/html/css/font-awesome.css" type="text/css" rel="stylesheet">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800italic,800" rel="stylesheet" type="text/css">
+
+    <!-- jQuery library script -->
+    <script src="~/html/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+
+    <!-- bootstrap script -->
+    <script src="~/html/js/bootstrap.js" type="text/javascript"></script>
+</head>
+<body class="homepage">
+    
+    <!-- header -->
+    <header style="background:#fff;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3 col-sm-3 col-xs-12">
+                    <h1 class="logo">
+                        <a href="javascript:void(0);"><img src="~/html/images/logo.png" alt="" style="max-width:100%;"></a>
+                    </h1>
+                </div>
+                <div class="col-lg-9 col-sm-9 col-xs-12 text-right headerRight">
+                    <div class="topBtn pull-right">
+                        <button onclick="location.href = 'shownet-registration.html';" class="registerbtn">
+                            <i class="fa fa-pencil-square-o"></i>
+                            Register
+                        </button>
+                        <button onclick="location.href = 'login.html';" class="loginbtn">
+                            <i class="fa fa-lock"></i>
+                            Login
+                        </button>
+                    </div>
+                    <div class="clr"></div>
+                    <nav class="navbar navbar-default">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <div class="row">
+                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                                <ul class="nav navbar-nav">
+                                    <li class="active"><a href="index.html">Home</a></li>
+                                    <li><a href="javascript:void(0);">Horse Shows</a></li>
+                                    <li><a href="my-shownet.html">My Shownet</a></li>
+                                    <li><a href="connections.html">Connections</a></li>
+                                    <li><a href="free-view.html">Free View</a></li>
+                                    <li><a href="contact-us.html">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- /header -->
+    <div class="homepage">
+        @RenderBody()
+
+    </div>
+    <!-- footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-xs-12">
+                    <div class="footerLinks">
+                        <ul>
+                            <li><a href="javascript:void(0);">Contact us</a></li>
+                            <li><a href="javascript:void(0);">Terms of use</a></li>
+                            <li><a href="javascript:void(0);">Privacy Policy</a></li>
+                            <li>&copy; 2015. All right are reserved. </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- /footer -->
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

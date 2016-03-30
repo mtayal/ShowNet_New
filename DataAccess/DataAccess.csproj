@@ -1,0 +1,264 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{51922638-7B97-4BD7-B30E-BF49689F2139}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataAccess</RootNamespace>
+    <AssemblyName>DataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseEntity.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="DAL\BaseDa.cs" />
+    <Compile Include="DAL\ShownetDa.cs" />
+    <Compile Include="Models\ACCOUNTING.cs" />
+    <Compile Include="Models\ADD_SCRATCH.cs" />
+    <Compile Include="Models\AUDIT.cs" />
+    <Compile Include="Models\AVAILABLE_PURCHASE_BALANCE.cs" />
+    <Compile Include="Models\BILLING.cs" />
+    <Compile Include="Models\BILLING_TYPE.cs" />
+    <Compile Include="Models\CHANNEL.cs" />
+    <Compile Include="Models\CHANNEL_SCHEDULE.cs" />
+    <Compile Include="Models\CHANNEL_SPONSOR.cs" />
+    <Compile Include="Models\CIRCUIT.cs" />
+    <Compile Include="Models\CIRCUIT_RELATIONSHIPS.cs" />
+    <Compile Include="Models\COMMAND.cs" />
+    <Compile Include="Models\DASHBOARD_NOTIFICATION.cs" />
+    <Compile Include="Models\DELIVERY_DETAILS.cs" />
+    <Compile Include="Models\dtproperty.cs" />
+    <Compile Include="Models\EMAIL_LOGS.cs" />
+    <Compile Include="Models\EMAIL_SEEN_RESULTS.cs" />
+    <Compile Include="Models\EMAIL_START_TIME.cs" />
+    <Compile Include="Models\ENTRANT.cs" />
+    <Compile Include="Models\ENTRANTS_GONE.cs" />
+    <Compile Include="Models\FEED_ORDER.cs" />
+    <Compile Include="Models\FEED_ORDER_ITEM.cs" />
+    <Compile Include="Models\HORSE_SHOW.cs" />
+    <Compile Include="Models\JOB.cs" />
+    <Compile Include="Models\JOB_SCHEDULES.cs" />
+    <Compile Include="Models\JOB_TYPES.cs" />
+    <Compile Include="Models\LAST_UPDATE.cs" />
+    <Compile Include="Models\Mapping\ACCOUNTINGMap.cs" />
+    <Compile Include="Models\Mapping\ADD_SCRATCHMap.cs" />
+    <Compile Include="Models\Mapping\AUDITMap.cs" />
+    <Compile Include="Models\Mapping\AVAILABLE_PURCHASE_BALANCEMap.cs" />
+    <Compile Include="Models\Mapping\BILLINGMap.cs" />
+    <Compile Include="Models\Mapping\BILLING_TYPEMap.cs" />
+    <Compile Include="Models\Mapping\CHANNELMap.cs" />
+    <Compile Include="Models\Mapping\CHANNEL_SCHEDULEMap.cs" />
+    <Compile Include="Models\Mapping\CHANNEL_SPONSORMap.cs" />
+    <Compile Include="Models\Mapping\CIRCUITMap.cs" />
+    <Compile Include="Models\Mapping\CIRCUIT_RELATIONSHIPSMap.cs" />
+    <Compile Include="Models\Mapping\COMMANDMap.cs" />
+    <Compile Include="Models\Mapping\DASHBOARD_NOTIFICATIONMap.cs" />
+    <Compile Include="Models\Mapping\DELIVERY_DETAILSMap.cs" />
+    <Compile Include="Models\Mapping\dtpropertyMap.cs" />
+    <Compile Include="Models\Mapping\EMAIL_LOGSMap.cs" />
+    <Compile Include="Models\Mapping\EMAIL_SEEN_RESULTSMap.cs" />
+    <Compile Include="Models\Mapping\EMAIL_START_TIMEMap.cs" />
+    <Compile Include="Models\Mapping\ENTRANTMap.cs" />
+    <Compile Include="Models\Mapping\ENTRANTS_GONEMap.cs" />
+    <Compile Include="Models\Mapping\FEED_ORDERMap.cs" />
+    <Compile Include="Models\Mapping\FEED_ORDER_ITEMMap.cs" />
+    <Compile Include="Models\Mapping\HORSE_SHOWMap.cs" />
+    <Compile Include="Models\Mapping\JOBMap.cs" />
+    <Compile Include="Models\Mapping\JOB_SCHEDULESMap.cs" />
+    <Compile Include="Models\Mapping\JOB_TYPESMap.cs" />
+    <Compile Include="Models\Mapping\LAST_UPDATEMap.cs" />
+    <Compile Include="Models\Mapping\MEDIA_DEFERREDMap.cs" />
+    <Compile Include="Models\Mapping\MEDIA_FAVOURITESMap.cs" />
+    <Compile Include="Models\Mapping\MEDIA_VIEWMap.cs" />
+    <Compile Include="Models\Mapping\MediumMap.cs" />
+    <Compile Include="Models\Mapping\MEMBER_DETAILSMap.cs" />
+    <Compile Include="Models\Mapping\MEMBER_FAVORITESMap.cs" />
+    <Compile Include="Models\Mapping\MEMBER_GROUPMap.cs" />
+    <Compile Include="Models\Mapping\MEMBER_SERVICESMap.cs" />
+    <Compile Include="Models\Mapping\MEMBER_TRACKED_ENTRANTSMap.cs" />
+    <Compile Include="Models\Mapping\MEMBER_TYPEMap.cs" />
+    <Compile Include="Models\Mapping\MessageMap.cs" />
+    <Compile Include="Models\Mapping\MODEMap.cs" />
+    <Compile Include="Models\Mapping\NCAA_BRACKETMap.cs" />
+    <Compile Include="Models\Mapping\NCAA_ENTRANTMap.cs" />
+    <Compile Include="Models\Mapping\NCAA_HORSEMap.cs" />
+    <Compile Include="Models\Mapping\NCAA_MODESMap.cs" />
+    <Compile Include="Models\Mapping\NCAA_ROUNDMap.cs" />
+    <Compile Include="Models\Mapping\NCAA_SCHEUDLEMap.cs" />
+    <Compile Include="Models\Mapping\NCAA_SHOWMap.cs" />
+    <Compile Include="Models\Mapping\NCAA_TEAMMap.cs" />
+    <Compile Include="Models\Mapping\NOTIFICATIONMap.cs" />
+    <Compile Include="Models\Mapping\NOTIFICATION_JOBSMap.cs" />
+    <Compile Include="Models\Mapping\NOTIFICATION_SUBSCRIPTIONSMap.cs" />
+    <Compile Include="Models\Mapping\ORDERED_GO_LISTMap.cs" />
+    <Compile Include="Models\Mapping\PARTNERMap.cs" />
+    <Compile Include="Models\Mapping\PAYMENT_TYPEMap.cs" />
+    <Compile Include="Models\Mapping\PRODUCTMap.cs" />
+    <Compile Include="Models\Mapping\PRODUCT_TOKENMap.cs" />
+    <Compile Include="Models\Mapping\PurchaseMap.cs" />
+    <Compile Include="Models\Mapping\PURCHASE_PROBLEMSMap.cs" />
+    <Compile Include="Models\Mapping\PYRAMID_LOGMap.cs" />
+    <Compile Include="Models\Mapping\PYRAMID_MAPMap.cs" />
+    <Compile Include="Models\Mapping\RING_NAMEMap.cs" />
+    <Compile Include="Models\Mapping\SCHEDULEMap.cs" />
+    <Compile Include="Models\Mapping\SERVICE_TYPESMap.cs" />
+    <Compile Include="Models\Mapping\SHOW_DATEMap.cs" />
+    <Compile Include="Models\Mapping\SHOW_MESSAGES_RELATIONSHIPSMap.cs" />
+    <Compile Include="Models\Mapping\SPONSORMap.cs" />
+    <Compile Include="Models\Mapping\SPONSOR_IMPRESSIONMap.cs" />
+    <Compile Include="Models\Mapping\STATUSMap.cs" />
+    <Compile Include="Models\Mapping\VIDEO_ON_DEMANDMap.cs" />
+    <Compile Include="Models\Mapping\VIDEO_PUBLISHMap.cs" />
+    <Compile Include="Models\Mapping\VIDEO_STREAMMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_ALL_STREAMING_PURCHASEMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_DASHBOARD_MEDIAMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_ENTRANT_MEDIAMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MEDIA_ALL_PURCHASESMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MEDIA_FAVOURITESMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MEDIA_PURCHASEMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MEDIA_PURCHASE_TESTINGMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MEDIA_SEARCHMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MEDIA_SHOW_PURCHASEMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MEDIA_SHOW_PURCHASE_EXPIRESMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MOBILE_MEDIA_ALL_PURCHASESMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MOBILE_MEDIA_SHOW_PURCHASEMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MOBILE_MEDIA_SHOW_PURCHASE_EXPIRESMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_MOBILE_SHOW_PURCHASEMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_PRESTART_ORDERED_GO_LISTMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_PURCHASESMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_PURCHASES_TESTMap.cs" />
+    <Compile Include="Models\Mapping\View_SearchAutoCompleteMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_SHOW_PURCHASEMap.cs" />
+    <Compile Include="Models\Mapping\VIEW_STREAMING_PURCHASEMap.cs" />
+    <Compile Include="Models\Mapping\WEB_ERRORMap.cs" />
+    <Compile Include="Models\Mapping\WS_LOGSMap.cs" />
+    <Compile Include="Models\MEDIA_DEFERRED.cs" />
+    <Compile Include="Models\MEDIA_FAVOURITES.cs" />
+    <Compile Include="Models\MEDIA_VIEW.cs" />
+    <Compile Include="Models\Medium.cs" />
+    <Compile Include="Models\MEMBER_DETAILS.cs" />
+    <Compile Include="Models\MEMBER_FAVORITES.cs" />
+    <Compile Include="Models\MEMBER_GROUP.cs" />
+    <Compile Include="Models\MEMBER_SERVICES.cs" />
+    <Compile Include="Models\MEMBER_TRACKED_ENTRANTS.cs" />
+    <Compile Include="Models\MEMBER_TYPE.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\MODE.cs" />
+    <Compile Include="Models\NCAA_BRACKET.cs" />
+    <Compile Include="Models\NCAA_ENTRANT.cs" />
+    <Compile Include="Models\NCAA_HORSE.cs" />
+    <Compile Include="Models\NCAA_MODES.cs" />
+    <Compile Include="Models\NCAA_ROUND.cs" />
+    <Compile Include="Models\NCAA_SCHEUDLE.cs" />
+    <Compile Include="Models\NCAA_SHOW.cs" />
+    <Compile Include="Models\NCAA_TEAM.cs" />
+    <Compile Include="Models\NOTIFICATION.cs" />
+    <Compile Include="Models\NOTIFICATION_JOBS.cs" />
+    <Compile Include="Models\NOTIFICATION_SUBSCRIPTIONS.cs" />
+    <Compile Include="Models\ORDERED_GO_LIST.cs" />
+    <Compile Include="Models\PARTNER.cs" />
+    <Compile Include="Models\PAYMENT_TYPE.cs" />
+    <Compile Include="Models\PRODUCT.cs" />
+    <Compile Include="Models\PRODUCT_TOKEN.cs" />
+    <Compile Include="Models\Purchase.cs" />
+    <Compile Include="Models\PURCHASE_PROBLEMS.cs" />
+    <Compile Include="Models\PYRAMID_LOG.cs" />
+    <Compile Include="Models\PYRAMID_MAP.cs" />
+    <Compile Include="Models\RING_NAME.cs" />
+    <Compile Include="Models\SCHEDULE.cs" />
+    <Compile Include="Models\SERVICE_TYPES.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\IGenericRepository.cs" />
+    <Compile Include="Repository\IUnitOfWork.cs" />
+    <Compile Include="Repository\UnitOfWork.cs" />
+    <Compile Include="ShowNetContext.cs" />
+    <Compile Include="Models\SHOW_DATE.cs" />
+    <Compile Include="Models\SHOW_MESSAGES_RELATIONSHIPS.cs" />
+    <Compile Include="Models\SPONSOR.cs" />
+    <Compile Include="Models\SPONSOR_IMPRESSION.cs" />
+    <Compile Include="Models\STATUS.cs" />
+    <Compile Include="Models\VIDEO_ON_DEMAND.cs" />
+    <Compile Include="Models\VIDEO_PUBLISH.cs" />
+    <Compile Include="Models\VIDEO_STREAM.cs" />
+    <Compile Include="Models\VIEW_ALL_STREAMING_PURCHASE.cs" />
+    <Compile Include="Models\VIEW_DASHBOARD_MEDIA.cs" />
+    <Compile Include="Models\VIEW_ENTRANT_MEDIA.cs" />
+    <Compile Include="Models\VIEW_MEDIA_ALL_PURCHASES.cs" />
+    <Compile Include="Models\VIEW_MEDIA_FAVOURITES.cs" />
+    <Compile Include="Models\VIEW_MEDIA_PURCHASE.cs" />
+    <Compile Include="Models\VIEW_MEDIA_PURCHASE_TESTING.cs" />
+    <Compile Include="Models\VIEW_MEDIA_SEARCH.cs" />
+    <Compile Include="Models\VIEW_MEDIA_SHOW_PURCHASE.cs" />
+    <Compile Include="Models\VIEW_MEDIA_SHOW_PURCHASE_EXPIRES.cs" />
+    <Compile Include="Models\VIEW_MOBILE_MEDIA_ALL_PURCHASES.cs" />
+    <Compile Include="Models\VIEW_MOBILE_MEDIA_SHOW_PURCHASE.cs" />
+    <Compile Include="Models\VIEW_MOBILE_MEDIA_SHOW_PURCHASE_EXPIRES.cs" />
+    <Compile Include="Models\VIEW_MOBILE_SHOW_PURCHASE.cs" />
+    <Compile Include="Models\VIEW_PRESTART_ORDERED_GO_LIST.cs" />
+    <Compile Include="Models\VIEW_PURCHASES.cs" />
+    <Compile Include="Models\VIEW_PURCHASES_TEST.cs" />
+    <Compile Include="Models\View_SearchAutoComplete.cs" />
+    <Compile Include="Models\VIEW_SHOW_PURCHASE.cs" />
+    <Compile Include="Models\VIEW_STREAMING_PURCHASE.cs" />
+    <Compile Include="Models\WEB_ERROR.cs" />
+    <Compile Include="Models\WS_LOGS.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ViewModel\ViewModel.csproj">
+      <Project>{91dbebce-8169-40c1-aeae-51f0c35bf5e6}</Project>
+      <Name>ViewModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

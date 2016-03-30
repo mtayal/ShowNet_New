@@ -1,0 +1,256 @@
+﻿@{
+    ViewBag.Title = "View";
+    //Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<link href="~/html/css/owl.carousel.css" rel="stylesheet">
+<link href="~/html/css/owl.theme.css" rel="stylesheet">
+
+<!-- owl carousel script -->
+<script src="~/html/js/owl.carousel.js"></script>
+
+
+
+<style>
+    #owl-demo .item img {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+</style>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#ShowCarousel").owlCarousel({
+            itemsCustom: [
+                [0, 1],
+                [450, 1],
+                [600, 2],
+                [700, 3],
+                [1000, 3],
+                [1200, 4],
+                [1400, 5],
+                [1600, 5]
+            ],
+            //Autoplay
+            autoPlay: false,
+            stopOnHover: false,
+            // Navigation
+            navigation: true,
+            navigationText: ["", ""],
+            rewindNav: true,
+            scrollPerPage: false
+        });
+    });
+</script>
+
+
+
+<!-- contentPart -->
+<section id="contentPart">
+    <div id="threeBoxes" class="newBackground">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-sm-10 col-xs-12 col-lg-offset-1 col-sm-offset-1 col-xs-offset-0">
+                    <h2 class="red-bg" style="color:#000;">Video Search</h2>
+                    <div class="videoSearchFieldContainer">
+                        <form>
+                            <input type="text" class="form-control" placeholder="Enter a few letters, or the full name of your horse">
+                            <input type="button" class="goBtn" value="go">
+                            <div class="clr"></div>
+                        </form>
+                    </div>
+                    <!--<div class="row">
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                            <button class="blueBtnHome" onclick="location.href = 'pricing-operation.html';">
+                                <h3>Please click here</h3>
+                                <p>Pricing and Operations</p>
+                            </button>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                            <button class="orangeBtnHome" onclick="location.href = 'privatized.html';">
+                                <h3>ShowNet now offers</h3>
+                                <p>Privacy Setting for your videos</p>
+                            </button>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="showinformation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="showDetailsContainer">
+                    <div class="row">
+                        <div class="col-lg-9 col-sm-8 col-xs-12">
+                            <h1>LIVE Status: Kentucky Summer Horse Show 2015</h1>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-12 showButton">
+                            <button class="watchCompleteShowbtn"><i class="fa fa-youtube-play"></i> Watch the Complete Show</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12">
+                            <div class="showGroundSearch">
+                                <div class="row">
+                                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                                        <select class="form-control">
+                                            <option>2005</option>
+                                            <option>2006</option>
+                                            <option>2007</option>
+                                            <option>2008</option>
+                                            <option>2009</option>
+                                            <option>2010</option>
+                                            <option>2011</option>
+                                            <option>2012</option>
+                                            <option>2013</option>
+                                            <option>2014</option>
+                                            <option selected="selected">2015</option>
+                                            <option>2016</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                                        <select class="form-control">
+                                            <option>January</option>
+                                            <option>February</option>
+                                            <option>March</option>
+                                            <option>April</option>
+                                            <option>May</option>
+                                            <option>June</option>
+                                            <option selected="selected">July</option>
+                                            <option>August</option>
+                                            <option>September</option>
+                                            <option>October</option>
+                                            <option>November</option>
+                                            <option>December</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-xs-12">
+                                        <select class="form-control">
+                                            <option>Adirondack Horse Show 2015</option>
+                                            <option>Great Lakes Equestrian Festival I 2015</option>
+                                            <option>Great Lakes Equestrian Festival II 2015</option>
+                                            <option>Great Lakes Equestrian Festival III 2015</option>
+                                            <option>HITS on the Hudson IV 2015</option>
+                                            <option>HITS on the Hudson V 2015</option>
+                                            <option>HITS on the Hudson VI 2015</option>
+                                            <option selected="selected">Kentucky Summer Horse Show 2015</option>
+                                            <option>Kentucky Summer Classic 2015</option>
+                                            <option>ILNY Horse Show Lake Placid</option>
+                                            <option>Equifest I 2015</option>
+                                            <option>Great Lakes Festival IV 2015</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-3 col-sm-3 col-xs-12">
+                                        <select class="form-control">
+                                            <option>Wednesday, July 22, 2015</option>
+                                            <option>Thursday, July 23, 2015</option>
+                                            <option selected="selected">Friday, July 24, 2015</option>
+                                            <option>Saturday, July 25, 2015</option>
+                                            <option>Sunday, July 26, 2015</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-sm-2 col-xs-12">
+                                        <select class="form-control">
+                                            <option>ROLEX STADIUM</option>
+                                            <option selected="selected">WALNUT RING</option>
+                                            <option>STONELEA RING</option>
+                                            <option>CLAIBORNE RING</option>
+                                            <option>MURPHY RING</option>
+                                            <option>COVERED ARENA</option>
+                                            <option>ANNEX RING</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12 col-sm-12 col-xs-12">
+                                        <div id="ShowCarousel" class="owl-carousel">
+                                            <div class="item">ROLEX STADIUM Ring is Empty</div>
+                                            <div class="item">WALNUT RING Ring is Empty</div>
+                                            <div class="item">STONELEA RING Ring is Empty</div>
+                                            <div class="item">CLAIBORNE RING Ring is Empty</div>
+                                            <div class="item">MURPHY RING Ring is Empty</div>
+                                            <div class="item">COVERED ARENA Ring is Empty</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="showcontent">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-xs-12">
+                                <a href="horse-show.html" style="padding-bottom:10px; display:inline-block;">Click HERE to view this show's summary</a>
+                            </div>
+                            <div class="col-lg-5 col-sm-5 col-xs-12">
+                                <div class="clr"></div>
+                                <h3>My Tracked Horse</h3>
+                                <p>You do not currently have any tracked horses. You can add new horses to your tracked entrants by visiting your <a href="my-shownet.html">My ShowNet</a> members area, clicking 'My Tracked Entries and Alerts' and entering the back number of your desired horse.</p>
+                                <p>Once you have entered back numbers to track, their status and results will be displayed here and updated automatically for you.</p>
+                            </div>
+                            <div class="col-lg-7 col-sm-7 col-xs-12">
+                                <h3>Ring Schedule</h3>
+                                <select class="form-control">
+                                    <option>ROLEX STADIUM</option>
+                                    <option selected="selected">WALNUT RING</option>
+                                    <option>STONELEA RING</option>
+                                    <option>CLAIBORNE RING</option>
+                                    <option>MURPHY RING</option>
+                                    <option>COVERED ARENA</option>
+                                    <option>ANNEX RING</option>
+                                </select>
+                                <div class="table-responsive showHistoryTableContent">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Class</th>
+                                                <th>Class Name</th>
+                                                <th>Start</th>
+                                                <th>Starters&nbsp;Video</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>562</td>
+                                                <td>HIGH SCHOOLING JUMPER II NO JP OFF</td>
+                                                <td>08:00AM</td>
+                                                <td>50</td>
+                                                <td><a href="my-shownet.html">Live (Seen 0 of 50)</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>562</td>
+                                                <td>HIGH SCHOOLING JUMPER II NO JP OFF</td>
+                                                <td>08:00AM</td>
+                                                <td>50</td>
+                                                <td><a href="#">Live (Seen 0 of 50)</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>562</td>
+                                                <td>HIGH SCHOOLING JUMPER II NO JP OFF</td>
+                                                <td>08:00AM</td>
+                                                <td>50</td>
+                                                <td><a href="#">Live (Seen 0 of 50)</a></td>
+                                            </tr>
+                                            <tr>
+                                                <td>562</td>
+                                                <td>HIGH SCHOOLING JUMPER II NO JP OFF</td>
+                                                <td>08:00AM</td>
+                                                <td>50</td>
+                                                <td><a href="#">Live (Seen 0 of 50)</a></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /contentPart -->
