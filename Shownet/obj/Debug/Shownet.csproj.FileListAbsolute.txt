@@ -23,3 +23,41 @@ D:\Manmohan\Shownet\Main Project\Shownet\Shownet\bin\Antlr3.Runtime.pdb
 D:\Manmohan\Shownet\Main Project\Shownet\Shownet\bin\Newtonsoft.Json.xml
 D:\Manmohan\Shownet\Main Project\Shownet\Shownet\obj\Debug\Shownet.dll
 D:\Manmohan\Shownet\Main Project\Shownet\Shownet\obj\Debug\Shownet.pdb
+D:\ShowNet_New\Shownet\obj\Debug\Shownet.csprojResolveAssemblyReference.cache
+D:\ShowNet_New\Shownet\obj\Debug\Shownet.dll
+D:\ShowNet_New\Shownet\obj\Debug\Shownet.pdb
+D:\ShowNet_New\Shownet\bin\Shownet.dll.config
+D:\ShowNet_New\Shownet\bin\Shownet.dll
+D:\ShowNet_New\Shownet\bin\Shownet.pdb
+D:\ShowNet_New\Shownet\bin\Antlr3.Runtime.dll
+D:\ShowNet_New\Shownet\bin\DataAccess.dll
+D:\ShowNet_New\Shownet\bin\Microsoft.Web.Infrastructure.dll
+D:\ShowNet_New\Shownet\bin\Newtonsoft.Json.dll
+D:\ShowNet_New\Shownet\bin\System.Web.Helpers.dll
+D:\ShowNet_New\Shownet\bin\System.Web.Mvc.dll
+D:\ShowNet_New\Shownet\bin\System.Web.Optimization.dll
+D:\ShowNet_New\Shownet\bin\System.Web.Razor.dll
+D:\ShowNet_New\Shownet\bin\System.Web.WebPages.Deployment.dll
+D:\ShowNet_New\Shownet\bin\System.Web.WebPages.dll
+D:\ShowNet_New\Shownet\bin\System.Web.WebPages.Razor.dll
+D:\ShowNet_New\Shownet\bin\ViewModel.dll
+D:\ShowNet_New\Shownet\bin\WebGrease.dll
+D:\ShowNet_New\Shownet\bin\EntityFramework.dll
+D:\ShowNet_New\Shownet\bin\EntityFramework.SqlServer.dll
+D:\ShowNet_New\Shownet\bin\DataAccess.pdb
+D:\ShowNet_New\Shownet\bin\ViewModel.pdb
+D:\ShowNet_New\Shownet\bin\System.Web.Helpers.xml
+D:\ShowNet_New\Shownet\bin\System.Web.Mvc.xml
+D:\ShowNet_New\Shownet\bin\System.Web.Optimization.xml
+D:\ShowNet_New\Shownet\bin\System.Web.Razor.xml
+D:\ShowNet_New\Shownet\bin\System.Web.WebPages.xml
+D:\ShowNet_New\Shownet\bin\System.Web.WebPages.Deployment.xml
+D:\ShowNet_New\Shownet\bin\System.Web.WebPages.Razor.xml
+D:\ShowNet_New\Shownet\bin\Antlr3.Runtime.pdb
+D:\ShowNet_New\Shownet\bin\Newtonsoft.Json.xml
+D:\ShowNet_New\Shownet\bin\EntityFramework.xml
+D:\ShowNet_New\Shownet\bin\EntityFramework.SqlServer.xml
+D:\ShowNet_New\Shownet\bin\CommanLibrary.dll
+D:\ShowNet_New\Shownet\bin\CommanLibrary.pdb
+D:\ShowNet_New\Shownet\bin\AutoMapper.dll
+D:\ShowNet_New\Shownet\bin\AutoMapper.xml

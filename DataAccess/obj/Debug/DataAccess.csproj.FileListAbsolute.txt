@@ -1,1 +1,17 @@
 D:\Manmohan\Shownet\Main Project\Shownet\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+D:\ShowNet_New\DataAccess\obj\Debug\DataAccess.csprojResolveAssemblyReference.cache
+D:\ShowNet_New\DataAccess\bin\Debug\DataAccess.dll.config
+D:\ShowNet_New\DataAccess\bin\Debug\DataAccess.dll
+D:\ShowNet_New\DataAccess\bin\Debug\DataAccess.pdb
+D:\ShowNet_New\DataAccess\bin\Debug\EntityFramework.dll
+D:\ShowNet_New\DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+D:\ShowNet_New\DataAccess\bin\Debug\ViewModel.dll
+D:\ShowNet_New\DataAccess\bin\Debug\ViewModel.pdb
+D:\ShowNet_New\DataAccess\bin\Debug\EntityFramework.xml
+D:\ShowNet_New\DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+D:\ShowNet_New\DataAccess\obj\Debug\DataAccess.dll
+D:\ShowNet_New\DataAccess\obj\Debug\DataAccess.pdb
+D:\ShowNet_New\DataAccess\bin\Debug\CommanLibrary.dll
+D:\ShowNet_New\DataAccess\bin\Debug\CommanLibrary.pdb
+D:\ShowNet_New\DataAccess\bin\Debug\AutoMapper.dll
+D:\ShowNet_New\DataAccess\bin\Debug\AutoMapper.xml

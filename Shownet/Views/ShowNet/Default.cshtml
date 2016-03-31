@@ -1,0 +1,160 @@
+﻿@model ViewModel.HorseShowListViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+<style type="text/css">
+    .helper {
+        font-family: 'Open Sans', sans-serif;
+        font-weight: 300;
+    }
+</style>
+<!-- contentPart -->
+<section id="contentPart">
+    <div id="threeBoxes" class="newBackground">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-sm-10 col-xs-12 col-lg-offset-1 col-sm-offset-1 col-xs-offset-0">
+                    <h2 class="red-bg" style="color:#000;">Video Search</h2>
+                    <div class="videoSearchFieldContainer">
+                        <form>
+                            <input type="text" class="form-control" placeholder="Enter a few letters, or the full name of your horse">
+                            <input type="button" class="goBtn" value="go">
+                            <div class="clr"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="showinformation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7 col-sm-7 col-xs-12">
+                <div class="tableMainGrid">
+                    <h1>ShowNet Central - Horse Show Information</h1>
+                    <div class="table-responsive trainerDetails">
+                        <table align="center" class="table" cellpadding="0" cellspacing="0" border="0">
+                            <thead>
+                                <tr>
+                                    <th>DISCIPLINE</th>
+                                    <th>DATE</th>
+                                    <th>SHOW NAME</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model.HorseShowList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.Label(item.ShowModeString, new { @class = "helper" })
+                                        </td>
+                                        <td>
+                                            @Html.Label(Convert.ToString(item.StartDate.ToShortDateString()), new { @class = "helper" })
+                                        </td>
+                                        <td>
+                                            @Html.ActionLink(Convert.ToString(item.HorseShowName), "ShowDetails", "ShowNet")
+                                        </td>
+
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 col-sm-5 col-xs-12">
+                <div class="tableMainGrid">
+                    <h1>Upcoming ShowNet Shows</h1>
+                    <div class="table-responsive trainerDetails">
+                        <table align="center" class="table" cellpadding="0" cellspacing="0" border="0">
+                            <thead>
+                                <tr>
+                                    <th> SHOW NAME</th>
+                                    <th>DATE</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.HorseUpcomingShowList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.Label(Convert.ToString(item.HorseShowName), new { @class = "helper" })
+                                        </td>
+                                        <td>
+                                            @Html.Label(Convert.ToString(item.StartDate.ToString("MMMM") + " " + item.StartDate.ToString("dd")) + " - " + Convert.ToString(item.EndDate.ToString("MMMM") + " " + item.EndDate.ToString("dd")), new { @class = "helper" })
+                                        </td>
+                                        
+
+
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<section id="contentPart">
+    <div id="threeBoxes" style="padding-top:30px; background:#cfdce2;">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-sm-10 col-xs-12 col-lg-offset-1 col-sm-offset-1 col-xs-offset-0">
+                    <div class="row">
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                            <button class="blueBtnHome" onclick="location.href = 'pricing-operation.html';">
+                                <h3>Please click here</h3>
+                                <p>Pricing and Operations</p>
+                            </button>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                            <button class="orangeBtnHome" onclick="location.href = 'privatized.html';">
+                                <h3>ShowNet now offers</h3>
+                                <p>Privacy Setting for your videos</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="productinformation">
+    <div class="container">
+        <h1 class="text-center text-uppercase">Product Information</h1>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="borer">
+                <h2>ShowNet Results and Video</h2>
+                <div class="col-lg-12 col-sm-12 col-xs-12"><img src="html/images/productinformation01.jpg" class="img-responsive" /></div>
+                <h3>Now available for just $50/year!</h3>
+                <p class="text-justify">Our original live results and orders product has been upgraded and enhanced with better and faster searches, live messaging and our informative pre start email provides all your daily horse show information. Track and maintain your entry results live throughout the show and save for future reference.</p>
+                <p class="text-center"><a href="#" class="loginbtn">Pricing Plan</a></p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="borer">
+                <h2 style="background:#115070;">ShowNet Results and Video</h2>
+                <div class="col-lg-12 col-sm-12 col-xs-12"><img src="html/images/productinformation02.jpg" class="img-responsive" /></div>
+                <h3>Now available for just $50/year!</h3>
+                <p class="text-justify">Our original live results and orders product has been upgraded and enhanced with better and faster searches, live messaging and our informative pre start email provides all your daily horse show information. Track and maintain your entry results live throughout the show and save for future reference.</p>
+                <p class="text-center"><a href="#" class="registerbtn">Pricing Plan</a></p>
+            </div>
+        </div>
+        <div class="col-lg-4 col-sm-4 col-xs-12">
+            <div class="borer">
+                <h2 style="background:#1fbba6;">ShowNet Results and Video</h2>
+                <div class="col-lg-12 col-sm-12 col-xs-12"><img src="html/images/productinformation03.jpg" class="img-responsive" /></div>
+                <h3>Now available for just $50/year!</h3>
+                <p class="text-justify">Our original live results and orders product has been upgraded and enhanced with better and faster searches, live messaging and our informative pre start email provides all your daily horse show information. Track and maintain your entry results live throughout the show and save for future reference.</p>
+                <p class="text-center"><a href="#" class="managebtn ">Pricing Plan</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /contentPart -->

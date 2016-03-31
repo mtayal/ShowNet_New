@@ -1,0 +1,5 @@
+D:\ShowNet_New\CommanLibrary\bin\Debug\CommanLibrary.dll
+D:\ShowNet_New\CommanLibrary\bin\Debug\CommanLibrary.pdb
+D:\ShowNet_New\CommanLibrary\obj\Debug\CommanLibrary.csprojResolveAssemblyReference.cache
+D:\ShowNet_New\CommanLibrary\obj\Debug\CommanLibrary.dll
+D:\ShowNet_New\CommanLibrary\obj\Debug\CommanLibrary.pdb

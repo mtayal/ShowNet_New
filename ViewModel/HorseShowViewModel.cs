@@ -11,8 +11,8 @@ namespace ViewModel
         public int HorseShowID { get; set; }
         public string HorseShowName { get; set; }
         public string Location { get; set; }
-        public System.DateTime StartDate { get; set; }
-        public System.DateTime EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public Nullable<int> UpdateID { get; set; }
         public bool Active { get; set; }
         public string Comment { get; set; }
@@ -27,7 +27,7 @@ namespace ViewModel
         public Nullable<bool> HasPrizeListDownload { get; set; }
         public Nullable<bool> HasEntryBlankDownload { get; set; }
         public int ShowMode { get; set; }
-        public HorseShowMode ShowModeString { get; set; }
+        public string ShowModeString { get; set; }
         public bool IsFreeShow { get; set; }
         public Nullable<bool> HasVideo { get; set; }
         public Nullable<bool> RequiresCircuit { get; set; }
@@ -36,26 +36,14 @@ namespace ViewModel
         public string AvailableProducts { get; set; }
 
 
+
     }
    public class HorseShowListViewModel
     {
         public IEnumerable<HorseShowViewModel> HorseShowList { get; set; }
+        public IEnumerable<HorseShowViewModel> HorseUpcomingShowList { get; set; }
 
     }
-    public enum HorseShowMode
-    {
-
-        /// <remarks/>
-        Jumper,
-
-        /// <remarks/>
-        Dressage,
-
-        /// <remarks/>
-        Reining,
-
-        /// <remarks/>
-        All,
-    }
+   
 
 }

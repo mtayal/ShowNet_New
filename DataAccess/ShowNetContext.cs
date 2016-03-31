@@ -12,7 +12,7 @@ namespace DataAccess.Models
         }
 
         public ShowNetContext()
-            : base("Name=ShowNetContext")
+            : base("Data Source=104.45.159.23;Initial Catalog=ShowNet;Persist Security Info=True;User ID=sankumar1;Password=fd(834ks@;MultipleActiveResultSets=True")
         {
         }
 

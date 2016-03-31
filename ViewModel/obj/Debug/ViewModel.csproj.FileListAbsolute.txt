@@ -2,3 +2,8 @@ D:\Manmohan\Shownet\Main Project\Shownet\ViewModel\bin\Debug\ViewModel.dll
 D:\Manmohan\Shownet\Main Project\Shownet\ViewModel\bin\Debug\ViewModel.pdb
 D:\Manmohan\Shownet\Main Project\Shownet\ViewModel\obj\Debug\ViewModel.dll
 D:\Manmohan\Shownet\Main Project\Shownet\ViewModel\obj\Debug\ViewModel.pdb
+D:\ShowNet_New\ViewModel\bin\Debug\ViewModel.dll
+D:\ShowNet_New\ViewModel\bin\Debug\ViewModel.pdb
+D:\ShowNet_New\ViewModel\obj\Debug\ViewModel.dll
+D:\ShowNet_New\ViewModel\obj\Debug\ViewModel.pdb
+D:\ShowNet_New\ViewModel\obj\Debug\ViewModel.csprojResolveAssemblyReference.cache
