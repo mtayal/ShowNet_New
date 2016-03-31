@@ -1,0 +1,63 @@
+﻿<!-- header -->
+<header style="background:#fff;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-sm-3 col-xs-12">
+                <h1 class="logo">
+                    <a href="javascript:void(0);"><img src="~/html/images/logo.png" alt="" style="max-width:100%;"></a>
+                </h1>
+            </div>
+            <div class="col-lg-9 col-sm-9 col-xs-12 text-right headerRight">
+                <div class="topBtn pull-right">
+                    <button onclick="location.href = 'shownet-registration.html';" class="registerbtn">
+                        <i class="fa fa-pencil-square-o"></i>
+                        Register
+                    </button>
+                    <button onclick="location.href = 'login.html';" class="loginbtn">
+                        <i class="fa fa-lock"></i>
+                        Login
+                    </button>
+                </div>
+                <div class="clr"></div>
+                <nav class="navbar navbar-default">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                    </div>
+                    <div class="row">
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav">
+                                <li >
+                                    @*<a href="index.html">Home</a>*@
+                                @Html.ActionLink("Home", "Default", "ShowNet")
+                            </li>
+                            <li><a href="javascript:void(0);">Horse Shows</a></li>
+                            <li>
+                                @*<a href="my-shownet.html">My Shownet</a>*@
+                            @Html.ActionLink("My Shownet", "MyShowNet", "ShowNet")
+                        </li>
+                        <li>
+                            @*<a href="connections.html">Connections</a>*@
+                        @Html.ActionLink("Connections", "Connection", "ShowNet")
+                    </li>
+                    <li>
+                        @*<a href="free-view.html">Free View</a>*@
+                    @Html.ActionLink("Free View", "FreeView", "ShowNet")
+                </li>
+                <li>
+                    @*<a href="contact-us.html">Contact Us</a>*@
+                @Html.ActionLink("Contact us", "ContactUs", "ShowNet")
+            </li>
+        </ul>
+    </div>
+</div>
+</nav>
+</div>
+</div>
+</div>
+</header>
+<!-- /header -->

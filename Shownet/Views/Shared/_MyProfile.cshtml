@@ -1,79 +1,66 @@
 ﻿
-@{
-    Layout = null;
-}
-
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>_MyProfile</title>
-</head>
-<body>
-        <div role="tabpanel" class="tab-pane active" id="myProfile">
-            <h3>Access and alter your contact information.</h3>
-            <p>You can update your personal details for ShowNet here. If you change your email address here it will also affect the delivery of your notifications.</p>
-            <div class="row">
-                <form>
-                    <div class="col-lg-6 col-sm-6 col-xs-12 innerPagesFormContent">
-                        <label for="Salutation">Salutation</label>
-                        <select class="form-control" id="Salutation">
-                            <option></option>
-                            <option selected="selected">Mr</option>
-                            <option>Miss</option>
-                            <option>Mrs</option>
-                            <option>Ms</option>
-                            <option>Dr</option>
-                        </select>
-                        <div class="clr"></div>
-                        <label for="firstName">First Name <font style="color:#ff0000;">*</font></label>
-                        <input type="text" class="form-control" id="firstName">
-                        <div class="clr"></div>
-                        <label for="lastName">Last Name <font style="color:#ff0000;">*</font></label>
-                        <input type="text" class="form-control" id="lastName">
-                        <div class="clr"></div>
-                        <label for="password">Password <font style="color:#ff0000;">*</font></label>
-                        <input type="text" class="form-control" id="password">
-                        <div class="clr"></div>
-                        <label for="confirmPassword">Confirm Password <font style="color:#ff0000;">*</font></label>
-                        <input type="text" class="form-control" id="confirmPassword">
-                        <div class="clr"></div>
-                        <label for="passwordHint">Password Hint <font style="color:#ff0000;">*</font></label>
-                        <textarea class="form-control" id="passwordHint"></textarea>
-                        <div class="clr"></div>
-                        <label for="emailAddress">Email Address <font style="color:#ff0000;">*</font></label>
-                        <input type="text" class="form-control" id="emailAddress">
-                        <div class="clr"></div>
-                        <label for="phoneAreaCode">Phone Area Code</label>
-                        <input type="text" class="form-control" id="phoneAreaCode">
-                        <div class="clr"></div>
-                        <label for="phone">Phone <font style="color:#ff0000;">*</font></label>
-                        <textarea class="form-control" id="phone"></textarea>
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-lg-6 col-sm-6 col-xs-12 innerPagesFormContent">
-                        <label for="addressOne">Address 1</label>
-                        <input type="text" class="form-control" id="addressOne">
-                        <div class="clr"></div>
-                        <label for="addressTwo">Address 2</label>
-                        <input type="text" class="form-control" id="addressTwo">
-                        <div class="clr"></div>
-                        <label for="city">city</label>
-                        <input type="text" class="form-control" id="city">
-                        <div class="clr"></div>
-                        <label for="state">State</label>
-                        <input type="text" class="form-control" id="state">
-                        <div class="clr"></div>
-                        <label for="zip">Zip</label>
-                        <input type="text" class="form-control" id="zip">
-                        <div class="clr"></div>
-                    </div>
-                    <div class="col-lg-12 col-sm-12 col-xs-12" style="padding-top:10px;">
-                        <button class="loginbtn"><i class="fa fa-floppy-o"></i> Update Details</button>
-                    </div>
-                </form>
+<div role="tabpanel" class="tab-pane active" id="myProfile">
+    <h3>Access and alter your contact information.</h3>
+    <p>You can update your personal details for ShowNet here. If you change your email address here it will also affect the delivery of your notifications.</p>
+    <div class="row">
+        <form>
+            <div class="col-lg-6 col-sm-6 col-xs-12 innerPagesFormContent">
+                <label for="Salutation">Salutation</label>
+                <select class="form-control" id="Salutation">
+                    <option></option>
+                    <option selected="selected">Mr</option>
+                    <option>Miss</option>
+                    <option>Mrs</option>
+                    <option>Ms</option>
+                    <option>Dr</option>
+                </select>
+                <div class="clr"></div>
+                <label for="firstName">First Name <font style="color:#ff0000;">*</font></label>
+                <input type="text" class="form-control" id="firstName">
+                <div class="clr"></div>
+                <label for="lastName">Last Name <font style="color:#ff0000;">*</font></label>
+                <input type="text" class="form-control" id="lastName">
+                <div class="clr"></div>
+                <label for="password">Password <font style="color:#ff0000;">*</font></label>
+                <input type="text" class="form-control" id="password">
+                <div class="clr"></div>
+                <label for="confirmPassword">Confirm Password <font style="color:#ff0000;">*</font></label>
+                <input type="text" class="form-control" id="confirmPassword">
+                <div class="clr"></div>
+                <label for="passwordHint">Password Hint <font style="color:#ff0000;">*</font></label>
+                <textarea class="form-control" id="passwordHint"></textarea>
+                <div class="clr"></div>
+                <label for="emailAddress">Email Address <font style="color:#ff0000;">*</font></label>
+                <input type="text" class="form-control" id="emailAddress">
+                <div class="clr"></div>
+                <label for="phoneAreaCode">Phone Area Code</label>
+                <input type="text" class="form-control" id="phoneAreaCode">
+                <div class="clr"></div>
+                <label for="phone">Phone <font style="color:#ff0000;">*</font></label>
+                <textarea class="form-control" id="phone"></textarea>
+                <div class="clr"></div>
             </div>
-        </div>
-</body>
-</html>
+            <div class="col-lg-6 col-sm-6 col-xs-12 innerPagesFormContent">
+                <label for="addressOne">Address 1</label>
+                <input type="text" class="form-control" id="addressOne">
+                <div class="clr"></div>
+                <label for="addressTwo">Address 2</label>
+                <input type="text" class="form-control" id="addressTwo">
+                <div class="clr"></div>
+                <label for="city">city</label>
+                <input type="text" class="form-control" id="city">
+                <div class="clr"></div>
+                <label for="state">State</label>
+                <input type="text" class="form-control" id="state">
+                <div class="clr"></div>
+                <label for="zip">Zip</label>
+                <input type="text" class="form-control" id="zip">
+                <div class="clr"></div>
+            </div>
+            <div class="col-lg-12 col-sm-12 col-xs-12" style="padding-top:10px;">
+                <button class="loginbtn"><i class="fa fa-floppy-o"></i> Update Details</button>
+            </div>
+        </form>
+    </div>
+</div>
+

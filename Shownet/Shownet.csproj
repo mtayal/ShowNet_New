@@ -227,6 +227,18 @@
     <Content Include="Views\ShowNet\ShowDetails.cshtml" />
     <Content Include="Views\Shared\_MyProfile.cshtml" />
     <Content Include="Views\ShowNet\Default.cshtml" />
+    <Content Include="Views\Shared\_Header.cshtml" />
+    <Content Include="Views\Shared\_Layout_Connection.cshtml" />
+    <Content Include="Views\Shared\_Layout_FreeView.cshtml" />
+    <Content Include="Views\Shared\_MyVideos.cshtml" />
+    <Content Include="Views\Shared\_PaymentCredit.cshtml" />
+    <Content Include="Views\Shared\_SetMyTrackedEntriesAlerts.cshtml" />
+    <Content Include="Views\Shared\_SocialNetworkMobileInfo.cshtml" />
+    <Content Include="Views\ShowNet\Connection.cshtml" />
+    <Content Include="Views\ShowNet\ContactUs.cshtml" />
+    <Content Include="Views\ShowNet\FreeView.cshtml" />
+    <Content Include="Views\ShowNet\MyShowNet.cshtml" />
+    <Content Include="Views\ShowNet\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

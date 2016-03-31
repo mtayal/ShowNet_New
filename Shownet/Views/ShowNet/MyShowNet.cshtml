@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "MyShowNet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/html/css/owl.carousel.css" rel="stylesheet">
+<link href="~/html/css/owl.theme.css" rel="stylesheet">
+
+<!-- contentPart -->
+<section id="contentPart">
+    <div id="threeBoxes" class="newBackground">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-sm-10 col-xs-12 col-lg-offset-1 col-sm-offset-1 col-xs-offset-0">
+                    <h2 class="red-bg" style="color:#000;">Video Search</h2>
+                    <div class="videoSearchFieldContainer">
+                        <form>
+                            <input type="text" class="form-control" placeholder="Enter a few letters, or the full name of your horse">
+                            <input type="button" class="goBtn" value="go">
+                            <div class="clr"></div>
+                        </form>
+                    </div>
+                    <!--<div class="row">
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                            <button class="blueBtnHome" onclick="location.href = 'pricing-operation.html';">
+                                <h3>Please click here</h3>
+                                <p>Pricing and Operations</p>
+                            </button>
+                        </div>
+                        <div class="col-lg-6 col-sm-6 col-xs-12">
+                            <button class="orangeBtnHome" onclick="location.href = 'privatized.html';">
+                                <h3>ShowNet now offers</h3>
+                                <p>Privacy Setting for your videos</p>
+                            </button>
+                        </div>
+                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="showinformation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="showDetailsContainer">
+                    <div class="row">
+                        <div class="col-lg-9 col-sm-8 col-xs-12">
+                            <h1>My ShowNet</h1>
+                        </div>
+                        <div class="col-lg-3 col-sm-4 col-xs-12 showButton">
+                            <button class="watchCompleteShowbtn"><i class="fa fa-caret-left"></i> Back to Summary</button>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12 myShownetTabingContent">
+                            <div>
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li role="presentation" class="active"><a href="#myProfile" aria-controls="home" role="tab" data-toggle="tab">My Profile</a></li>
+                                    <li role="presentation"><a href="#paymentCredit" aria-controls="profile" role="tab" data-toggle="tab">Payments & Credit</a></li>
+                                    <li role="presentation"><a href="#myVideos" aria-controls="messages" role="tab" data-toggle="tab">My Videos</a></li>
+                                    <li role="presentation"><a href="#SetMyTrackedEntriesAlerts" aria-controls="settings" role="tab" data-toggle="tab">Set My Tracked Entries & Alerts</a></li>
+                                    <li role="presentation"><a href="#SocialNetworksandMobileInformation" aria-controls="settings" role="tab" data-toggle="tab">Social Networks and Mobile Information</a></li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    @Html.Partial("_MyProfile")
+                                    @Html.Partial("_PaymentCredit")
+                                    @Html.Partial("_MyVideos")
+                                    @Html.Partial("_SetMyTrackedEntriesAlerts")
+                                    @Html.Partial("_SocialNetworkMobileInfo")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /contentPart -->

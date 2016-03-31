@@ -33,7 +33,30 @@ namespace Shownet.Controllers
         {
             return View();
         }
+        public ActionResult MyShowNet()
+        {
+            return View();
+        }
 
+        public ActionResult Connection()
+        {
+            return View();
+        }
+
+        public ActionResult FreeView()
+        {
+            return View();
+        }
+
+        public ActionResult ContactUs()
+        {
+            return View();
+        }
+
+        public ActionResult Registration()
+        {
+            return View();
+        }
         
     }
 }

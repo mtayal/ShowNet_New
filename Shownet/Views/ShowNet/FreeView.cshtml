@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewBag.Title = "FreeView";
+    Layout = "~/Views/Shared/_Layout_FreeView.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.8.1/semantic.min.css" />
+
+<!-- searchBarns -->
+<section id="searchBarns">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <!--<div class="ui search selection dropdown">
+                    <i class="dropdown icon link"></i>
+                    <input type="hidden" id="jheader" data-validate="header" placeholder="Enter header" ng-model="person.gender">
+                    <div class="default text">Search Barns</div>
+                    <div class="menu">
+                        <div class="item">Clothing</div>
+                        <div class="item">Home Goods</div>
+                        <div class="item">Bedroom</div>
+                        <div class="item">Status</div>
+                        <div class="item">Cancellations</div>
+                    </div>
+                </div>-->
+                <div class="searchBarnsMain">
+                    <input type="text" placeholder="Search Barns" class="form-control searchBarnsField">
+                    <input type="button" class="searchBarnsFieldbtn" value="SEARCH">
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-6 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-7 col-sm-7 col-xs-12">
+                        <div class="videoCounting">
+                            <h1>22,000 <font style="color:#f2633d;">Videos</font></h1>
+                            <p>available for your viewing</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-sm-5 col-xs-12 uploadButton">
+                        <button class="uploadVideobtn">
+                            <i class="fa fa-arrow-circle-up"></i>
+                            Upload Videos
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</section>
+<!-- /searchBarns -->
+<!-- contentPart -->
+<section id="contentPart">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="playlistMainBg">
+                    <div class="row">
+                        <div class="col-lg-2 col-sm-3 col-xs-12">
+                            <div class="leftPlaylistContent">
+                                <ul>
+                                    <li><a href="javascript:void(0);">History</a></li>
+                                    <li><a href="javascript:void(0);">Watch Later</a></li>
+                                    <li><a href="javascript:void(0);">My Playlist</a></li>
+                                    <li><a href="javascript:void(0);">Create Playlist</a></li>
+                                    <li><a href="javascript:void(0);">View Playlist</a></li>
+                                </ul>
+                            </div>
+                            <div class="advertisement"><img src="~/html/images/advertise-img.jpg" alt="" class="img-responsive"></div>
+                        </div>
+                        <div class="col-lg-10 col-sm-9 col-xs-12 createPlaylistContainer">
+
+                            <div class="createPlayListRightContent">
+                                <h3>
+                                    Create Playlist
+                                    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action <span class="caret"></span></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li><a href="#">Separated link</a></li>
+                                    </ul>
+                                </h3>
+                            </div>
+
+                            <div class="videoThumBx">
+                                <ul>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum1.jpg" alt="" /></a></div>
+                                        <h4>Video of CEST SI BON ridden by MOLLY ZISOOK from  ...</h4>
+                                        <p>No views - 14 minutes ago</p>
+                                    </li>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum2.jpg" alt="" /></a></div>
+                                        <h4>Video of EXACTLY ridden by ALTA BASALDUA from  ...</h4>
+                                        <p>10 views - 11 hours ago</p>
+                                    </li>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum3.jpg" alt="" /></a></div>
+                                        <h4>Video of CEST SI BON ridden by MOLLY ZISOOK from  ...</h4>
+                                        <p>No views - 14 minutes ago</p>
+                                    </li>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum1.jpg" alt="" /></a></div>
+                                        <h4>Video of EXACTLY ridden by ALTA BASALDUA from  ...</h4>
+                                        <p>10 views - 11 hours ago</p>
+                                    </li>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum3.jpg" alt="" /></a></div>
+                                        <h4>Video of CEST SI BON ridden by MOLLY ZISOOK from  ...</h4>
+                                        <p>No views - 14 minutes ago</p>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum1.jpg" alt="" /></a></div>
+                                        <h4>Video of CEST SI BON ridden by MOLLY ZISOOK from  ...</h4>
+                                        <p>No views - 14 minutes ago</p>
+                                    </li>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum2.jpg" alt="" /></a></div>
+                                        <h4>Video of EXACTLY ridden by ALTA BASALDUA from  ...</h4>
+                                        <p>10 views - 11 hours ago</p>
+                                    </li>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum3.jpg" alt="" /></a></div>
+                                        <h4>Video of CEST SI BON ridden by MOLLY ZISOOK from  ...</h4>
+                                        <p>No views - 14 minutes ago</p>
+                                    </li>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum1.jpg" alt="" /></a></div>
+                                        <h4>Video of EXACTLY ridden by ALTA BASALDUA from  ...</h4>
+                                        <p>10 views - 11 hours ago</p>
+                                    </li>
+                                    <li>
+                                        <div class="videobx"><a href="#"><img src="~/html/images/videoThum3.jpg" alt="" /></a></div>
+                                        <h4>Video of CEST SI BON ridden by MOLLY ZISOOK from  ...</h4>
+                                        <p>No views - 14 minutes ago</p>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /contentPart -->
