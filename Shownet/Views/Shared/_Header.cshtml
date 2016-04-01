@@ -9,11 +9,15 @@
             </div>
             <div class="col-lg-9 col-sm-9 col-xs-12 text-right headerRight">
                 <div class="topBtn pull-right">
-                    <button onclick="location.href = 'shownet-registration.html';" class="registerbtn">
+                    @*<button onclick="location.href = 'shownet-registration.html';" class="registerbtn">
+                        <i class="fa fa-pencil-square-o"></i>
+                        Register
+                    </button>*@
+                    <button class="registerbtn" onclick="location.href='@Url.Action("Registration","Account")'" >
                         <i class="fa fa-pencil-square-o"></i>
                         Register
                     </button>
-                    <button onclick="location.href = 'login.html';" class="loginbtn">
+                    <button class="loginbtn" onclick="location.href='@Url.Action("Login","Account")'">
                         <i class="fa fa-lock"></i>
                         Login
                     </button>

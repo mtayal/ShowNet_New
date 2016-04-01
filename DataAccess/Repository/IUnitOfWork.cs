@@ -74,6 +74,8 @@ namespace DataAccess.Repository
        
         GenericRepository<HORSE_SHOW> HorseShowRepository { get; }
 
+        GenericRepository<MEMBER_DETAILS> MemberDetailsRepository { get; }
+
 
         #endregion Generic Repository Instance
     }

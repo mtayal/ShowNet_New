@@ -53,10 +53,7 @@ namespace Shownet.Controllers
             return View();
         }
 
-        public ActionResult Registration()
-        {
-            return View();
-        }
+        
         
     }
 }

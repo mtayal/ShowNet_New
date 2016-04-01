@@ -54,7 +54,7 @@ namespace DataAccess.Repository
         /// The p arcadr repository
         /// </summary>
         private GenericRepository<HORSE_SHOW> horseShowRepository;
-        
+        private GenericRepository<MEMBER_DETAILS> memberDetailsRepository;
 
         #endregion Generic Repository Instance
 
@@ -71,6 +71,10 @@ namespace DataAccess.Repository
             get { return horseShowRepository ?? (horseShowRepository = new GenericRepository<HORSE_SHOW>(dbContext)); }
         }
 
+        public GenericRepository<MEMBER_DETAILS> MemberDetailsRepository
+        {
+            get { return memberDetailsRepository ?? (memberDetailsRepository = new GenericRepository<MEMBER_DETAILS>(dbContext)); }
+        }
         /// <summary>
         ///
         /// </summary>
