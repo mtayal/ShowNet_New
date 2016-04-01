@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 body.homepage {background:url(../images/home-back-bg.jpg) no-repeat top center; background-size:100% 100%; background-attachment:fixed;}
 body.login {background:url(../images/login-bg.jpg) no-repeat top center; background-size:cover; background-attachment:fixed;}
 * {margin:0px; padding:0px; list-style:none;}
@@ -44,8 +44,8 @@ ul.navbar-nav {float:right;}
 .loginForm h2 {margin-top:20px; color:#115070; font-weight:700; font-size:24px;}
 .loginForm input[type="text"] {background:url(../images/email-field-img.png) no-repeat left top #f8f8f9; border:1px solid #ccc; border-radius:5px; width:100%; padding:16px 0 14px 60px; margin-bottom:15px;}
 .loginForm input[type="password"] {background:url(../images/password-field-img.png) no-repeat left top #f8f8f9; border:1px solid #ccc; border-radius:5px; width:100%; padding:16px 0 14px 60px; margin-bottom:15px;}
-.loginForm input[type="button"] {background:#f2633d; font-size:24px; color:#fff; padding:7px 15px; text-transform:uppercase; width:100%; margin-bottom:15px; border:none; -webkit-transition:all 0.4s ease-in-out; -moz-transition:all 0.4s ease-in-out; -o-transition:all 0.4s ease-in-out; transition:all 0.4s ease-in-out; border-radius:8px;}
-.loginForm input[type="button"]:hover {background:#b93411;}
+.loginForm input[type="submit"] {background:#f2633d; font-size:24px; color:#fff; padding:7px 15px; text-transform:uppercase; width:100%; margin-bottom:15px; border:none; -webkit-transition:all 0.4s ease-in-out; -moz-transition:all 0.4s ease-in-out; -o-transition:all 0.4s ease-in-out; transition:all 0.4s ease-in-out; border-radius:8px;}
+.loginForm input[type="submit"]:hover {background:#b93411;}
 .loginForm p {color:#2b2b2b; font-size:16px; text-align:center; margin-bottom:0px;}
 .loginForm p a {color:#0f6385;}
 .loginForm p a:hover {color:#f2633d; text-decoration:none;}
