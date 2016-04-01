@@ -22,10 +22,10 @@ namespace Shownet.Controllers
         }
         public ActionResult Default()
         {
-          
+
             HorseShowListViewModel hs = new HorseShowListViewModel();
-            hs.HorseShowList = Mapper.Map<IEnumerable<HorseShowViewModel>>(shownetDa.GetHorseShow(6, HorseShowMode.Jumper).AsEnumerable());
-            hs.HorseUpcomingShowList = Mapper.Map < IEnumerable < HorseShowViewModel >> (shownetDa.GetUpComingHorseShow(6, HorseShowMode.Jumper).AsEnumerable());
+            hs.HorseShowList = shownetDa.GetHorseShow(6, HorseShowMode.Jumper).AsEnumerable();
+            hs.HorseUpcomingShowList = shownetDa.GetUpComingHorseShow(6, HorseShowMode.Jumper).AsEnumerable();
             return View(hs);
         }
 
@@ -35,7 +35,14 @@ namespace Shownet.Controllers
         }
         public ActionResult MyShowNet()
         {
-            return View();
+            if (Session["Emp_id"] != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
 
         public ActionResult Connection()
@@ -53,7 +60,7 @@ namespace Shownet.Controllers
             return View();
         }
 
-        
-        
+
+
     }
 }
