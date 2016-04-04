@@ -7,3 +7,17 @@ D:\ShowNet_New\ViewModel\bin\Debug\ViewModel.pdb
 D:\ShowNet_New\ViewModel\obj\Debug\ViewModel.dll
 D:\ShowNet_New\ViewModel\obj\Debug\ViewModel.pdb
 D:\ShowNet_New\ViewModel\obj\Debug\ViewModel.csprojResolveAssemblyReference.cache
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\ViewModel.dll.config
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\ViewModel.dll
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\ViewModel.pdb
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\EntityFramework.dll
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\EntityFramework.SqlServer.dll
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\EnumAnnotations.dll
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\MockableWebSecurity.dll
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\EntityFramework.xml
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\EntityFramework.SqlServer.xml
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\EnumAnnotations.xml
+D:\ShowNet\ShowNet_New\ViewModel\bin\Debug\MockableWebSecurity.pdb
+D:\ShowNet\ShowNet_New\ViewModel\obj\Debug\ViewModel.csprojResolveAssemblyReference.cache
+D:\ShowNet\ShowNet_New\ViewModel\obj\Debug\ViewModel.dll
+D:\ShowNet\ShowNet_New\ViewModel\obj\Debug\ViewModel.pdb

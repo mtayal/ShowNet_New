@@ -73,10 +73,14 @@ namespace DataAccess.Repository
         /// </value>
        
         GenericRepository<HORSE_SHOW> HorseShowRepository { get; }
-
         GenericRepository<MEMBER_DETAILS> MemberDetailsRepository { get; }
 
-
+      
+        GenericRepository<SHOW_DATE> ShowDateRepository { get; }
+        GenericRepository<SCHEDULE> ScheduleRepository { get; }
+        GenericRepository<RING_NAME> RingNameRepository { get; }
+        GenericRepository<ORDERED_GO_LIST> OrderedGoListRepository { get; }
+        GenericRepository<ENTRANT> EntrantRepository { get; } 
         #endregion Generic Repository Instance
     }
 }

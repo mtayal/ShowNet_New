@@ -29,7 +29,7 @@ namespace Shownet.Controllers
             return View(hs);
         }
 
-        public ActionResult ShowDetails()
+        public ActionResult ShowDetails(int HorseShowID)
         {
             return View();
         }

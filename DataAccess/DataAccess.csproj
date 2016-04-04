@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseEntity.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="DAL\AccountDa.cs" />
     <Compile Include="DAL\BaseDa.cs" />
     <Compile Include="DAL\ShownetDa.cs" />

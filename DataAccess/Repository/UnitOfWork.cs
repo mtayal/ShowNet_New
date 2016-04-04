@@ -56,6 +56,14 @@ namespace DataAccess.Repository
         private GenericRepository<HORSE_SHOW> horseShowRepository;
         private GenericRepository<MEMBER_DETAILS> memberDetailsRepository;
 
+        private GenericRepository<SHOW_DATE> showDateRepository;
+        private GenericRepository<SCHEDULE> scheduleRepository;
+        private GenericRepository<RING_NAME> ringNameRepository;
+        private GenericRepository<ORDERED_GO_LIST> orderedGoListRepository;
+        private GenericRepository<ENTRANT> entrantRepository;
+
+        
+
         #endregion Generic Repository Instance
 
         #region Repository Instance
@@ -74,6 +82,31 @@ namespace DataAccess.Repository
         public GenericRepository<MEMBER_DETAILS> MemberDetailsRepository
         {
             get { return memberDetailsRepository ?? (memberDetailsRepository = new GenericRepository<MEMBER_DETAILS>(dbContext)); }
+        }
+
+        public GenericRepository<SHOW_DATE> ShowDateRepository
+        {
+            get { return showDateRepository ?? (showDateRepository = new GenericRepository<SHOW_DATE>(dbContext)); }
+        }
+
+        public GenericRepository<SCHEDULE> ScheduleRepository
+        {
+            get { return scheduleRepository ?? (scheduleRepository = new GenericRepository<SCHEDULE>(dbContext)); }
+        }
+
+        public GenericRepository<RING_NAME> RingNameRepository
+        {
+            get { return ringNameRepository ?? (ringNameRepository = new GenericRepository<RING_NAME>(dbContext)); }
+        }
+
+        public GenericRepository<ORDERED_GO_LIST> OrderedGoListRepository
+        {
+            get { return orderedGoListRepository ?? (orderedGoListRepository = new GenericRepository<ORDERED_GO_LIST>(dbContext)); }
+        }
+
+        public GenericRepository<ENTRANT> EntrantRepository
+        {
+            get { return entrantRepository ?? (entrantRepository = new GenericRepository<ENTRANT>(dbContext)); }
         }
         /// <summary>
         ///

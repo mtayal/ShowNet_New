@@ -54,7 +54,7 @@
                                             @Html.Label(Convert.ToString(item.StartDate.ToShortDateString()), new { @class = "helper" })
                                         </td>
                                         <td>
-                                            @Html.ActionLink(Convert.ToString(item.HorseShowName), "ShowDetails", "ShowNet")
+                                            @Html.ActionLink(Convert.ToString(item.HorseShowName), "ShowDetails", "ShowNet", new {@HorseShowID=item.HorseShowID},null)
                                         </td>
 
 

@@ -84,15 +84,9 @@ namespace DataAccess.DAL
             }
         }
 
-        //public HorseShow[] GetShows()
-        //{
-        //    return new HSO.ShowNetWS().GetVisibleShows(10, HorseShow.HorseShowMode.All);
-        //}
+        
 
-        //public HorseShow[] GetActiveHorseShows()
-        //{
-        //    return new HSO.ShowNetWS().GetVisibleShows(30, null);
-        //}
+        
         
     }
 }
