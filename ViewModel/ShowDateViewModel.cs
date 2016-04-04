@@ -18,5 +18,7 @@ namespace ViewModel
         public int CurSchedID1 { get; set; }
         public int CurSchedID2 { get; set; }
         public string Comment { get; set; }
+        public string RingName { get; set; }
+        public string ShowsDate { get; set; }
     }
 }

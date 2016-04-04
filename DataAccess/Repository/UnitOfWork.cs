@@ -61,7 +61,9 @@ namespace DataAccess.Repository
         private GenericRepository<RING_NAME> ringNameRepository;
         private GenericRepository<ORDERED_GO_LIST> orderedGoListRepository;
         private GenericRepository<ENTRANT> entrantRepository;
-
+        private GenericRepository<VIEW_MEDIA_PURCHASE> viewMediaPurchaseRepository;
+        private GenericRepository<VIEW_MEDIA_SHOW_PURCHASE> viewMediaShowPurchaseRepository;
+        private GenericRepository<VIEW_MEDIA_SHOW_PURCHASE_EXPIRES> viewMediaShowPurchaseExpiresRepository;
         
 
         #endregion Generic Repository Instance
@@ -107,6 +109,20 @@ namespace DataAccess.Repository
         public GenericRepository<ENTRANT> EntrantRepository
         {
             get { return entrantRepository ?? (entrantRepository = new GenericRepository<ENTRANT>(dbContext)); }
+        }
+        public GenericRepository<VIEW_MEDIA_PURCHASE> ViewMediaPurchaseRepository
+        {
+            get { return viewMediaPurchaseRepository ?? (viewMediaPurchaseRepository = new GenericRepository<VIEW_MEDIA_PURCHASE>(dbContext)); }
+        }
+
+        public GenericRepository<VIEW_MEDIA_SHOW_PURCHASE> ViewMediaShowPurchaseRepository
+        {
+            get { return viewMediaShowPurchaseRepository ?? (viewMediaShowPurchaseRepository = new GenericRepository<VIEW_MEDIA_SHOW_PURCHASE>(dbContext)); }
+        }
+
+        public GenericRepository<VIEW_MEDIA_SHOW_PURCHASE_EXPIRES> ViewMediaShowPurchaseExpiresRepository
+        {
+            get { return viewMediaShowPurchaseExpiresRepository ?? (viewMediaShowPurchaseExpiresRepository = new GenericRepository<VIEW_MEDIA_SHOW_PURCHASE_EXPIRES>(dbContext)); }
         }
         /// <summary>
         ///

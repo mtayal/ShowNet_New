@@ -60,7 +60,7 @@ namespace Shownet.Controllers
                     Session["Emp_id"] = member.MemberID;
                     Session["UserName"] = member.UserName;
                     Session["Email"] = member.Email;
-                    return RedirectToAction("ShowDetails", "ShowNet", new { HorseShowID = member.MemberID });
+                    return RedirectToAction("ShowDetails", "ShowNet");
                 }
                 else
                 {

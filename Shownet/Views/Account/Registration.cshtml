@@ -5,7 +5,7 @@
     //HtmlHelper.ClientValidationEnabled = true;
     //HtmlHelper.UnobtrusiveJavaScriptEnabled = true;
     //Html.EnableClientValidation(true);
-    }
+}
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
@@ -94,25 +94,31 @@
                                 <p><font style="color:#ff0000;">PLEASE NOTE: ShowNet only allows 1 user access per login.</font></p>
                                 @using (Html.BeginForm("Registration", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
                                 {
-                                   //  @Html.EnableUnobtrusiveJavaScript()
+                                    //  @Html.EnableUnobtrusiveJavaScript()
                                     @Html.AntiForgeryToken()
                                     @Html.ValidationSummary(true)
-                                   
-                                <div class="registrationForm">
-                                    <form>
+
+                                    <div class="registrationForm">
+
                                         <div class="row">
                                             <div class="col-lg-2 col-sm-3 col-xs-12">
                                                 <label>Salutation:</label>
                                             </div>
                                             <div class="col-lg-4 col-sm-3 col-xs-12">
-                                                <select class="form-control" style="display:inline-block; width:auto;" id="Salutation" name="Salutation">
-                                                    <option value="Mr">Mr</option>
-                                                    <option value="Miss">Miss</option>
-                                                    <option value="Mrs">Mrs</option>
-                                                    <option value="Ms">Ms</option>
-                                                    <option value="Dr">Dr</option>
-                                                </select>
-                                               
+                                                @*<select class="form-control" style="display:inline-block; width:auto;" id="Salutation" name="Salutation">
+                                                        <option value="Mr">Mr</option>
+                                                        <option value="Miss">Miss</option>
+                                                        <option value="Mrs">Mrs</option>
+                                                        <option value="Ms">Ms</option>
+                                                        <option value="Dr">Dr</option>
+                                                    </select>*@
+                                                @Html.DropDownListFor(m => m.Salutation, new[] {
+                                                    new SelectListItem(){Text = "Mr" , Value="Mr"},
+                                                    new SelectListItem(){Text ="Miss" , Value = "Miss"},
+                                                    new SelectListItem(){Text ="Mrs" , Value = "Mrs"},
+                                                    new SelectListItem(){Text ="Ms" , Value = "Ms"},
+                                                    new SelectListItem(){Text ="Dr" , Value = "Dr"},
+                                                }, new { @class = "form-control" })
                                             </div>
                                             <div class="clr"></div>
                                             <div class="col-lg-2 col-sm-3 col-xs-12">
@@ -121,7 +127,7 @@
                                             <div class="col-lg-4 col-sm-3 col-xs-12">
                                                 @*<input type="text" class="form-control" id="FirstName" name="FirstName" >*@
                                                 @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                                                @Html.ValidationMessageFor(m=>m.FirstName)
+                                                @Html.ValidationMessageFor(m => m.FirstName)
                                             </div>
                                             <div class="col-lg-2 col-sm-3 col-xs-12">
                                                 <label class="marginBottomNone">Last Name <font style="color:#ff0000">*</font></label>
@@ -253,11 +259,11 @@
                                             </div>
                                             <div class="col-lg-4 col-sm-3 col-xs-12">
                                                 @*<select class="form-control">
-                                                    <option value="-1">Please select a discipline</option>
-                                                    <option value="0">Jumpers</option>
-                                                    <option value="1">Dressage</option>
-                                                    <option value="2">Reining</option>
-                                                </select>*@
+                                                        <option value="-1">Please select a discipline</option>
+                                                        <option value="0">Jumpers</option>
+                                                        <option value="1">Dressage</option>
+                                                        <option value="2">Reining</option>
+                                                    </select>*@
 
                                                 @Html.DropDownListFor(m => m.Mode, new[] {
                                                     new SelectListItem(){Text = "Please select a discipline" , Value="-1"},
@@ -265,15 +271,15 @@
                                                     new SelectListItem(){Text ="Dressage" , Value = "1"},
                                                     new SelectListItem(){Text ="Reining" , Value = "2"},
                                                 }, new { @class = "form-control" })
-                                                
+
                                             </div>
                                             <div class="clr"></div>
                                             <div class="col-lg-12 col-sm-12 col-xs-12">
                                                 <button id="btnRegister" class="loginbtn" style="padding-right:30px; padding-left:30px;"><i class="fa fa-caret-right" style="padding-right:5px; font-size:18px;"></i> Finish</button>
                                             </div>
                                         </div>
-                                    </form>
-                                </div>
+
+                                    </div>
                                 }
                             </div>
                         </div>
@@ -284,19 +290,16 @@
     </div>
 </div>
 <!-- /contentPart -->
-
-
-
 @*@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-    <fieldset>
-        <p><input type="text" required="required" id="UserName" name="UserName" placeholder="Username"></p>
-        <p><input type="password" required placeholder="Password" id="Password" name="Password"></p>
-        <p><input type="submit" value="Login"></p>
-    </fieldset>
-}*@
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <p><input type="text" required="required" id="UserName" name="UserName" placeholder="Username"></p>
+            <p><input type="password" required placeholder="Password" id="Password" name="Password"></p>
+            <p><input type="submit" value="Login"></p>
+        </fieldset>
+    }*@
 
 
 @Scripts.Render("~/Scripts/jquery.validate.min.js")

@@ -74,8 +74,9 @@ namespace DataAccess.Repository
        
         GenericRepository<HORSE_SHOW> HorseShowRepository { get; }
         GenericRepository<MEMBER_DETAILS> MemberDetailsRepository { get; }
-
-      
+        GenericRepository<VIEW_MEDIA_PURCHASE> ViewMediaPurchaseRepository { get; }
+        GenericRepository<VIEW_MEDIA_SHOW_PURCHASE> ViewMediaShowPurchaseRepository { get; }
+        GenericRepository<VIEW_MEDIA_SHOW_PURCHASE_EXPIRES> ViewMediaShowPurchaseExpiresRepository { get; }
         GenericRepository<SHOW_DATE> ShowDateRepository { get; }
         GenericRepository<SCHEDULE> ScheduleRepository { get; }
         GenericRepository<RING_NAME> RingNameRepository { get; }

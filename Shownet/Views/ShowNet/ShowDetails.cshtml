@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ViewModel.ShowDetailsViewModel
+@{
     ViewBag.Title = "View";
     //Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
@@ -42,6 +43,83 @@
             scrollPerPage: false
         });
     });
+
+    function getScheduleList() {
+        $.ajax({
+            type: 'POST',
+            url: '/ShowNet/RingScheduleList',
+            data: { 'year': $("#ddlYear").val(), 'month': $('#ddlMonth').val(), 'showNameId': $('#ddlShowName').val(), 'showDate': $('#ddlHorseShowDate').val(), 'showDayID': $('#ddlRingName').val() },
+            success: function (response) {
+                // alert("hi");
+
+            },
+            error: function (response) {
+                alert("error");
+            }
+
+        });
+
+    }
+
+    function getShowName() {
+        var year = $('#ddlYear').val();
+        var month = $('#ddlMonth').val();
+        $.ajax({
+            url: '/ShowNet/fillShowName',
+            type: "GET",
+            dataType: "JSON",
+            data: { 'year': $("#ddlYear").val(), 'month': $('#ddlMonth').val(), 'showNameId': $('#ddlShowName').val(), 'showDate': $('#ddlHorseShowDate').val(), 'showDayID': $('#ddlRingName').val() },
+            success: function (years) {
+                $("#ddlShowName").html("");
+                if (years.length != 0) {
+                    $.each(years, function (i, showName) {
+                        $("#ddlShowName").append(
+                            $('<option></option>').val(showName.HorseShowID).html(showName.HorseShowName));
+                        $("#ddlHorseShowDate").prop("disabled", false);
+                        $("#ddlRingName").prop("disabled", false);
+                        $("#ddlRingName1").prop("disabled", true);
+                    });
+                }
+                else {
+                    $("#ddlShowName").append($('<option></option>').val(0).html("No shows for this months!"));
+                    $("#ddlHorseShowDate").prop("disabled", true);
+                    $("#ddlRingName").prop("disabled", true);
+                    $("#ddlRingName1").prop("disabled", true);
+
+
+                }
+            }
+        });
+    }
+
+    function getShowDate() {
+        var year = $('#ddlYear').val();
+        var month = $('#ddlMonth').val();
+        $.ajax({
+            url: '/ShowNet/fillShowDate',
+            type: "GET",
+            dataType: "JSON",
+            data: { 'year': $("#ddlYear").val(), 'month': $('#ddlMonth').val(), 'showNameId': $('#ddlShowName').val(), 'showDate': $('#ddlHorseShowDate').val(), 'showDayID': $('#ddlRingName').val() },
+            success: function (shows) {
+                $("#ddlHorseShowDate").html("");
+                if (shows.length != 0) {
+                    $.each(shows, function (i, show) {
+
+
+                        $("#ddlHorseShowDate").append(
+                           $('<option></option>').val(show.ShowsDate).html(show.ShowsDate));
+
+                    });
+                }
+                else {
+                    $("#ddlHorseShowDate").append($('<option></option>').val(0).html("No shows for this months!"));
+
+
+
+                }
+            }
+        });
+    }
 </script>
 
 
@@ -97,72 +175,20 @@
                             <div class="showGroundSearch">
                                 <div class="row">
                                     <div class="col-lg-2 col-sm-2 col-xs-12">
-                                        <select class="form-control">
-                                            <option>2005</option>
-                                            <option>2006</option>
-                                            <option>2007</option>
-                                            <option>2008</option>
-                                            <option>2009</option>
-                                            <option>2010</option>
-                                            <option>2011</option>
-                                            <option>2012</option>
-                                            <option>2013</option>
-                                            <option>2014</option>
-                                            <option selected="selected">2015</option>
-                                            <option>2016</option>
-                                        </select>
+                                        @Html.DropDownListFor(m => m.SelectedYear, new SelectList(Model.YearList, "Value", "Text"), new { id = "ddlYear", @class = "form-control", onchange = "getShowName(this.options[this.selectedIndex].value);" })
+
                                     </div>
                                     <div class="col-lg-2 col-sm-2 col-xs-12">
-                                        <select class="form-control">
-                                            <option>January</option>
-                                            <option>February</option>
-                                            <option>March</option>
-                                            <option>April</option>
-                                            <option>May</option>
-                                            <option>June</option>
-                                            <option selected="selected">July</option>
-                                            <option>August</option>
-                                            <option>September</option>
-                                            <option>October</option>
-                                            <option>November</option>
-                                            <option>December</option>
-                                        </select>
+                                        @Html.DropDownListFor(m => m.SelectedMonth, new SelectList(Model.MonthList, "Value", "Text"), new { id = "ddlMonth", @class = "form-control", onchange = "getShowName(this.options[this.selectedIndex].value);" })
                                     </div>
                                     <div class="col-lg-3 col-sm-3 col-xs-12">
-                                        <select class="form-control">
-                                            <option>Adirondack Horse Show 2015</option>
-                                            <option>Great Lakes Equestrian Festival I 2015</option>
-                                            <option>Great Lakes Equestrian Festival II 2015</option>
-                                            <option>Great Lakes Equestrian Festival III 2015</option>
-                                            <option>HITS on the Hudson IV 2015</option>
-                                            <option>HITS on the Hudson V 2015</option>
-                                            <option>HITS on the Hudson VI 2015</option>
-                                            <option selected="selected">Kentucky Summer Horse Show 2015</option>
-                                            <option>Kentucky Summer Classic 2015</option>
-                                            <option>ILNY Horse Show Lake Placid</option>
-                                            <option>Equifest I 2015</option>
-                                            <option>Great Lakes Festival IV 2015</option>
-                                        </select>
+                                        @Html.DropDownListFor(m => m.SelectedHorseShow, new SelectList(Model.HorseShowList, "HorseShowID", "HorseShowName"), new { id = "ddlShowName", @class = "form-control", onchange = "getShowDate(this.options[this.selectedIndex].value);" })
                                     </div>
                                     <div class="col-lg-3 col-sm-3 col-xs-12">
-                                        <select class="form-control">
-                                            <option>Wednesday, July 22, 2015</option>
-                                            <option>Thursday, July 23, 2015</option>
-                                            <option selected="selected">Friday, July 24, 2015</option>
-                                            <option>Saturday, July 25, 2015</option>
-                                            <option>Sunday, July 26, 2015</option>
-                                        </select>
+                                        @Html.DropDownListFor(m => m.SelectedHorseShowDate, new SelectList(Model.ShowDateList, "ShowsDate", "ShowsDate"), new { id = "ddlHorseShowDate", @class = "form-control", onchange = "getScheduleList(this.options[this.selectedIndex].value);" })
                                     </div>
                                     <div class="col-lg-2 col-sm-2 col-xs-12">
-                                        <select class="form-control">
-                                            <option>ROLEX STADIUM</option>
-                                            <option selected="selected">WALNUT RING</option>
-                                            <option>STONELEA RING</option>
-                                            <option>CLAIBORNE RING</option>
-                                            <option>MURPHY RING</option>
-                                            <option>COVERED ARENA</option>
-                                            <option>ANNEX RING</option>
-                                        </select>
+                                        @Html.DropDownListFor(m => m.SelectedRingName, new SelectList(Model.RingNameList, "ShowDayID", "RingName"), new { id = "ddlRingName", @class = "form-control", onchange = "getScheduleList(this.options[this.selectedIndex].value);" })
                                     </div>
                                 </div>
                                 <div class="row">
@@ -193,15 +219,7 @@
                             </div>
                             <div class="col-lg-7 col-sm-7 col-xs-12">
                                 <h3>Ring Schedule</h3>
-                                <select class="form-control">
-                                    <option>ROLEX STADIUM</option>
-                                    <option selected="selected">WALNUT RING</option>
-                                    <option>STONELEA RING</option>
-                                    <option>CLAIBORNE RING</option>
-                                    <option>MURPHY RING</option>
-                                    <option>COVERED ARENA</option>
-                                    <option>ANNEX RING</option>
-                                </select>
+                                @Html.DropDownListFor(m => m.SelectedRingName, new SelectList(Model.RingNameList, "RingID", "RingName"), new { id = "ddlRingName1", @class = "form-control" })
                                 <div class="table-responsive showHistoryTableContent">
                                     <table class="table">
                                         <thead>
