@@ -17,56 +17,58 @@ namespace ViewModel
 
         public int MemberID { get; set; }
         public string Salutation { get; set; }
-        [Required(ErrorMessage="First Name is required.")]
+        [Required(ErrorMessage="*")]
         [MaxLength(30)]
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "First Name is required.")]
+        [Required(ErrorMessage = "*")]
         [MaxLength(30)]
         public string LastName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "*")]
         [MaxLength(255)]
         public string Address1 { get; set; }
         [MaxLength(255)]
         public string Address2 { get; set; }
-        [Required]
+        [Required(ErrorMessage = "*")]
         [MaxLength(30)]
         public string City { get; set; }
-        [Required]
+        [Required(ErrorMessage = "*")]
         [MaxLength(20)]
         public string State { get; set; }
-        [Required]
+        [Required(ErrorMessage = "*")]
         [MaxLength(10)]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Zip must be numeric")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "*")]
         public string Zip { get; set; }
         [MaxLength(20)]
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Phone must be numeric")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "*")]
         public string Phone { get; set; }
-        [Required(ErrorMessage = "Email is required.")]
+        [Required(ErrorMessage = "*")]
         [MaxLength(255)]
         [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" +
                             @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" +
                             @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$",
                             ErrorMessage = "Email is not valid")] 
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "*")]
         [MaxLength(50)]
         public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "*")]
         [MaxLength(50)]
         public string Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "*")]
         [Compare("Password")]
         public string ConfirmPassword { get; set; }
-        [Required]
+        [Required(ErrorMessage = "*")]
         [MaxLength(50)]
         public string PasswordHint { get; set; }
 
         //public Nullable<System.DateTime> DateJoined { get; set; }
         //public Nullable<int> TypeID { get; set; }
         //public string MemberStatus { get; set; }
-        [RegularExpression("^[0-9]*$", ErrorMessage = "Area Code must be numeric")]
+        [RegularExpression("^[0-9]*$", ErrorMessage = "*")]
         [MaxLength(4)]
         public string AreaCode { get; set; }
+
+        public IEnumerable<MemberGroupViewModel> MemberGroupList { get; set; }
         //public Nullable<System.DateTime> ExpiryDate { get; set; }
         //public string sms { get; set; }
         //public Nullable<bool> MessageNotification { get; set; }

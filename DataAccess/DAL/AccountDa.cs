@@ -34,10 +34,8 @@ namespace DataAccess.DAL
             {
 
 
-                MemberDetailsViewModel md = new MemberDetailsViewModel();
-
                 var MemberDetail = (from data in UnitOfWork.MemberDetailsRepository.GetQuery()
-                                    where data.Email == email && data.Password == password
+                                    where (data.Email == email || data.UserName == email) && data.Password == password
                                     select new MemberDetailsViewModel
                                     {
                                         MemberID = data.MemberID,

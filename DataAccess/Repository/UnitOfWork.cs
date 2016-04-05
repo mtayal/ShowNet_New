@@ -64,7 +64,7 @@ namespace DataAccess.Repository
         private GenericRepository<VIEW_MEDIA_PURCHASE> viewMediaPurchaseRepository;
         private GenericRepository<VIEW_MEDIA_SHOW_PURCHASE> viewMediaShowPurchaseRepository;
         private GenericRepository<VIEW_MEDIA_SHOW_PURCHASE_EXPIRES> viewMediaShowPurchaseExpiresRepository;
-        
+        private GenericRepository<MEMBER_GROUP> memberGroupRepository;
 
         #endregion Generic Repository Instance
 
@@ -123,6 +123,10 @@ namespace DataAccess.Repository
         public GenericRepository<VIEW_MEDIA_SHOW_PURCHASE_EXPIRES> ViewMediaShowPurchaseExpiresRepository
         {
             get { return viewMediaShowPurchaseExpiresRepository ?? (viewMediaShowPurchaseExpiresRepository = new GenericRepository<VIEW_MEDIA_SHOW_PURCHASE_EXPIRES>(dbContext)); }
+        }
+        public GenericRepository<MEMBER_GROUP> MemberGroupRepository
+        {
+            get { return memberGroupRepository ?? (memberGroupRepository = new GenericRepository<MEMBER_GROUP>(dbContext)); }
         }
         /// <summary>
         ///

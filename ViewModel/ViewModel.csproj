@@ -56,14 +56,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CalenderYearViewModel.cs" />
+    <Compile Include="EntrantViewModel.cs" />
     <Compile Include="HorseShowViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="MemberDetailsViewModel.cs" />
+    <Compile Include="MemberGroupViewModel.cs" />
+    <Compile Include="OrderedGoListViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RingNameViewModel.cs" />
     <Compile Include="ScheduleViewModel.cs" />
     <Compile Include="ShowDateViewModel.cs" />
     <Compile Include="ShowDetailsViewModel.cs" />
+    <Compile Include="ViewMediaPurchaseViewModel.cs" />
+    <Compile Include="ViewMediaShowPurchaseExpiresViewModel.cs" />
+    <Compile Include="ViewMediaShowPurchaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

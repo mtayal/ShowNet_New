@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModel;
 using AutoMapper;
+using DataAccess.Models;
 
 namespace DataAccess.DAL
 {
@@ -173,15 +174,27 @@ namespace DataAccess.DAL
                                          RingName = y.RingName,
                                          ShowDayID = x.ShowDayID
 
-                                     }).Distinct().ToList();
+                                     }).ToList();
             return HorseShowDateList;
         }
         //5
 
-        public IEnumerable<ScheduleViewModel> ScheduleList(int showDayId)
+        public IEnumerable<ScheduleViewModel> ScheduleList(int showDayId,int horseShowId)
         {
+
+            var Schedule = (from x in UnitOfWork.OrderedGoListRepository.GetQuery()
+                            where x.HorseShowID == horseShowId
+                                select new
+                                {
+                                    x.ClassID,
+                                    x.ScheduleID,
+                                    x.Started,
+                                    x.Scratched
+                                });
+
+
             var ScheduleDataList = (from x in UnitOfWork.ScheduleRepository.GetQuery()
-                                     where x.ShowDayID==x.ShowDayID
+                                    where x.ShowDayID == showDayId
 
                                      select new ScheduleViewModel
                                      {
@@ -189,14 +202,90 @@ namespace DataAccess.DAL
                                        ShowDayID=x.ShowDayID,
                                        ClassID=x.ClassID,
                                        ClassName=x.ClassName,
-                                       UpdateID=x.UpdateID
-
+                                       UpdateID=x.UpdateID,
+                                       ETATime = x.ETA.ToString(),
+                                       StartedCount = Schedule.Where(a => a.ScheduleID == x.ScheduleID && a.ClassID==x.ClassID && a.Started==true && a.Scratched==false).Count()
                                      }).ToList();
             return ScheduleDataList;
         }
 
 
+        public IEnumerable<MemberGroupViewModel> getMemberGroupList(int memberId)
+        {
+            try
+            {
+                var MemberGroupList = (from a in UnitOfWork.MemberDetailsRepository.GetQuery()
+                                       join b in UnitOfWork.MemberGroupRepository.GetQuery() on a.MemberID equals b.AssociatedMember
+                                       where b.Member == memberId
 
+                                       select new MemberGroupViewModel
+                                       {
+                                           ID = b.ID,
+                                           Member = b.Member,
+                                           AssociatedMember = b.AssociatedMember,
+                                           AssociateUserName = a.UserName,
+                                           Password = a.Password
+                                       }).ToList();
+
+                return MemberGroupList;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void deleteAssociateMemberId(int id)
+        {
+            try
+            {
+                var MemberGroupList = UnitOfWork.MemberGroupRepository.GetQuery().Where(x => x.ID == id).SingleOrDefault();
+                UnitOfWork.MemberGroupRepository.Delete(MemberGroupList);
+                UnitOfWork.Save();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public void AddNewAssociateUser(int loginMemberId, LoginViewModel newLogin)
+        {
+            try
+            {
+                var MemberDetails = from x in UnitOfWork.MemberDetailsRepository.GetQuery()
+                                    where ((x.UserName == newLogin.Email || x.Email == newLogin.Email) && x.Password == newLogin.Password)
+
+                                    select new MemberDetailsViewModel
+                                    {
+                                        MemberID = x.MemberID
+                                    };
+
+                int Id = MemberDetails.ToList().FirstOrDefault().MemberID;
+
+                var MemberGroups = from y in UnitOfWork.MemberGroupRepository.GetQuery()
+                                   where (y.Member == loginMemberId && y.AssociatedMember == Id)
+
+                                   select new MemberGroupViewModel
+                                   {
+                                       Member = y.Member
+                                   };
+                if (MemberGroups.ToList().Count() != 0)
+                {
+
+
+                }
+                else
+                {
+                    UnitOfWork.MemberGroupRepository.Insert(new MEMBER_GROUP { Member = loginMemberId, AssociatedMember = MemberDetails.ToList().FirstOrDefault().MemberID });
+                    UnitOfWork.Save();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
     }

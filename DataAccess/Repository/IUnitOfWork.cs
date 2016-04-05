@@ -81,7 +81,8 @@ namespace DataAccess.Repository
         GenericRepository<SCHEDULE> ScheduleRepository { get; }
         GenericRepository<RING_NAME> RingNameRepository { get; }
         GenericRepository<ORDERED_GO_LIST> OrderedGoListRepository { get; }
-        GenericRepository<ENTRANT> EntrantRepository { get; } 
+        GenericRepository<ENTRANT> EntrantRepository { get; }
+        GenericRepository<MEMBER_GROUP> MemberGroupRepository { get; }
         #endregion Generic Repository Instance
     }
 }

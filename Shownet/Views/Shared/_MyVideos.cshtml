@@ -1,21 +1,43 @@
-﻿<div role="tabpanel" class="tab-pane" id="myVideos">
+﻿@model ViewModel.MemberDetailsViewModel
+
+<div role="tabpanel" class="tab-pane" id="myVideos">
     <h3>Link your ShowNet video libraries together. 2 additional accounts per login.</h3>
     <p>
         You are currently linked to the following accounts:<br>
-        Not currently linked to any accounts
+        @*Not currently linked to any accounts*@
+        <div style="font-family:Cambria">
+            <ul>
+                @foreach (var item in Model.MemberGroupList)
+                {
+                    <li>@item.AssociateUserName @Html.ActionLink("Remove", "DeleteAssociateMember", "ShowNet", new { id = @item.ID }, null)</li>
+                }
+            </ul>
+            @ViewBag.Message
+        </div>
     </p>
     <div class="clr"></div>
     <div class="purchaseCreditForm">
+@using (Html.BeginForm("AddNewUser", "ShowNet", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+    {
+        //  @Html.EnableUnobtrusiveJavaScript()
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
         <label for="addUser">Add user</label>
-        <span><input type="text" class="form-control" id="addUser"></span>
+        <span>@*<input type="text" class="form-control" id="addUser">*@
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </span>
         <div class="clr"></div>
         <label for="usingPassword">Using Password</label>
-        <span><input type="text" class="form-control" id="usingPassword"></span>
+        <span>@*<input type="text" class="form-control" id="usingPassword">*@
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control", value = Model.Password })
+            @*@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })*@
+        </span>
         <div class="clr"></div>
         <label></label>
         <span>
             <button class="loginbtn"><i class="fa fa-link"></i> Add New Library Link</button>
         </span>
+}
     </div>
     <div class="clr"></div>
     <hr>

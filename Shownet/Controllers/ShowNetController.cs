@@ -60,9 +60,10 @@ namespace Shownet.Controllers
             }
         }
 
-        public bool RingScheduleList(int year, int month, int showNameId, DateTime showDate, int showDayID)
+        public ActionResult fillRingScheduleList(int year, int month, int showNameId, DateTime showDate, int showDayID)
         {
-            return true;
+            var scheduleDataList = shownetDa.ScheduleList(showDayID, showNameId);
+            return Json(scheduleDataList, JsonRequestBehavior.AllowGet);
         }
         public ActionResult fillShowName(int year, int month, int showNameId, DateTime showDate, int showDayID)
         {
@@ -76,6 +77,13 @@ namespace Shownet.Controllers
             return Json(horseShowDateDataList, JsonRequestBehavior.AllowGet);
 
         }
+        public ActionResult fillRingName(int year, int month, int showNameId, DateTime showDate, int showDayID)
+        {
+            var ringNameDataList = shownetDa.HorseRingListList(showDate, showNameId);
+            return Json(ringNameDataList, JsonRequestBehavior.AllowGet);
+
+        }
+       
 
         public ActionResult MyShowNet()
         {
@@ -86,6 +94,7 @@ namespace Shownet.Controllers
 
                 int memberId = Convert.ToInt32(Session["Emp_id"]);
                 memberDetailsViewModel = accountDa.EditMyShowNet(memberId);
+                memberDetailsViewModel.MemberGroupList = shownetDa.getMemberGroupList(memberId);
                 return View(memberDetailsViewModel);
             }
             else
@@ -126,7 +135,48 @@ namespace Shownet.Controllers
         {
             return View();
         }
+        public ActionResult ClassResults()
+        {
+            return View();
+        }
 
+        public ActionResult DeleteAssociateMember(int id)
+        {
+            if (Session["Emp_id"] != null)
+            {
+                shownetDa.deleteAssociateMemberId(id);
+
+                return RedirectToAction("MyShowNet", "ShowNet");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult AddNewUser(LoginViewModel loginViewModel)
+        {
+            if (Session["Emp_id"] != null)
+            {
+                MemberDetailsViewModel memberDetailsViewModel = new MemberDetailsViewModel();
+                memberDetailsViewModel.MemberGroupList = shownetDa.getMemberGroupList(Convert.ToInt32(Session["Emp_id"]));
+                int count = memberDetailsViewModel.MemberGroupList.Count();
+                if (count == 2)
+                {
+                    TempData["Message"] = "There are already two user.";
+                }
+                else if (count == 0 || count == 1)
+                {
+                    shownetDa.AddNewAssociateUser(Convert.ToInt32(Session["Emp_id"]), loginViewModel);
+                }
+                return RedirectToAction("MyShowNet", "ShowNet");
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
+        }
 
 
     }

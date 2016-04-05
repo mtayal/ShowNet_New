@@ -26,5 +26,7 @@ namespace ViewModel
         public Nullable<short> TimeAllowed2 { get; set; }
         public Nullable<int> RootScheduleID { get; set; }
         public Nullable<int> ParentScheduleID { get; set; }
+        public string ETATime { get; set; }
+        public int StartedCount { get; set; }
     }
 }

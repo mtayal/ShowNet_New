@@ -21,36 +21,26 @@
     }
 </style>
 <script type="text/javascript">
-    $(document).ready(function () {
-        $("#ShowCarousel").owlCarousel({
-            itemsCustom: [
-                [0, 1],
-                [450, 1],
-                [600, 2],
-                [700, 3],
-                [1000, 3],
-                [1200, 4],
-                [1400, 5],
-                [1600, 5]
-            ],
-            //Autoplay
-            autoPlay: false,
-            stopOnHover: false,
-            // Navigation
-            navigation: true,
-            navigationText: ["", ""],
-            rewindNav: true,
-            scrollPerPage: false
-        });
-    });
+   
 
     function getScheduleList() {
         $.ajax({
             type: 'POST',
-            url: '/ShowNet/RingScheduleList',
+            url: '/ShowNet/fillRingScheduleList',
             data: { 'year': $("#ddlYear").val(), 'month': $('#ddlMonth').val(), 'showNameId': $('#ddlShowName').val(), 'showDate': $('#ddlHorseShowDate').val(), 'showDayID': $('#ddlRingName').val() },
             success: function (response) {
-                // alert("hi");
+                $(".removeRow").remove();
+                debugger;
+                $.each(response, function (i, item) {
+                    var d = item.ETATime.substring(12,20);
+                    var html = "<tr class=removeRow><td style='color:black;'>" + item.ClassID + "</td>";
+                    html += "<td style='color:black;'>" + item.ClassName + "</td>"; 
+                    html += "<td style='color:black;'>" + d + "</td>";
+                    html += "<td style='color:black;'>" + item.StartedCount + "</td>";
+                    html += "<td style='color:black;'> <a href=''>" + item.StartedCount + "</a></td>";
+                    $("#tblRing tr:last").after(html);
+                    
+                });
 
             },
             error: function (response) {
@@ -62,8 +52,6 @@
     }
 
     function getShowName() {
-        var year = $('#ddlYear').val();
-        var month = $('#ddlMonth').val();
         $.ajax({
             url: '/ShowNet/fillShowName',
             type: "GET",
@@ -77,7 +65,7 @@
                             $('<option></option>').val(showName.HorseShowID).html(showName.HorseShowName));
                         $("#ddlHorseShowDate").prop("disabled", false);
                         $("#ddlRingName").prop("disabled", false);
-                        $("#ddlRingName1").prop("disabled", true);
+                        $("#ddlRingName1").prop("disabled", false);
                     });
                 }
                 else {
@@ -93,8 +81,6 @@
     }
 
     function getShowDate() {
-        var year = $('#ddlYear').val();
-        var month = $('#ddlMonth').val();
         $.ajax({
             url: '/ShowNet/fillShowDate',
             type: "GET",
@@ -112,7 +98,7 @@
                     });
                 }
                 else {
-                    $("#ddlHorseShowDate").append($('<option></option>').val(0).html("No shows for this months!"));
+                    $("#ddlHorseShowDate").append($('<option></option>').val(0).html("No available!"));
 
 
 
@@ -120,6 +106,36 @@
             }
         });
     }
+    function getRingList() {
+        $.ajax({
+            url: '/ShowNet/fillRingName',
+            type: "GET",
+            dataType: "JSON",
+            data: { 'year': $("#ddlYear").val(), 'month': $('#ddlMonth').val(), 'showNameId': $('#ddlShowName').val(), 'showDate': $('#ddlHorseShowDate').val(), 'showDayID': $('#ddlRingName').val() },
+            success: function (shows) {
+                $("#ddlRingName").html("");
+                $("#ddlRingName1").html("");
+                if (shows.length != 0) {
+
+                    $.each(shows, function (i, show) {
+                        $("#ddlRingName").append(
+                           $('<option></option>').val(show.ShowDayID).html(show.RingName));
+                        $("#ddlRingName1").append(
+                           $('<option></option>').val(show.ShowDayID).html(show.RingName));
+
+                    });
+                }
+                else {
+                    $("#ddlRingName").append($('<option></option>').val(0).html("No available!"));
+                    $("#ddlRingName1").append($('<option></option>').val(0).html("No available!"));
+
+
+
+                }
+            }
+        });
+    }
+
 </script>
 
 
@@ -138,20 +154,6 @@
                             <div class="clr"></div>
                         </form>
                     </div>
-                    <!--<div class="row">
-                        <div class="col-lg-6 col-sm-6 col-xs-12">
-                            <button class="blueBtnHome" onclick="location.href = 'pricing-operation.html';">
-                                <h3>Please click here</h3>
-                                <p>Pricing and Operations</p>
-                            </button>
-                        </div>
-                        <div class="col-lg-6 col-sm-6 col-xs-12">
-                            <button class="orangeBtnHome" onclick="location.href = 'privatized.html';">
-                                <h3>ShowNet now offers</h3>
-                                <p>Privacy Setting for your videos</p>
-                            </button>
-                        </div>
-                    </div>-->
                 </div>
             </div>
         </div>
@@ -185,22 +187,23 @@
                                         @Html.DropDownListFor(m => m.SelectedHorseShow, new SelectList(Model.HorseShowList, "HorseShowID", "HorseShowName"), new { id = "ddlShowName", @class = "form-control", onchange = "getShowDate(this.options[this.selectedIndex].value);" })
                                     </div>
                                     <div class="col-lg-3 col-sm-3 col-xs-12">
-                                        @Html.DropDownListFor(m => m.SelectedHorseShowDate, new SelectList(Model.ShowDateList, "ShowsDate", "ShowsDate"), new { id = "ddlHorseShowDate", @class = "form-control", onchange = "getScheduleList(this.options[this.selectedIndex].value);" })
+                                        @Html.DropDownListFor(m => m.SelectedHorseShowDate, new SelectList(Model.ShowDateList, "ShowsDate", "ShowsDate"), new { id = "ddlHorseShowDate", @class = "form-control", onchange = "getRingList(this.options[this.selectedIndex].value);" })
                                     </div>
                                     <div class="col-lg-2 col-sm-2 col-xs-12">
                                         @Html.DropDownListFor(m => m.SelectedRingName, new SelectList(Model.RingNameList, "ShowDayID", "RingName"), new { id = "ddlRingName", @class = "form-control", onchange = "getScheduleList(this.options[this.selectedIndex].value);" })
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-lg-12 col-sm-12 col-xs-12">
-                                        <div id="ShowCarousel" class="owl-carousel">
-                                            <div class="item">ROLEX STADIUM Ring is Empty</div>
-                                            <div class="item">WALNUT RING Ring is Empty</div>
-                                            <div class="item">STONELEA RING Ring is Empty</div>
-                                            <div class="item">CLAIBORNE RING Ring is Empty</div>
-                                            <div class="item">MURPHY RING Ring is Empty</div>
-                                            <div class="item">COVERED ARENA Ring is Empty</div>
-                                        </div>
+                               
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12 col-sm-12 col-xs-12">
+                                    <div id="ShowCarousel" class="owl-carousel">
+                                        <div class="item" id="ShowCarouselchild">ROLEX STADIUM Ring is Empty</div>
+                                        <div class="item">WALNUT RING Ring is Empty</div>
+                                        <div class="item">STONELEA RING Ring is Empty</div>
+                                        <div class="item">CLAIBORNE RING Ring is Empty</div>
+                                        <div class="item">MURPHY RING Ring is Empty</div>
+                                        <div class="item">COVERED ARENA Ring is Empty</div>
                                     </div>
                                 </div>
                             </div>
@@ -219,9 +222,9 @@
                             </div>
                             <div class="col-lg-7 col-sm-7 col-xs-12">
                                 <h3>Ring Schedule</h3>
-                                @Html.DropDownListFor(m => m.SelectedRingName, new SelectList(Model.RingNameList, "RingID", "RingName"), new { id = "ddlRingName1", @class = "form-control" })
+                                @Html.DropDownListFor(m => m.SelectedRingName, new SelectList(Model.RingNameList, "ShowDayID", "RingName"), new { id = "ddlRingName1", @class = "form-control", onchange = "getScheduleList(this.options[this.selectedIndex].value);" })
                                 <div class="table-responsive showHistoryTableContent">
-                                    <table class="table">
+                                    <table class="table" id="tblRing">
                                         <thead>
                                             <tr>
                                                 <th>Class</th>
@@ -231,36 +234,7 @@
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>562</td>
-                                                <td>HIGH SCHOOLING JUMPER II NO JP OFF</td>
-                                                <td>08:00AM</td>
-                                                <td>50</td>
-                                                <td><a href="my-shownet.html">Live (Seen 0 of 50)</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>562</td>
-                                                <td>HIGH SCHOOLING JUMPER II NO JP OFF</td>
-                                                <td>08:00AM</td>
-                                                <td>50</td>
-                                                <td><a href="#">Live (Seen 0 of 50)</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>562</td>
-                                                <td>HIGH SCHOOLING JUMPER II NO JP OFF</td>
-                                                <td>08:00AM</td>
-                                                <td>50</td>
-                                                <td><a href="#">Live (Seen 0 of 50)</a></td>
-                                            </tr>
-                                            <tr>
-                                                <td>562</td>
-                                                <td>HIGH SCHOOLING JUMPER II NO JP OFF</td>
-                                                <td>08:00AM</td>
-                                                <td>50</td>
-                                                <td><a href="#">Live (Seen 0 of 50)</a></td>
-                                            </tr>
-                                        </tbody>
+                                        <tbody id="tblRingData"></tbody>
                                     </table>
                                 </div>
                             </div>

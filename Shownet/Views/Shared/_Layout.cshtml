@@ -17,7 +17,32 @@
 
     <!-- jQuery library script -->
     <script src="~/html/js/jquery-1.11.3.min.js" type="text/javascript"></script>
+    <script src="http://localhost:53334/html/js/owl.carousel.js" type="text/javascript"></script>
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            jQuery("#ShowCarousel").owlCarousel({
+                itemsCustom: [
+                    [0, 1],
+                    [450, 1],
+                    [600, 2],
+                    [700, 3],
+                    [1000, 3],
+                    [1200, 4],
+                    [1400, 5],
+                    [1600, 5]
+                ],
+                //Autoplay
+                autoPlay: false,
+                stopOnHover: false,
+                // Navigation
+                navigation: true,
+                navigationText: ["", ""],
+                rewindNav: true,
+                scrollPerPage: false
+            });
+        });
+    </script>
     <!-- bootstrap script -->
     <script src="~/html/js/bootstrap.js" type="text/javascript"></script>
 </head>
@@ -50,7 +75,7 @@
     </div>
 </footer>
 <!-- /footer -->
-@Scripts.Render("~/bundles/jquery")
+
 @Scripts.Render("~/bundles/bootstrap")
 @RenderSection("scripts", required: false)
 </body>
