@@ -46,7 +46,14 @@ namespace Shownet.Controllers
         {
             return View();
         }
-
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            Session.Clear();
+            return RedirectToAction("Default", "ShowNet");
+            
+        }
         [HttpPost]
         //[AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -58,7 +65,7 @@ namespace Shownet.Controllers
                 if (member != null)
                 {
                     Session["Emp_id"] = member.MemberID;
-                    Session["UserName"] = member.UserName;
+                    Session["UserName"] = "Welcome : "+  member.UserName;
                     Session["Email"] = member.Email;
                     return RedirectToAction("ShowDetails", "ShowNet");
                 }

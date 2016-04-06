@@ -40,7 +40,7 @@ namespace DataAccess.DAL
                                     {
                                         MemberID = data.MemberID,
                                         Email = data.Email,
-                                        FirstName = data.FirstName
+                                        UserName = data.UserName
                                     }).FirstOrDefault();
 
                 return MemberDetail;
