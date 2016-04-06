@@ -15,7 +15,8 @@ function getScheduleList() {
                     html += "<td style='color:black;'>" + item.ClassName + "</td>"; 
                     html += "<td style='color:black;'>" + d + "</td>";
                     html += "<td style='color:black;'>" + item.StartedCount + "</td>";
-                    html += "<td style='color:black;'> <a href=''> View Results </a></td>";
+                    html += "<td style='color:black;'><a href=''><i class='fa fa-video-camera' style='font-size: 18px;'></i></div></a></td>";
+                    html += "<td style='color:black;'> <a href='/ShowNet/ClassResults?ringID=" + item.RingId+ "&HorseShowID=" + $('#ddlShowName').val() + "&ScheduleID=" + item.ScheduleID + "&ClassID=" + item.ClassID + "'> View Results </a></td>";
                     $("#tblRing tr:last").after(html);
                     
                 });

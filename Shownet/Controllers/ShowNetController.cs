@@ -135,7 +135,7 @@ namespace Shownet.Controllers
         {
             return View();
         }
-        public ActionResult ClassResults()
+        public ActionResult ClassResults(int ringID,int horseShowID,int scheduleID,int classID)
         {
             return View();
         }

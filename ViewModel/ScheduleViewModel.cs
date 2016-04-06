@@ -28,5 +28,6 @@ namespace ViewModel
         public Nullable<int> ParentScheduleID { get; set; }
         public string ETATime { get; set; }
         public int StartedCount { get; set; }
+        public int RingId { get; set; }
     }
 }

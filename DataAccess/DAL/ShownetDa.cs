@@ -172,8 +172,8 @@ namespace DataAccess.DAL
                                      select new ShowDateViewModel
                                      {
                                          RingName = y.RingName,
-                                         ShowDayID = x.ShowDayID
-
+                                         ShowDayID = x.ShowDayID,
+                                         RingID=x.RingID
                                      }).ToList();
             return HorseShowDateList;
         }
@@ -181,7 +181,13 @@ namespace DataAccess.DAL
 
         public IEnumerable<ScheduleViewModel> ScheduleList(int showDayId,int horseShowId)
         {
-
+            
+            var ringId=(from r in UnitOfWork.ShowDateRepository.GetQuery() 
+                            where r.ShowDayID==showDayId
+                            select new{
+                                r.RingID,
+                                r.ShowDayID
+                            } );
             var Schedule = (from x in UnitOfWork.OrderedGoListRepository.GetQuery()
                             where x.HorseShowID == horseShowId
                                 select new
@@ -204,7 +210,8 @@ namespace DataAccess.DAL
                                        ClassName=x.ClassName,
                                        UpdateID=x.UpdateID,
                                        ETATime = x.ETA.ToString(),
-                                       StartedCount = Schedule.Where(a => a.ScheduleID == x.ScheduleID && a.ClassID==x.ClassID && a.Started==true && a.Scratched==false).Count()
+                                       StartedCount = Schedule.Where(a => a.ScheduleID == x.ScheduleID && a.ClassID==x.ClassID && a.Started==true && a.Scratched==false).Count(),
+                                       RingId = ringId.FirstOrDefault(a => a.ShowDayID == x.ShowDayID).RingID
                                      }).ToList();
             return ScheduleDataList;
         }

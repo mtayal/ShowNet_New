@@ -24,6 +24,7 @@
 
 
 
+
 <!-- contentPart -->
 <section id="contentPart">
     <div id="threeBoxes" class="newBackground">
@@ -75,6 +76,7 @@
                                     </div>
                                     <div class="col-lg-2 col-sm-2 col-xs-12">
                                         @Html.DropDownListFor(m => m.SelectedRingName, new SelectList(Model.RingNameList, "ShowDayID", "RingName"), new { id = "ddlRingName", @class = "form-control", onchange = "getScheduleList(this.options[this.selectedIndex].value);" })
+
                                     </div>
                                 </div>
                                
@@ -113,7 +115,8 @@
                                                 <th>Class</th>
                                                 <th>Class Name</th>
                                                 <th>Start</th>
-                                                <th>Starters&nbsp;Video</th>
+                                                <th>Starters</th>
+                                                <th>Video</th>
                                                 <th>Status</th>
                                             </tr>
                                         </thead>
