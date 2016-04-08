@@ -56,21 +56,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountingViewModel.cs" />
     <Compile Include="CalenderYearViewModel.cs" />
+    <Compile Include="EnteredViewModel.cs" />
     <Compile Include="EntrantViewModel.cs" />
     <Compile Include="HorseShowViewModel.cs" />
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="MemberDetailsViewModel.cs" />
     <Compile Include="MemberGroupViewModel.cs" />
     <Compile Include="OrderedGoListViewModel.cs" />
+    <Compile Include="PaymentCreditViewModel.cs" />
+    <Compile Include="ProductViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseViewModel.cs" />
+    <Compile Include="ResultsViewModel.cs" />
     <Compile Include="RingNameViewModel.cs" />
     <Compile Include="ScheduleViewModel.cs" />
     <Compile Include="ShowDateViewModel.cs" />
     <Compile Include="ShowDetailsViewModel.cs" />
+    <Compile Include="ViewEntrantMediaViewModel.cs" />
     <Compile Include="ViewMediaPurchaseViewModel.cs" />
     <Compile Include="ViewMediaShowPurchaseExpiresViewModel.cs" />
     <Compile Include="ViewMediaShowPurchaseViewModel.cs" />
+    <Compile Include="ViewPurchasesViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

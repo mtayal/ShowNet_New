@@ -65,7 +65,14 @@ namespace DataAccess.Repository
         private GenericRepository<VIEW_MEDIA_SHOW_PURCHASE> viewMediaShowPurchaseRepository;
         private GenericRepository<VIEW_MEDIA_SHOW_PURCHASE_EXPIRES> viewMediaShowPurchaseExpiresRepository;
         private GenericRepository<MEMBER_GROUP> memberGroupRepository;
-
+        private GenericRepository<MODE> modeRepository;
+        //For Payment & Credit 
+        private GenericRepository<ACCOUNTING> accountingRepository;
+        private GenericRepository<Purchase> purchaseRepository;
+        private GenericRepository<VIEW_PURCHASES> viewPurchasesRepository;
+        private GenericRepository<VIEW_ENTRANT_MEDIA> viewEntrantMediaRepository;
+        private GenericRepository<PRODUCT> productRepository;
+        private GenericRepository<Medium> mediumRepository;
         #endregion Generic Repository Instance
 
         #region Repository Instance
@@ -128,6 +135,42 @@ namespace DataAccess.Repository
         {
             get { return memberGroupRepository ?? (memberGroupRepository = new GenericRepository<MEMBER_GROUP>(dbContext)); }
         }
+        public GenericRepository<MODE> ModeRepository
+        {
+            get { return modeRepository ?? (modeRepository = new GenericRepository<MODE>(dbContext)); }
+        }
+        #region Payment & Credit
+        public GenericRepository<ACCOUNTING> AccountingRepository
+        {
+            get { return accountingRepository ?? (accountingRepository = new GenericRepository<ACCOUNTING>(dbContext)); }
+        }
+
+        public GenericRepository<Purchase> PurchaseRepository
+        {
+            get { return purchaseRepository ?? (purchaseRepository = new GenericRepository<Purchase>(dbContext)); }
+        }
+
+        public GenericRepository<VIEW_PURCHASES> ViewPurchasesRepository
+        {
+            get { return viewPurchasesRepository ?? (viewPurchasesRepository = new GenericRepository<VIEW_PURCHASES>(dbContext)); }
+        }
+
+        public GenericRepository<VIEW_ENTRANT_MEDIA> ViewEntrantMediaRepository
+        {
+            get { return viewEntrantMediaRepository ?? (viewEntrantMediaRepository = new GenericRepository<VIEW_ENTRANT_MEDIA>(dbContext)); }
+        }
+
+        public GenericRepository<PRODUCT> ProductRepository
+        {
+            get { return productRepository ?? (productRepository = new GenericRepository<PRODUCT>(dbContext)); }
+        }
+
+        public GenericRepository<Medium> MediumRepository
+        {
+            get { return mediumRepository ?? (mediumRepository = new GenericRepository<Medium>(dbContext)); }
+        }
+
+        #endregion
         /// <summary>
         ///
         /// </summary>

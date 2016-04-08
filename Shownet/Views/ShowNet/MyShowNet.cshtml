@@ -1,4 +1,4 @@
-﻿
+﻿@model ViewModel.MemberDetailsViewModel
 @{
     ViewBag.Title = "MyShowNet";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -65,9 +65,9 @@
                                 </ul>
                                 <!-- Tab panes -->
                                 <div class="tab-content">
-                                    @Html.Partial("_MyProfile")
-                                    @Html.Partial("_PaymentCredit")
-                                    @Html.Partial("_MyVideos")
+                                    @Html.Partial("_MyProfile", Model)
+                                    @Html.Partial("_PaymentCredit", Model.PaymentCredit)
+                                    @Html.Partial("_MyVideos", Model)
                                     @Html.Partial("_SetMyTrackedEntriesAlerts")
                                     @Html.Partial("_SocialNetworkMobileInfo")
                                 </div>

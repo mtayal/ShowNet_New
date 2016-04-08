@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ViewModel
 {
+  
    public class ScheduleViewModel
     {
         public int ScheduleID { get; set; }
@@ -27,7 +28,13 @@ namespace ViewModel
         public Nullable<int> RootScheduleID { get; set; }
         public Nullable<int> ParentScheduleID { get; set; }
         public string ETATime { get; set; }
-        public int StartedCount { get; set; }
+        public int SeenCount { get; set; }
+        public int ClassCount { get; set; }
         public int RingId { get; set; }
+       
     }
+  
+    
+       
+
 }

@@ -14,7 +14,12 @@ namespace ViewModel
 {
     public class MemberDetailsViewModel
     {
-
+        public MemberDetailsViewModel()
+        {
+            this.PaymentCredit = new PaymentCreditViewModel();
+            this.PaymentCredit.AccountingObject = new AccountingViewModel();
+            this.PaymentCredit.PurchaseObject = new PurchaseViewModel();
+        }
         public int MemberID { get; set; }
         public string Salutation { get; set; }
         [Required(ErrorMessage="*")]
@@ -69,6 +74,8 @@ namespace ViewModel
         public string AreaCode { get; set; }
 
         public IEnumerable<MemberGroupViewModel> MemberGroupList { get; set; }
+        //For Payment & credit
+        public PaymentCreditViewModel PaymentCredit { get; set; }
         //public Nullable<System.DateTime> ExpiryDate { get; set; }
         //public string sms { get; set; }
         //public Nullable<bool> MessageNotification { get; set; }

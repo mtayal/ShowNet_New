@@ -1,8 +1,36 @@
-﻿@model ViewModel.ShowDetailsViewModel
+﻿@model ViewModel.ResultsViewModel
 @{
     ViewBag.Title = "ClassResults";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<h2>ClassResults</h2>
+<section id="contentPart">
+    <div id="threeBoxes" class="newBackground">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-sm-10 col-xs-12 col-lg-offset-1 col-sm-offset-1 col-xs-offset-0">
+                    <h2 class="red-bg" style="color:#000;">Video Search</h2>
+                    <div class="videoSearchFieldContainer">
+                        <form>
+                            <input type="text" class="form-control" placeholder="Enter a few letters, or the full name of your horse">
+                            <input type="button" class="goBtn" value="go">
+                            <div class="clr"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="showinformation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="showDetailsContainer">
+                    <a id="HyperLinkReturnToSummary" href="/ShowNet/ShowDetails?HorseShowID=@Html.DisplayFor(model => Model.HorseShowId)" style="color: Orange; font-size: 12px; float: right;">Back to Summary</a>
+                    <p><h2>Results : Class - @Html.DisplayFor(model => Model.ClassId) ,@Html.DisplayFor(@Model => Model.ClassName)</h2></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 

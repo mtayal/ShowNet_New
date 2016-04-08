@@ -83,6 +83,15 @@ namespace DataAccess.Repository
         GenericRepository<ORDERED_GO_LIST> OrderedGoListRepository { get; }
         GenericRepository<ENTRANT> EntrantRepository { get; }
         GenericRepository<MEMBER_GROUP> MemberGroupRepository { get; }
+        GenericRepository<MODE> ModeRepository { get; }
+        #region For Payment & Credit Module
+        GenericRepository<ACCOUNTING> AccountingRepository { get; }
+        GenericRepository<Purchase> PurchaseRepository { get; }
+        GenericRepository<VIEW_PURCHASES> ViewPurchasesRepository { get; }
+        GenericRepository<VIEW_ENTRANT_MEDIA> ViewEntrantMediaRepository { get; }
+        GenericRepository<PRODUCT> ProductRepository { get; }
+        GenericRepository<Medium> MediumRepository { get; }
+        #endregion
         #endregion Generic Repository Instance
     }
 }

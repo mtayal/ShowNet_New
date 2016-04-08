@@ -22,4 +22,11 @@ namespace CommanLibrary
         /// <remarks/>
         All,
     }
+    public enum TrackedState
+    {
+        NotStarted,
+        Started,
+        Finished,
+    }
+   
 }

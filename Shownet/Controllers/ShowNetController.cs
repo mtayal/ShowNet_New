@@ -95,6 +95,7 @@ namespace Shownet.Controllers
                 int memberId = Convert.ToInt32(Session["Emp_id"]);
                 memberDetailsViewModel = accountDa.EditMyShowNet(memberId);
                 memberDetailsViewModel.MemberGroupList = shownetDa.getMemberGroupList(memberId);
+                memberDetailsViewModel.PaymentCredit = shownetDa.GetUpdatePaymentCredit(memberId);
                 return View(memberDetailsViewModel);
             }
             else
@@ -135,9 +136,12 @@ namespace Shownet.Controllers
         {
             return View();
         }
-        public ActionResult ClassResults(int ringID,int horseShowID,int scheduleID,int classID)
+        public ActionResult ClassResults(int ringID, int horseShowID, int scheduleID, string classID)
         {
-            return View();
+           ResultsViewModel rv =new ResultsViewModel();
+            rv= shownetDa.getResults(ringID, horseShowID, scheduleID, classID);
+            
+            return View(rv);
         }
 
         public ActionResult DeleteAssociateMember(int id)

@@ -1,21 +1,39 @@
-﻿
+﻿@model ViewModel.PaymentCreditViewModel 
+@{
+    decimal Balance = @Model.AccountingObject.BALANCE;
+    string Bal = String.Format("{0:C}", @Balance);
+}
+@using System.Globalization;
+
 <div role="tabpanel" class="tab-pane" id="paymentCredit">
     <h3>Current Subscription Status</h3>
     <p>
-        Current Subscription: <strong>Standard - expires 07/07/2016</strong><br>
+        @*Current Subscription: <strong>Standard - expires 07/07/2016</strong><br>*@
+        @*Current Subscription:@Model.PurchaseObject.CurrentSubscription*@
+        Current Subscription:@Model.PurchaseObject.ProductName -expires  @Model.PurchaseObject.Expires.GetValueOrDefault().ToShortDateString()
+        <br />
         ShowNetPlus Subscription
     </p>
     <hr>
     <h3>Your current account balance for video purchases.</h3>
     <p>
-        Account Credit Balance: $135.50<br>
-        Available Downloads for this Circuit: &nbsp; 0
+        @*Account Credit Balance: $135.50*@
+        @*value.ToString("C", CultureInfo.CurrentCulture)*@
+        Account Credit Balance:@Model.AccountingObject.BALANCE.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))
+
+        <br>
+        @*Available Downloads for this Circuit: &nbsp; 0*@
     </p>
     <p><em>Please Note: You will be prompted to purchase individual clips when you access each clip through our results or horse search functions. To purchase an entire show you may do this through the main page link.</em></p>
     <hr>
     <h3>Purchase Additional Credit</h3>
-    <div class="purchaseCreditForm">
+    @*@using (Html.BeginForm("GetUpdatePaymentCredit", "ShowNet", FormMethod.Post))
+    {
+       
+    }*@
+    @*<div class="purchaseCreditForm">
         <label>Credit</label>
+      
         <span>
             <select class="form-control">
                 <option>$50.00 of Account Credit</option>
@@ -29,7 +47,7 @@
         <div class="clr"></div>
         <label>Name on Card:</label>
         <span>
-            <input type="text" class="form-control">
+            
         </span>
         <div class="clr"></div>
         <label>Card Number:</label>
@@ -55,11 +73,11 @@
         </span>
         <div class="clr">&nbsp;</div>
         <button class="loginbtn"><i class="fa fa-money"></i> Purchase Credit</button>
-    </div>
+    </div>*@
     <hr>
     <h3>Current Purchases</h3>
     <div class="clr"></div>
-    <div class="pull-right">
+    @*<div class="pull-right">
         <nav>
             <ul class="pagination">
                 <li class="disabled">
@@ -89,7 +107,7 @@
                 </li>
             </ul>
         </nav>
-    </div>
+    </div>*@
     <div class="clr"></div>
     <div class="table-responsive purchaseCreditTableContent">
         <table class="table" cellpadding="0" cellspacing="0" border="0">
@@ -104,7 +122,41 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
+                @if(Model.ViewPurchasesList.Count()>0 && @Model.ViewPurchasesList!=null)
+                {
+                    foreach(var item in Model.ViewPurchasesList)
+                    {
+                        <tr>
+                            <td>@item.ProductName</td>
+                           
+                            @if(@item.AmountPaid==0)
+                            {
+                             <td>Free Purchase</td>
+                            }
+                            else
+                            {
+                              
+                             decimal Amount = Convert.ToDecimal(@item.AmountPaid);
+                            
+                                <td>@Amount.ToString("C2",CultureInfo.CreateSpecificCulture("en-US"))</td>
+                            }
+                            
+                            <td>@item.ProductDescription</td>
+                            <td>@item.Timestamp.GetValueOrDefault().ToShortDateString()</td>
+                            <td>@item.Notes</td>
+                            
+                               @{
+                                 decimal MemberBalance = Convert.ToDecimal(item.MemberBalance);
+                               } 
+                            <td>
+                                @MemberBalance.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))
+                                
+                            </td>
+                        </tr>
+                    }
+
+                }
+                @*<tr>
                     <td>SingleClipOneTwo</td>
                     <td>Free Purchase</td>
                     <td>1012, 6 Year Old Table II Sec 2.1 - 1147, LANEY</td>
@@ -112,23 +164,20 @@
                     <td>-</td>
                     <td>$135.50</td>
                 </tr>
-                <tr>
-                    <td>SingleClipOneTwo</td>
-                    <td>($14.50)</td>
-                    <td>1012, 6 Year Old Table II Sec 2.1 - 1147, LANEY</td>
-                    <td>07/08/2015 06:39</td>
-                    <td>-</td>
-                    <td>$135.50</td>
-                </tr>
-                <tr>
-                    <td>Standard</td>
-                    <td>($50.00)</td>
-                    <td>ShowNetPlus Subscription</td>
-                    <td>07/08/2015 06:32</td>
-                    <td>-</td>
-                    <td>$150.00</td>
-                </tr>
+               *@
             </tbody>
         </table>
     </div>
 </div>
+<script>
+    $(document).ready(function () {
+        $('.table').dataTable();
+    });
+</script>
+<!-- DataTables CSS -->
+<link href="~/Content/jquery.dataTables.css" rel="stylesheet" />
+
+
+<!-- DataTables -->
+
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
