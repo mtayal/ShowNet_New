@@ -84,6 +84,7 @@ namespace DataAccess.Repository
         GenericRepository<ENTRANT> EntrantRepository { get; }
         GenericRepository<MEMBER_GROUP> MemberGroupRepository { get; }
         GenericRepository<MODE> ModeRepository { get; }
+        GenericRepository<VIEW_SHOW_PURCHASE> ViewShowPurchaseRepository { get; }
         #region For Payment & Credit Module
         GenericRepository<ACCOUNTING> AccountingRepository { get; }
         GenericRepository<Purchase> PurchaseRepository { get; }

@@ -42,4 +42,22 @@
     <div class="clr"></div>
     <hr>
     <h3>Your video purchases on ShowNet.</h3>
-</div>
+    <div>
+        <h2>
+            PURCHASED VIDEO CLIPS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
+                View By <a href="#">SHOW</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">HORSE</a>
+                @*@Html.ActionLink("SHOW", "GetShowList", "ShowNet", new { MemberId = @Model.MemberID, ShowId = "Show", }, null)  &nbsp;&nbsp;&nbsp;@Html.ActionLink("HORSE", "GetShowList", "ShowNet", new { MemberId = @Model.MemberID, }, null)*@
+            </span>
+        </h2>
+        @*
+            </div>*@
+        <h1>You have purchased video clips for the following entrants:</h1>
+        <div style="font-family:Cambria">
+            @foreach (var item in Model.ViewShowPurchaseList)
+            {
+                @item.HorseShowName
+                <br />
+            }
+        </div>
+    </div>
+    </div>

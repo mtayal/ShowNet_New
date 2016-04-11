@@ -74,6 +74,7 @@ namespace ViewModel
         public string AreaCode { get; set; }
 
         public IEnumerable<MemberGroupViewModel> MemberGroupList { get; set; }
+        public IEnumerable<ViewShowPurchaseViewModel> ViewShowPurchaseList { get; set; }
         //For Payment & credit
         public PaymentCreditViewModel PaymentCredit { get; set; }
         //public Nullable<System.DateTime> ExpiryDate { get; set; }

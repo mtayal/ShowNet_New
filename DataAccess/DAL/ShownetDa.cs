@@ -299,7 +299,7 @@ namespace DataAccess.DAL
         }
         public ResultsViewModel getResults(int ringID, int horseShowID, int scheduleID, string classID)
         {
-
+            ResultsViewModel rs = new ResultsViewModel();
             var classResultData = (from a in UnitOfWork.ScheduleRepository.GetQuery()
                                    join b in UnitOfWork.ShowDateRepository.GetQuery() on a.ShowDayID equals b.ShowDayID
                                    join c in UnitOfWork.RingNameRepository.GetQuery() on b.RingID equals c.RingID
@@ -314,27 +314,26 @@ namespace DataAccess.DAL
                                        RingStatus = a.RingStatus,
                                        ShowDate = b.ShowDate,
                                        RingId = b.RingID,
-                                       ShowDayID = a.ShowDayID
-
-
-
-                                   });
+                                       ShowDayID = a.ShowDayID,
+                                       ModeID=a.ModeID
+                                       });
             if (classResultData.ToList().FirstOrDefault().RingStatus == "Entered")
             {
 
-                var enteredResult = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
-                                     join b in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = b.HorseShowID, e2 = b.BackID }
-                                     join c in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals c.ScheduleID
-                                     join d in UnitOfWork.HorseShowRepository.GetQuery() on b.HorseShowID equals d.HorseShowID
-                                     where a.ScheduleID == scheduleID && a.ClassID == classID
-                                     select new EnteredViewModel
-                                     {
-                                         OrderIndex = a.OrderIndex + 1,
-                                         Entry = b.BackID,
-                                         HorseName = b.HorseName,
-                                         RiderName = a.RiderName,
-                                         Rank = a.Rank
-                                     }).ToList();
+                var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                              join b in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = b.HorseShowID, e2 = b.BackID }
+                              join c in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals c.ScheduleID
+                              join d in UnitOfWork.HorseShowRepository.GetQuery() on b.HorseShowID equals d.HorseShowID
+                              where a.ScheduleID == scheduleID && a.ClassID == classID
+                              select new EnteredViewModel
+                              {
+                                  OrderIndex = a.OrderIndex + 1,
+                                  Entry = b.BackID,
+                                  HorseName = b.HorseName,
+                                  RiderName = a.RiderName,
+                                  Rank = a.Rank
+                              }).ToList();
+                rs.EnteredList = Result;
             }
             else if (classResultData.ToList().FirstOrDefault().RingStatus == "Gone")
             {
@@ -353,53 +352,442 @@ namespace DataAccess.DAL
                               }).FirstOrDefault().ModeID;
                 if (ModeID == 1 || ModeID == 11)
                 {
-                    var goneResult = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
-                                      join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
-                                      join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
-                                      where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
-                                      orderby a.Scratched, a.Rank, a.OrderIndex ascending, a.StandBy descending
+                    var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                                  join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                                  join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                                  where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
+                                  orderby a.Scratched, a.Rank, a.OrderIndex ascending, a.StandBy descending
 
-                                      select new EnteredViewModel
-                                      {
-                                          ClassID = a.ClassID,
-                                          Scratched = a.Scratched,
-                                          Started = a.Started,
-                                          OrderIndex = a.OrderIndex,
-                                          ListID = a.ListID,
-                                          Status = a.Status,
-                                          BackID = a.BackID,
-                                          RiderName = a.RiderName,
-                                          HorseName=c.HorseName,
-                                          Owner=c.Owner1,
-                                          ModeID=b.ModeID
-                                      });
-
-                    //OTG.MediaID,
-                    //-------------------------
-                    //OTG.JumpFaults1 as JFlts1,
-                    //OTG.TimeFaults1 as TFlts1,
-                    //OTG.TotalFaults1 as AllFlts1,
-                    //OTG.Time1,
-                    //OTG.JumpFaults2 as JFlts2,
-                    //OTG.TimeFaults2 as TFlts2,
-                    //OTG.TotalFaults2 as AllFlts2,
-                    //OTG.Time2,
-                    //OTG.StandBy,
-                    //OTG.Rank,
-                    //OTG.Score,
-                    //OTG.Score2,
-                    //OTG.TotalScore as TotScore,
-                    //OTG.Draw,
-                    //OTG.ScheduleID
-                    //                                      
-                    //   }
+                                  select new EnteredViewModel
+                                  {
+                                      ClassID = a.ClassID,
+                                      Scratched = a.Scratched,
+                                      Started = a.Started,
+                                      OrderIndex = a.OrderIndex,
+                                      ListID = a.ListID,
+                                      Status = a.Status,
+                                      BackID = a.BackID,
+                                      RiderName = a.RiderName,
+                                      HorseName = c.HorseName,
+                                      Owner = c.Owner1,
+                                      ModeID = b.ModeID,
+                                      JFlts1 = a.JumpFaults1,
+                                      TFlts1 = a.TimeFaults1,
+                                      AllFlts1 = a.TimeFaults1,
+                                      Time1 = a.Time1,
+                                      JFlts2 = a.JumpFaults2,
+                                      TFlts2 = a.TimeFaults2,
+                                      AllFlts2 = a.TimeFaults2,
+                                      Time2 = a.Time1,
+                                      MediaID = a.MediaID,
+                                      StandBy = a.StandBy,
+                                      Rank = a.Rank,
+                                      Score = a.Score,
+                                      Score2 = a.Score2,
+                                      //TotalScore=a.TotalScore,
+                                      Draw = a.Draw,
+                                      ScheduleID = a.ScheduleID
+                                  }).ToList();
+                    rs.EnteredList = Result;
                 }
-               
+                else if (ModeID == 2 || ModeID == 15)
+                {
+                    var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                                  join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                                  join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                                  where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
+                                  orderby a.Scratched, a.OrderIndex ascending, a.Score descending
 
+                                  select new EnteredViewModel
+                                  {
+                                      ClassID = a.ClassID,
+                                      Scratched = a.Scratched,
+                                      Started = a.Started,
+                                      OrderIndex = a.OrderIndex,
+                                      ListID = a.ListID,
+                                      Status = a.Status,
+                                      BackID = a.BackID,
+                                      RiderName = a.RiderName,
+                                      HorseName = c.HorseName,
+                                      Owner = c.Owner1,
+                                      ModeID = b.ModeID,
+                                      JFlts1 = a.JumpFaults1,
+                                      TFlts1 = a.TimeFaults1,
+                                      AllFlts1 = a.TimeFaults1,
+                                      Time1 = a.Time1,
+                                      JFlts2 = a.JumpFaults2,
+                                      TFlts2 = a.TimeFaults2,
+                                      AllFlts2 = a.TimeFaults2,
+                                      Time2 = a.Time1,
+                                      MediaID = a.MediaID,
+                                      StandBy = a.StandBy,
+                                      Rank = a.Rank,
+                                      Score = a.Score,
+                                      Score2 = a.Score2,
+                                      //TotalScore=a.TotalScore,
+                                      Draw = a.Draw,
+                                      ScheduleID = a.ScheduleID
+                                  }).ToList();
+                    rs.EnteredList = Result;
+                }
+                else if (ModeID == 3)
+                {
+                    var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                                  join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                                  join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                                  where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
+                                  orderby a.Scratched, a.TotalFaults1, a.TotalFaults2, a.Time2, a.Time1, a.OrderIndex ascending
+
+                                  select new EnteredViewModel
+                                  {
+                                      ClassID = a.ClassID,
+                                      Scratched = a.Scratched,
+                                      Started = a.Started,
+                                      OrderIndex = a.OrderIndex,
+                                      ListID = a.ListID,
+                                      Status = a.Status,
+                                      BackID = a.BackID,
+                                      RiderName = a.RiderName,
+                                      HorseName = c.HorseName,
+                                      Owner = c.Owner1,
+                                      ModeID = b.ModeID,
+                                      JFlts1 = a.JumpFaults1,
+                                      TFlts1 = a.TimeFaults1,
+                                      AllFlts1 = a.TimeFaults1,
+                                      Time1 = a.Time1,
+                                      JFlts2 = a.JumpFaults2,
+                                      TFlts2 = a.TimeFaults2,
+                                      AllFlts2 = a.TimeFaults2,
+                                      Time2 = a.Time1,
+                                      MediaID = a.MediaID,
+                                      StandBy = a.StandBy,
+                                      Rank = a.Rank,
+                                      Score = a.Score,
+                                      Score2 = a.Score2,
+                                      //TotalScore=a.TotalScore,
+                                      Draw = a.Draw,
+                                      ScheduleID = a.ScheduleID
+                                  }).ToList();
+                    rs.EnteredList = Result;
+                }
+                else if (ModeID == 4 || ModeID == 8 || ModeID == 10)
+                {
+                    var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                                  join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                                  join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                                  where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
+                                  orderby a.Scratched, a.TotalFaults2, a.TotalFaults1, a.Time2, a.Time1, a.OrderIndex ascending
+
+                                  select new EnteredViewModel
+                                  {
+                                      ClassID = a.ClassID,
+                                      Scratched = a.Scratched,
+                                      Started = a.Started,
+                                      OrderIndex = a.OrderIndex,
+                                      ListID = a.ListID,
+                                      Status = a.Status,
+                                      BackID = a.BackID,
+                                      RiderName = a.RiderName,
+                                      HorseName = c.HorseName,
+                                      Owner = c.Owner1,
+                                      ModeID = b.ModeID,
+                                      JFlts1 = a.JumpFaults1,
+                                      TFlts1 = a.TimeFaults1,
+                                      AllFlts1 = a.TimeFaults1,
+                                      Time1 = a.Time1,
+                                      JFlts2 = a.JumpFaults2,
+                                      TFlts2 = a.TimeFaults2,
+                                      AllFlts2 = a.TimeFaults2,
+                                      Time2 = a.Time1,
+                                      MediaID = a.MediaID,
+                                      StandBy = a.StandBy,
+                                      Rank = a.Rank,
+                                      Score = a.Score,
+                                      Score2 = a.Score2,
+                                      //TotalScore=a.TotalScore,
+                                      Draw = a.Draw,
+                                      ScheduleID = a.ScheduleID
+                                  }).ToList();
+                    rs.EnteredList = Result;
+                }
+                else if (ModeID == 5 || ModeID == 9 || ModeID == 13)
+                {
+                    var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                                  join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                                  join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                                  where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
+                                  orderby a.Scratched, a.TotalFaults1, a.Time1, a.OrderIndex ascending
+
+                                  select new EnteredViewModel
+                                  {
+                                      ClassID = a.ClassID,
+                                      Scratched = a.Scratched,
+                                      Started = a.Started,
+                                      OrderIndex = a.OrderIndex,
+                                      ListID = a.ListID,
+                                      Status = a.Status,
+                                      BackID = a.BackID,
+                                      RiderName = a.RiderName,
+                                      HorseName = c.HorseName,
+                                      Owner = c.Owner1,
+                                      ModeID = b.ModeID,
+                                      JFlts1 = a.JumpFaults1,
+                                      TFlts1 = a.TimeFaults1,
+                                      AllFlts1 = a.TimeFaults1,
+                                      Time1 = a.Time1,
+                                      JFlts2 = a.JumpFaults2,
+                                      TFlts2 = a.TimeFaults2,
+                                      AllFlts2 = a.TimeFaults2,
+                                      Time2 = a.Time1,
+                                      MediaID = a.MediaID,
+                                      StandBy = a.StandBy,
+                                      Rank = a.Rank,
+                                      Score = a.Score,
+                                      Score2 = a.Score2,
+                                      //TotalScore=a.TotalScore,
+                                      Draw = a.Draw,
+                                      ScheduleID = a.ScheduleID
+                                  }).ToList();
+                    rs.EnteredList = Result;
+                }
+                else if (ModeID == 6)
+                {
+                    var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                                  join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                                  join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                                  where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
+                                  orderby a.Scratched, a.TotalFaults1, a.TimeFaults1, a.OrderIndex ascending
+
+                                  select new EnteredViewModel
+                                  {
+                                      ClassID = a.ClassID,
+                                      Scratched = a.Scratched,
+                                      Started = a.Started,
+                                      OrderIndex = a.OrderIndex,
+                                      ListID = a.ListID,
+                                      Status = a.Status,
+                                      BackID = a.BackID,
+                                      RiderName = a.RiderName,
+                                      HorseName = c.HorseName,
+                                      Owner = c.Owner1,
+                                      ModeID = b.ModeID,
+                                      JFlts1 = a.JumpFaults1,
+                                      TFlts1 = a.TimeFaults1,
+                                      AllFlts1 = a.TimeFaults1,
+                                      Time1 = a.Time1,
+                                      JFlts2 = a.JumpFaults2,
+                                      TFlts2 = a.TimeFaults2,
+                                      AllFlts2 = a.TimeFaults2,
+                                      Time2 = a.Time1,
+                                      MediaID = a.MediaID,
+                                      StandBy = a.StandBy,
+                                      Rank = a.Rank,
+                                      Score = a.Score,
+                                      Score2 = a.Score2,
+                                      //TotalScore=a.TotalScore,
+                                      Draw = a.Draw,
+                                      ScheduleID = a.ScheduleID
+                                  }).ToList();
+                    rs.EnteredList = Result;
+                }
+                else if (ModeID == 7)
+                {
+                    var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                                  join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                                  join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                                  where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
+                                  orderby a.Scratched, a.TotalScore descending, a.OrderIndex ascending
+
+                                  select new EnteredViewModel
+                                  {
+                                      ClassID = a.ClassID,
+                                      Scratched = a.Scratched,
+                                      Started = a.Started,
+                                      OrderIndex = a.OrderIndex,
+                                      ListID = a.ListID,
+                                      Status = a.Status,
+                                      BackID = a.BackID,
+                                      RiderName = a.RiderName,
+                                      HorseName = c.HorseName,
+                                      Owner = c.Owner1,
+                                      ModeID = b.ModeID,
+                                      JFlts1 = a.JumpFaults1,
+                                      TFlts1 = a.TimeFaults1,
+                                      AllFlts1 = a.TimeFaults1,
+                                      Time1 = a.Time1,
+                                      JFlts2 = a.JumpFaults2,
+                                      TFlts2 = a.TimeFaults2,
+                                      AllFlts2 = a.TimeFaults2,
+                                      Time2 = a.Time1,
+                                      MediaID = a.MediaID,
+                                      StandBy = a.StandBy,
+                                      Rank = a.Rank,
+                                      Score = a.Score,
+                                      Score2 = a.Score2,
+                                      //TotalScore=a.TotalScore,
+                                      Draw = a.Draw,
+                                      ScheduleID = a.ScheduleID
+                                  }).ToList();
+                    rs.EnteredList = Result;
+                }
+                else if (ModeID == 14)
+                {
+                    var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                                  join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                                  join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                                  where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
+                                  orderby a.TotalScore descending, a.OrderIndex ascending
+
+                                  select new EnteredViewModel
+                                  {
+                                      ClassID = a.ClassID,
+                                      Scratched = a.Scratched,
+                                      Started = a.Started,
+                                      OrderIndex = a.OrderIndex,
+                                      ListID = a.ListID,
+                                      Status = a.Status,
+                                      BackID = a.BackID,
+                                      RiderName = a.RiderName,
+                                      HorseName = c.HorseName,
+                                      Owner = c.Owner1,
+                                      ModeID = b.ModeID,
+                                      JFlts1 = a.JumpFaults1,
+                                      TFlts1 = a.TimeFaults1,
+                                      AllFlts1 = a.TimeFaults1,
+                                      Time1 = a.Time1,
+                                      JFlts2 = a.JumpFaults2,
+                                      TFlts2 = a.TimeFaults2,
+                                      AllFlts2 = a.TimeFaults2,
+                                      Time2 = a.Time1,
+                                      MediaID = a.MediaID,
+                                      StandBy = a.StandBy,
+                                      Rank = a.Rank,
+                                      Score = a.Score,
+                                      Score2 = a.Score2,
+                                      //TotalScore=a.TotalScore,
+                                      Draw = a.Draw,
+                                      ScheduleID = a.ScheduleID
+                                  }).ToList();
+                    rs.EnteredList = Result;
+                }
+                else if (ModeID == 7)
+                {
+                    var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                                  join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                                  join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                                  where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
+                                  orderby a.Scratched, a.TotalScore descending, a.OrderIndex ascending
+
+                                  select new EnteredViewModel
+                                  {
+                                      ClassID = a.ClassID,
+                                      Scratched = a.Scratched,
+                                      Started = a.Started,
+                                      OrderIndex = a.OrderIndex,
+                                      ListID = a.ListID,
+                                      Status = a.Status,
+                                      BackID = a.BackID,
+                                      RiderName = a.RiderName,
+                                      HorseName = c.HorseName,
+                                      Owner = c.Owner1,
+                                      ModeID = b.ModeID,
+                                      JFlts1 = a.JumpFaults1,
+                                      TFlts1 = a.TimeFaults1,
+                                      AllFlts1 = a.TimeFaults1,
+                                      Time1 = a.Time1,
+                                      JFlts2 = a.JumpFaults2,
+                                      TFlts2 = a.TimeFaults2,
+                                      AllFlts2 = a.TimeFaults2,
+                                      Time2 = a.Time1,
+                                      MediaID = a.MediaID,
+                                      StandBy = a.StandBy,
+                                      Rank = a.Rank,
+                                      Score = a.Score,
+                                      Score2 = a.Score2,
+                                      //TotalScore=a.TotalScore,
+                                      Draw = a.Draw,
+                                      ScheduleID = a.ScheduleID
+
+                                  }).ToList();
+                    rs.EnteredList = Result;
+                }
 
             }
-            return classResultData.FirstOrDefault();
+            else if (classResultData.ToList().FirstOrDefault().RingStatus != "Entered" && classResultData.ToList().FirstOrDefault().RingStatus != "Gone") // For Live RingStatus
+            {
+                var showDetail = (from a in UnitOfWork.ShowDateRepository.GetQuery()
+                                  where a.HorseShowID == classResultData.ToList().FirstOrDefault().HorseShowId && a.RingID == classResultData.ToList().FirstOrDefault().RingId && a.ShowDate == classResultData.ToList().FirstOrDefault().ShowDate
+                                  select new
+                                  {
+                                      a.ShowDayID,
+                                      a.CurSchedID1,
+                                      a.CurSchedID2
+                                  });
+
+                var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                              join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                              join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                              where (b.RingStatus == "Started" || b.RingStatus == "Round 2")
+                              && b.ShowDayID == showDetail.ToList().FirstOrDefault().ShowDayID && a.ScheduleID == showDetail.ToList().FirstOrDefault().CurSchedID1
+                              && a.Started == false && a.Scratched == false && a.Deleted == false
+                              select new EnteredViewModel
+                              {
+                                  ListID = a.ListID,
+                                  OrderIndex = a.OrderIndex,
+                                  ClassID = a.ClassID,
+                                  BackID = a.BackID,
+                                  HorseName = c.HorseName,
+                                  RiderName = a.RiderName,
+                                  Status = a.Status,
+                                  Draw = a.Draw,
+                                  ScheduleID = a.ScheduleID
+
+                              }).ToList();
+
+                rs.EnteredList = Result;
+            }
+            rs.ClassName = classResultData.ToList().FirstOrDefault().ClassName;
+            rs.HorseShowId = classResultData.ToList().FirstOrDefault().HorseShowId;
+            rs.ModeID = classResultData.ToList().FirstOrDefault().ModeID;
+            if(rs.ModeID ==3 || rs.ModeID==4 ||rs.ModeID==12)
+            {
+               rs.EnteredList = rs.EnteredList.Where(a => a.Started == true && a.Scratched==false);
+            }
+            else
+            {
+             rs.EnteredList=  rs.EnteredList.Where(a => a.Started == true && a.Scratched == false);
+            }
+
+            return rs;
         }
+        #region For Showing List on My Video Page
+        public IEnumerable<ViewShowPurchaseViewModel> GetViewShowPurchase(int memberId)
+        {
+            try
+            {
+                var ViewShowPurchaseList = (from vsp in UnitOfWork.ViewShowPurchaseRepository.GetQuery()
+                                            where vsp.MemberID == memberId
+                                            select new ViewShowPurchaseViewModel
+                                            {
+                                                PurchaseID = vsp.PurchaseID,
+                                                MemberID = vsp.MemberID,
+                                                HorseShowID = vsp.HorseShowID,
+                                                HorseShowName = vsp.HorseShowName,
+                                                StartDate = vsp.StartDate,
+                                                ProductID = vsp.ProductID,
+                                                AmountPaid = vsp.AmountPaid,
+                                                CircuitID = vsp.CircuitID,
+                                            }).ToList();
+
+                return ViewShowPurchaseList;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        #endregion
         #region For Payment & credit
         public PaymentCreditViewModel GetUpdatePaymentCredit(int MemberID)
         {

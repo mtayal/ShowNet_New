@@ -79,6 +79,7 @@
     <Compile Include="ViewMediaShowPurchaseExpiresViewModel.cs" />
     <Compile Include="ViewMediaShowPurchaseViewModel.cs" />
     <Compile Include="ViewPurchasesViewModel.cs" />
+    <Compile Include="ViewShowPurchaseViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

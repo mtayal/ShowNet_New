@@ -96,6 +96,7 @@ namespace Shownet.Controllers
                 memberDetailsViewModel = accountDa.EditMyShowNet(memberId);
                 memberDetailsViewModel.MemberGroupList = shownetDa.getMemberGroupList(memberId);
                 memberDetailsViewModel.PaymentCredit = shownetDa.GetUpdatePaymentCredit(memberId);
+                memberDetailsViewModel.ViewShowPurchaseList = shownetDa.GetViewShowPurchase(memberId);
                 return View(memberDetailsViewModel);
             }
             else

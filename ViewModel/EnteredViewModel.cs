@@ -8,7 +8,7 @@ namespace ViewModel
 {
     public class EnteredViewModel
     {
-
+        public int ScheduleID { get; set; }
         public string No { get; set; }
         public int Entry { get; set; }
         public int OrderIndex { get; set; }
@@ -17,25 +17,25 @@ namespace ViewModel
         public string HorseName { get; set; }
         public int RiderID { get; set; }
         public string RiderName { get; set; }
-        public bool StandBy { get; set; }
+        public bool? StandBy { get; set; }
         public int? Rank { get; set; }
         public int Purchages { get; set; }
         public int ModeID { get; set; }
         public string Owner { get; set; }
-        public string JFlts1 { get; set; }
-        public string TFlts1 { get; set; }
-        public string AllFlts1 { get; set; }
-        public string Time1 { get; set; }
-        public string JFlts2 { get; set; }
-        public string TFlts2 { get; set; }
-        public string AllFlts2 { get; set; }
-        public string Time2 { get; set; }
-        public string Score { get; set; }
-        public string Score2 { get; set; }
+        public int? JFlts1 { get; set; }
+        public int? TFlts1 { get; set; }
+        public int? AllFlts1 { get; set; }
+        public decimal? Time1 { get; set; }
+        public int? JFlts2 { get; set; }
+        public int? TFlts2 { get; set; }
+        public int? AllFlts2 { get; set; }
+        public decimal? Time2 { get; set; }
+        public decimal? Score { get; set; }
+        public decimal? Score2 { get; set; }
         public bool HasVideo { get { return !string.IsNullOrEmpty(MediaID); } }
         public bool Scratched { get; set; }
         public string MediaID { get; set; }
-        public string TotalScore { get { return TotScore; } }
+        //public string? TotalScore { get { return TotScore; } }
         public double? E { get; set; }
         public double? H { get; set; }
         public double? C { get; set; }
@@ -44,9 +44,10 @@ namespace ViewModel
         public string Draw { get; set; }
         public bool Started { get; set; }
         public int ListID { get; set; }
-        public string TotScore { get; set; }
+     //   public string? TotScore { get; set; }
         public byte Status { get; set; }
         public int BackID { get; set; }
+        
     }
 
 

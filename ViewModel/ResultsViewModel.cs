@@ -16,6 +16,7 @@ namespace ViewModel
         public int RingId { get; set; }
         public DateTime ShowDate { get; set; }
         public int ShowDayID { get; set; }
+        public int ModeID { get; set; }
         public IEnumerable<EnteredViewModel> EnteredList { get; set; }
     }
 }

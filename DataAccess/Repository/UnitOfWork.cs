@@ -66,6 +66,7 @@ namespace DataAccess.Repository
         private GenericRepository<VIEW_MEDIA_SHOW_PURCHASE_EXPIRES> viewMediaShowPurchaseExpiresRepository;
         private GenericRepository<MEMBER_GROUP> memberGroupRepository;
         private GenericRepository<MODE> modeRepository;
+        private GenericRepository<VIEW_SHOW_PURCHASE> viewShowPurchaseRepository;
         //For Payment & Credit 
         private GenericRepository<ACCOUNTING> accountingRepository;
         private GenericRepository<Purchase> purchaseRepository;
@@ -138,6 +139,10 @@ namespace DataAccess.Repository
         public GenericRepository<MODE> ModeRepository
         {
             get { return modeRepository ?? (modeRepository = new GenericRepository<MODE>(dbContext)); }
+        }
+        public GenericRepository<VIEW_SHOW_PURCHASE> ViewShowPurchaseRepository
+        {
+            get { return viewShowPurchaseRepository ?? (viewShowPurchaseRepository = new GenericRepository<VIEW_SHOW_PURCHASE>(dbContext)); }
         }
         #region Payment & Credit
         public GenericRepository<ACCOUNTING> AccountingRepository
