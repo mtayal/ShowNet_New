@@ -315,8 +315,8 @@ namespace DataAccess.DAL
                                        ShowDate = b.ShowDate,
                                        RingId = b.RingID,
                                        ShowDayID = a.ShowDayID,
-                                       ModeID=a.ModeID
-                                       });
+                                       ModeID = a.ModeID
+                                   });
             if (classResultData.ToList().FirstOrDefault().RingStatus == "Entered")
             {
 
@@ -472,6 +472,7 @@ namespace DataAccess.DAL
                 }
                 else if (ModeID == 4 || ModeID == 8 || ModeID == 10)
                 {
+                    int No = 0;
                     var Result = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
                                   join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
                                   join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
@@ -744,18 +745,18 @@ namespace DataAccess.DAL
 
                               }).ToList();
 
-                rs.EnteredList = Result;
+                rs.EnteredList = Result.Where(x => x.ClassID == classResultData.ToList().FirstOrDefault().ClassId).ToList();
             }
             rs.ClassName = classResultData.ToList().FirstOrDefault().ClassName;
             rs.HorseShowId = classResultData.ToList().FirstOrDefault().HorseShowId;
             rs.ModeID = classResultData.ToList().FirstOrDefault().ModeID;
-            if(rs.ModeID ==3 || rs.ModeID==4 ||rs.ModeID==12)
+            if (rs.ModeID == 3 || rs.ModeID == 4 || rs.ModeID == 12)
             {
-               rs.EnteredList = rs.EnteredList.Where(a => a.Started == true && a.Scratched==false);
+                rs.EnteredList = rs.EnteredList.Where(a => a.Started == true && a.Scratched == false);
             }
             else
             {
-             rs.EnteredList=  rs.EnteredList.Where(a => a.Started == true && a.Scratched == false);
+                rs.EnteredList = rs.EnteredList.Where(a => a.Started == true && a.Scratched == false);
             }
 
             return rs;

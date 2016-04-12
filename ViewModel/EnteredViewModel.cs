@@ -9,7 +9,7 @@ namespace ViewModel
     public class EnteredViewModel
     {
         public int ScheduleID { get; set; }
-        public string No { get; set; }
+        public int No { get; set; }
         public int Entry { get; set; }
         public int OrderIndex { get; set; }
         public int HorseID { get; set; }

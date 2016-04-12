@@ -1,0 +1,86 @@
+﻿
+@{
+    ViewBag.Title = "Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="contentPart">
+    <div id="threeBoxes" class="newBackground">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-sm-10 col-xs-12 col-lg-offset-1 col-sm-offset-1 col-xs-offset-0">
+                    <h2 class="red-bg" style="color:#000;">Video Search</h2>
+                    <div class="videoSearchFieldContainer">
+                        <form>
+                            <input type="text" class="form-control" placeholder="Enter a few letters, or the full name of your horse">
+                            <input type="button" class="goBtn" value="go">
+                            <div class="clr"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="showinformation">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-xs-12">
+                <div class="showDetailsContainer">
+                    <div class="row">
+                        <div class="col-lg-9 col-sm-8 col-xs-12">
+                            <h1>Welcome to ShowNet</h1>
+                            <hr />
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-12 col-sm-12 col-xs-12 myShownetTabingContent">
+                           <p>
+                               ShowNet is a live data and personal video management system. The ShowNet system offers you live results and ring status information as well customized results and video tracking systems. Our video products range from single video purchases to full horse show viewing only or purchase packages. All live results and tracking data, and video viewing is available through your personal account via our website and mobile applications for Android, IPhone, IPad downloaded from the app store and Android marketplace. Search “ShowNet Mobile” to download the mobile app.
+                           </p>
+
+                            <p>
+                                To access the ShowNet Video management system you must first register and activate your yearly ShowNet subscription which is $60. This allows you access to all ShowNet live data throughout the term of your subscription as well as maintaining your personal library which may be with you and accessed 24/7 through your mobile device and your web account. Once your account has been activated you would then fund your account for video purchases. We use this system to avoid ongoing CC transaction fees, and our customer feedback has provided very positive reviews for this operation. You may fund your account in increments of $50, $100, $200, $400 amounts. As video purchases are made, your account will reflect the amount purchased until you are required to fund your account further for added video purchases.
+                            </p>
+
+                            <br />
+                            <a href="@Url.Action("Registration", "Account")">Register and activate your ShowNet account here!</a>
+                            <br />
+                            <p>
+                                ShowNet Video pricing is the by far the cheapest, most quickly available and mobile in the Industry. See below for video pricing details
+                            </p>
+                            <p>
+                                Single Video Purchase - $13. Once purchased, your video will be sent to your personal video library for viewing at any time. You may also automatically share your video to the ShowNet Youtube channel where all your friends may view your round freely. (Click on video reel and follow prompts to access purchase area.)
+                            </p>
+                            <p>
+                                Mobile Show Price Reduction - Our mobile results only product has been reduced from $10/show to $6.50/show.
+                            </p>
+                            <p>
+                                Show View Plan - $45 (This allows you to view ALL videos available for a single horse during the show plus two days only.) This video plan does not keep any of these video in your personal library. (Click on "Watch complete Show" tab located top right on results summary screen. Follow prompts to make this purchase.)
+                            </p>
+                            <p>
+                                Show Purchase Plan - $145. This plan actually keeps ALL the shows video in your personal library. (Click on "Watch complete Show" tab located top right on results summary screen. Follow prompts to make this purchase.)
+                            </p>
+                            <p>
+                                New Flexible Membership Plans - We have updated our subscriptions to include more flexible options:
+                                <ul>
+                                    <li>1 month - $10</li>
+                                    <li>3 month - $25</li>
+                                    <li>12 months - $60</li>
+                                </ul>
+                            </p>
+
+                            <br />
+                            <a href="@Url.Action("Registration", "Account")">Register and activate your ShowNet account here!</a>
+                            <br />
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

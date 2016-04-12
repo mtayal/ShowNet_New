@@ -45,10 +45,10 @@ namespace Shownet.Controllers
                         MonthList = shownetDa.monthList(),
                         HorseShowList = shownetDa.HorseShowNameDataList(hs.StartDate),
                         ShowDateList = shownetDa.HorseShowDateList(HorseShowID),
-                        RingNameList=shownetDa.HorseRingListList(hs.StartDate,hs.HorseShowID),
-                        SelectedYear=hs.StartDate.Year,
-                        SelectedMonth=hs.StartDate.Month                   
-                        
+                        RingNameList = shownetDa.HorseRingListList(hs.StartDate, hs.HorseShowID),
+                        SelectedYear = hs.StartDate.Year,
+                        SelectedMonth = hs.StartDate.Month
+
                     };
                     return View(sd);
                 }
@@ -69,7 +69,7 @@ namespace Shownet.Controllers
         {
             var showNameDataList = shownetDa.HorseShowNameDataList(Convert.ToDateTime(month + "/" + year + "/" + 01));
             return Json(showNameDataList, JsonRequestBehavior.AllowGet);
-            
+
         }
         public ActionResult fillShowDate(int year, int month, int showNameId, DateTime showDate, int showDayID)
         {
@@ -83,7 +83,7 @@ namespace Shownet.Controllers
             return Json(ringNameDataList, JsonRequestBehavior.AllowGet);
 
         }
-       
+
 
         public ActionResult MyShowNet()
         {
@@ -139,9 +139,9 @@ namespace Shownet.Controllers
         }
         public ActionResult ClassResults(int ringID, int horseShowID, int scheduleID, string classID)
         {
-           ResultsViewModel rv =new ResultsViewModel();
-            rv= shownetDa.getResults(ringID, horseShowID, scheduleID, classID);
-            
+            ResultsViewModel rv = new ResultsViewModel();
+            rv = shownetDa.getResults(ringID, horseShowID, scheduleID, classID);
+
             return View(rv);
         }
 
@@ -181,6 +181,20 @@ namespace Shownet.Controllers
             {
                 return RedirectToAction("Login", "Account");
             }
+        }
+        public ActionResult Getprivatized()
+        {
+            return View("~/Views/ShowNet/Privatized.cshtml");
+        }
+
+        public ActionResult Pricing()
+        {
+            return View("~/Views/ShowNet/Pricing.cshtml");
+        }
+
+        public ActionResult Info()
+        {
+            return View("~/Views/ShowNet/Info.cshtml");
         }
 
 
