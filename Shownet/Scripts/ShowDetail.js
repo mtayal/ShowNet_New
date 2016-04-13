@@ -1,5 +1,33 @@
 ﻿
-   
+//function getMode(RingId, horseShowID, scheduleID, classID) {
+//    $.ajax({
+//        type: 'POST',
+//        url: '/ShowNet/ClassResultsCheckMode',
+//        data: { 'ringID': RingId, 'horseShowID': horseShowID, 'scheduleID': scheduleID, 'classID': classID },
+//        success: function (response) {
+//            if (response == "Entered") {
+//                $("#tblEntered").show();
+//                $("#tblGone").hide();
+//                $("#tblLive").hide();
+                
+//            } else if (response == "Gone") {
+//                $("#tblGone").show();
+//                $("#tblEntered").hide();
+//                $("#tblLive").hide();
+//            } else {
+//                $("#tblLive").show();
+//                $("#tblGone").hide();
+//                $("#tblEntered").hide();
+//            }
+          
+
+//        },
+//        error: function (response) {
+//            alert("error");
+//        }
+
+//    });
+//};
 
 function getScheduleList() {
         $.ajax({

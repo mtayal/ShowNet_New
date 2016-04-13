@@ -117,6 +117,31 @@ namespace DataAccess.DAL
                 throw;
             }
         }
+        #region Forgot password
+        public MemberDetailsViewModel GetPassword(string email)
+        {
+            try
+            {
+                var MemberDetail = (from data in UnitOfWork.MemberDetailsRepository.GetQuery()
+                                    where (data.Email == email || data.UserName == email)
+                                    select new MemberDetailsViewModel
+                                    {
+                                        Email = data.Email,
+                                        FirstName = data.FirstName,
+                                        LastName = data.LastName,
+                                        UserName = data.UserName,
+                                        Password = data.Password,
+                                    }).FirstOrDefault();
+
+                return MemberDetail;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        #endregion
     }
 }
 

@@ -17,47 +17,57 @@
     </p>
     <div class="clr"></div>
     <div class="purchaseCreditForm">
-@using (Html.BeginForm("AddNewUser", "ShowNet", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-    {
-        //  @Html.EnableUnobtrusiveJavaScript()
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true)
-        <label for="addUser">Add user</label>
-        <span>@*<input type="text" class="form-control" id="addUser">*@
-        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        @using (Html.BeginForm("AddNewUser", "ShowNet", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+            //  @Html.EnableUnobtrusiveJavaScript()
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <label for="addUser">Add user</label>
+            <span>
+                @*<input type="text" class="form-control" id="addUser">*@
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
         </span>
-        <div class="clr"></div>
-        <label for="usingPassword">Using Password</label>
-        <span>@*<input type="text" class="form-control" id="usingPassword">*@
-        @Html.PasswordFor(m => m.Password, new { @class = "form-control", value = Model.Password })
+            <div class="clr"></div>
+            <label for="usingPassword">Using Password</label>
+            <span>
+                @*<input type="text" class="form-control" id="usingPassword">*@
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control", value = Model.Password })
             @*@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })*@
         </span>
-        <div class="clr"></div>
-        <label></label>
-        <span>
-            <button class="loginbtn"><i class="fa fa-link"></i> Add New Library Link</button>
-        </span>
-}
+            <div class="clr"></div>
+            <label></label>
+            <span>
+                <button class="loginbtn"><i class="fa fa-link"></i> Add New Library Link</button>
+            </span>
+        }
     </div>
     <div class="clr"></div>
     <hr>
     <h3>Your video purchases on ShowNet.</h3>
     <div>
         <h2>
-            PURCHASED VIDEO CLIPS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
-                View By <a href="#">SHOW</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#">HORSE</a>
-                @*@Html.ActionLink("SHOW", "GetShowList", "ShowNet", new { MemberId = @Model.MemberID, ShowId = "Show", }, null)  &nbsp;&nbsp;&nbsp;@Html.ActionLink("HORSE", "GetShowList", "ShowNet", new { MemberId = @Model.MemberID, }, null)*@
-            </span>
+            PURCHASED VIDEO CLIPS
+            @*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
+                    View By
+
+                    <button type="button" onclick="BindShowList(@Model.MemberID,1)">SHOW</button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="@Url.Action("GetShowList", "ShowNet", new { MemberId = @Model.MemberID, ShowId = "" })">HORSE</a>
+                </span>*@
         </h2>
-        @*
-            </div>*@
-        <h1>You have purchased video clips for the following entrants:</h1>
-        <div style="font-family:Cambria">
-            @foreach (var item in Model.ViewShowPurchaseList)
+
+    </div>
+    <h1>You have purchased video clips for the following entrants:</h1>
+    <div id="list" style="font-family:Cambria">
+        @if (@Model.ViewShowPurchaseList.Count() > 0)
+        {
+            foreach (var item in Model.ViewShowPurchaseList)
             {
-                @item.HorseShowName
+                <a href="#">@item.StartDate.Year.ToString() - @item.HorseShowName</a>
                 <br />
             }
-        </div>
+        }
+
     </div>
-    </div>
+</div> 
+   

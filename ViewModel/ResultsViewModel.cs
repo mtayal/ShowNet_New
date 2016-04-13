@@ -18,5 +18,6 @@ namespace ViewModel
         public int ShowDayID { get; set; }
         public int ModeID { get; set; }
         public IEnumerable<EnteredViewModel> EnteredList { get; set; }
+        public IEnumerable<EnteredViewModel> EnteredListLiveData { get; set; }
     }
 }

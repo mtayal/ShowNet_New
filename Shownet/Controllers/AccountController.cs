@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ViewModel;
-
+using Shownet.Models;
 namespace Shownet.Controllers
 {
     public class AccountController : Controller
@@ -76,6 +76,39 @@ namespace Shownet.Controllers
                 }
             }
             return View(md);
+        }
+        [HttpGet]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgotViewModel fv)
+        {
+            fv.Status = true;
+            MemberDetailsViewModel md = new MemberDetailsViewModel();
+            if (ModelState.IsValid)
+            {
+                md = accountDa.GetPassword(fv.Email);
+                if (md.Password != null && !string.IsNullOrWhiteSpace(md.Password))
+                {
+                    string subject = String.Format("ShowNet Password Reminder for " + md.Email, md.Email);
+                    string body = String.Format(md.Email + "Your Password for ShowNet is " + md.Password, md.FirstName + md.LastName, md.Password);
+                    bool? ok = SendMail.SendEmailMessage(subject, body, false, md.Email, md.UserName);
+                    ViewBag.Status = ok;
+                    if (fv.Status == ok)
+                    {
+                        return View();
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Invalid emaild or password.");
+                    return View(md);
+                }
+            }
+            return View();
         }
 
     }

@@ -297,6 +297,7 @@ namespace DataAccess.DAL
                 throw ex;
             }
         }
+
         public ResultsViewModel getResults(int ringID, int horseShowID, int scheduleID, string classID)
         {
             ResultsViewModel rs = new ResultsViewModel();
@@ -328,10 +329,11 @@ namespace DataAccess.DAL
                               select new EnteredViewModel
                               {
                                   OrderIndex = a.OrderIndex + 1,
-                                  Entry = b.BackID,
+                                  BackID = b.BackID,
                                   HorseName = b.HorseName,
                                   RiderName = a.RiderName,
-                                  Rank = a.Rank
+                                  Rank = a.Rank,
+                                  ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
                               }).ToList();
                 rs.EnteredList = Result;
             }
@@ -384,9 +386,15 @@ namespace DataAccess.DAL
                                       Rank = a.Rank,
                                       Score = a.Score,
                                       Score2 = a.Score2,
-                                      //TotalScore=a.TotalScore,
+                                      TotalScore = a.TotalScore,
                                       Draw = a.Draw,
-                                      ScheduleID = a.ScheduleID
+                                      ScheduleID = a.ScheduleID,
+                                      E=a.E,
+                                      H=a.H,
+                                      C = a.C,
+                                      M=a.M,
+                                      B=a.B,
+                                      ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
                                   }).ToList();
                     rs.EnteredList = Result;
                 }
@@ -396,7 +404,7 @@ namespace DataAccess.DAL
                                   join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
                                   join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
                                   where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
-                                  orderby a.Scratched, a.OrderIndex ascending, a.Score descending
+                                  orderby a.Scratched,a.Rank, a.OrderIndex ascending, a.Score descending
 
                                   select new EnteredViewModel
                                   {
@@ -424,9 +432,15 @@ namespace DataAccess.DAL
                                       Rank = a.Rank,
                                       Score = a.Score,
                                       Score2 = a.Score2,
-                                      //TotalScore=a.TotalScore,
+                                      TotalScore = a.TotalScore,
                                       Draw = a.Draw,
-                                      ScheduleID = a.ScheduleID
+                                      ScheduleID = a.ScheduleID,
+                                      E = a.E,
+                                      H = a.H,
+                                      C = a.C,
+                                      M = a.M,
+                                      B = a.B,
+                                      ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
                                   }).ToList();
                     rs.EnteredList = Result;
                 }
@@ -436,7 +450,7 @@ namespace DataAccess.DAL
                                   join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
                                   join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
                                   where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
-                                  orderby a.Scratched, a.TotalFaults1, a.TotalFaults2, a.Time2, a.Time1, a.OrderIndex ascending
+                                  orderby a.Scratched,a.Rank, a.TotalFaults1, a.TotalFaults2, a.Time2, a.Time1, a.OrderIndex ascending
 
                                   select new EnteredViewModel
                                   {
@@ -464,9 +478,15 @@ namespace DataAccess.DAL
                                       Rank = a.Rank,
                                       Score = a.Score,
                                       Score2 = a.Score2,
-                                      //TotalScore=a.TotalScore,
+                                      TotalScore = a.TotalScore,
                                       Draw = a.Draw,
-                                      ScheduleID = a.ScheduleID
+                                      ScheduleID = a.ScheduleID,
+                                      E = a.E,
+                                      H = a.H,
+                                      C = a.C,
+                                      M = a.M,
+                                      B = a.B,
+                                      ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
                                   }).ToList();
                     rs.EnteredList = Result;
                 }
@@ -477,7 +497,7 @@ namespace DataAccess.DAL
                                   join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
                                   join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
                                   where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
-                                  orderby a.Scratched, a.TotalFaults2, a.TotalFaults1, a.Time2, a.Time1, a.OrderIndex ascending
+                                  orderby a.Scratched, a.Rank, a.TotalFaults2, a.TotalFaults1, a.Time2, a.Time1, a.OrderIndex ascending
 
                                   select new EnteredViewModel
                                   {
@@ -505,9 +525,15 @@ namespace DataAccess.DAL
                                       Rank = a.Rank,
                                       Score = a.Score,
                                       Score2 = a.Score2,
-                                      //TotalScore=a.TotalScore,
+                                      TotalScore = a.TotalScore,
                                       Draw = a.Draw,
-                                      ScheduleID = a.ScheduleID
+                                      ScheduleID = a.ScheduleID,
+                                      E = a.E,
+                                      H = a.H,
+                                      C = a.C,
+                                      M = a.M,
+                                      B = a.B,
+                                      ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
                                   }).ToList();
                     rs.EnteredList = Result;
                 }
@@ -517,7 +543,7 @@ namespace DataAccess.DAL
                                   join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
                                   join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
                                   where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
-                                  orderby a.Scratched, a.TotalFaults1, a.Time1, a.OrderIndex ascending
+                                  orderby a.Scratched,a.Rank, a.TotalFaults1, a.Time1, a.OrderIndex ascending
 
                                   select new EnteredViewModel
                                   {
@@ -545,9 +571,15 @@ namespace DataAccess.DAL
                                       Rank = a.Rank,
                                       Score = a.Score,
                                       Score2 = a.Score2,
-                                      //TotalScore=a.TotalScore,
+                                      TotalScore = a.TotalScore,
                                       Draw = a.Draw,
-                                      ScheduleID = a.ScheduleID
+                                      ScheduleID = a.ScheduleID,
+                                      E = a.E,
+                                      H = a.H,
+                                      C = a.C,
+                                      M = a.M,
+                                      B = a.B,
+                                      ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
                                   }).ToList();
                     rs.EnteredList = Result;
                 }
@@ -557,7 +589,7 @@ namespace DataAccess.DAL
                                   join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
                                   join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
                                   where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
-                                  orderby a.Scratched, a.TotalFaults1, a.TimeFaults1, a.OrderIndex ascending
+                                  orderby a.Scratched,a.Rank, a.TotalFaults1, a.TimeFaults1, a.OrderIndex ascending
 
                                   select new EnteredViewModel
                                   {
@@ -585,9 +617,15 @@ namespace DataAccess.DAL
                                       Rank = a.Rank,
                                       Score = a.Score,
                                       Score2 = a.Score2,
-                                      //TotalScore=a.TotalScore,
+                                      TotalScore = a.TotalScore,
                                       Draw = a.Draw,
-                                      ScheduleID = a.ScheduleID
+                                      ScheduleID = a.ScheduleID,
+                                      E = a.E,
+                                      H = a.H,
+                                      C = a.C,
+                                      M = a.M,
+                                      B = a.B,
+                                      ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
                                   }).ToList();
                     rs.EnteredList = Result;
                 }
@@ -597,7 +635,7 @@ namespace DataAccess.DAL
                                   join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
                                   join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
                                   where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
-                                  orderby a.Scratched, a.TotalScore descending, a.OrderIndex ascending
+                                  orderby a.Scratched,a.Rank, a.TotalScore descending, a.OrderIndex ascending
 
                                   select new EnteredViewModel
                                   {
@@ -625,9 +663,15 @@ namespace DataAccess.DAL
                                       Rank = a.Rank,
                                       Score = a.Score,
                                       Score2 = a.Score2,
-                                      //TotalScore=a.TotalScore,
+                                      TotalScore = a.TotalScore,
                                       Draw = a.Draw,
-                                      ScheduleID = a.ScheduleID
+                                      ScheduleID = a.ScheduleID,
+                                      E = a.E,
+                                      H = a.H,
+                                      C = a.C,
+                                      M = a.M,
+                                      B = a.B,
+                                      ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
                                   }).ToList();
                     rs.EnteredList = Result;
                 }
@@ -637,7 +681,7 @@ namespace DataAccess.DAL
                                   join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
                                   join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
                                   where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
-                                  orderby a.TotalScore descending, a.OrderIndex ascending
+                                  orderby a.TotalScore descending, a.Rank, a.OrderIndex ascending
 
                                   select new EnteredViewModel
                                   {
@@ -665,9 +709,15 @@ namespace DataAccess.DAL
                                       Rank = a.Rank,
                                       Score = a.Score,
                                       Score2 = a.Score2,
-                                      //TotalScore=a.TotalScore,
+                                      TotalScore = a.TotalScore,
                                       Draw = a.Draw,
-                                      ScheduleID = a.ScheduleID
+                                      ScheduleID = a.ScheduleID,
+                                      E = a.E,
+                                      H = a.H,
+                                      C = a.C,
+                                      M = a.M,
+                                      B = a.B,
+                                      ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
                                   }).ToList();
                     rs.EnteredList = Result;
                 }
@@ -677,7 +727,7 @@ namespace DataAccess.DAL
                                   join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
                                   join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
                                   where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId
-                                  orderby a.Scratched, a.TotalScore descending, a.OrderIndex ascending
+                                  orderby a.Scratched, a.TotalScore descending,a.Rank, a.OrderIndex ascending
 
                                   select new EnteredViewModel
                                   {
@@ -705,9 +755,15 @@ namespace DataAccess.DAL
                                       Rank = a.Rank,
                                       Score = a.Score,
                                       Score2 = a.Score2,
-                                      //TotalScore=a.TotalScore,
+                                      TotalScore=a.TotalScore,
                                       Draw = a.Draw,
-                                      ScheduleID = a.ScheduleID
+                                      ScheduleID = a.ScheduleID,
+                                      E = a.E,
+                                      H = a.H,
+                                      C = a.C,
+                                      M = a.M,
+                                      B = a.B,
+                                      ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
 
                                   }).ToList();
                     rs.EnteredList = Result;
@@ -716,6 +772,51 @@ namespace DataAccess.DAL
             }
             else if (classResultData.ToList().FirstOrDefault().RingStatus != "Entered" && classResultData.ToList().FirstOrDefault().RingStatus != "Gone") // For Live RingStatus
             {
+                //----------------------------------------------------------------------------------------------
+                int ShowDayID = UnitOfWork.ShowDateRepository.GetQuery().FirstOrDefault(a => a.HorseShowID == classResultData.ToList().FirstOrDefault().HorseShowId && a.RingID == classResultData.ToList().FirstOrDefault().RingId && a.ShowDate == classResultData.ToList().FirstOrDefault().ShowDate).ShowDayID;
+                var liveList = (from a in UnitOfWork.OrderedGoListRepository.GetQuery()
+                              join b in UnitOfWork.ScheduleRepository.GetQuery() on a.ScheduleID equals b.ScheduleID
+                              join c in UnitOfWork.EntrantRepository.GetQuery() on new { e1 = a.HorseShowID, e2 = a.BackID } equals new { e1 = c.HorseShowID, e2 = c.BackID }
+                              where b.ShowDayID == ShowDayID && a.ClassID == classResultData.ToList().FirstOrDefault().ClassId && a.Started==true && a.Scratched==false
+                              orderby a.Scratched, a.Rank, a.OrderIndex ascending, a.StandBy descending
+
+                              select new EnteredViewModel
+                              {
+                                  ClassID = a.ClassID,
+                                  Scratched = a.Scratched,
+                                  Started = a.Started,
+                                  OrderIndex = a.OrderIndex,
+                                  ListID = a.ListID,
+                                  Status = a.Status,
+                                  BackID = a.BackID,
+                                  RiderName = a.RiderName,
+                                  HorseName = c.HorseName,
+                                  Owner = c.Owner1,
+                                  ModeID = b.ModeID,
+                                  JFlts1 = a.JumpFaults1,
+                                  TFlts1 = a.TimeFaults1,
+                                  AllFlts1 = a.TimeFaults1,
+                                  Time1 = a.Time1,
+                                  JFlts2 = a.JumpFaults2,
+                                  TFlts2 = a.TimeFaults2,
+                                  AllFlts2 = a.TimeFaults2,
+                                  Time2 = a.Time1,
+                                  MediaID = a.MediaID,
+                                  StandBy = a.StandBy,
+                                  Rank = a.Rank,
+                                  Score = a.Score,
+                                  Score2 = a.Score2,
+                                  TotalScore = a.TotalScore,
+                                  Draw = a.Draw,
+                                  ScheduleID = a.ScheduleID,
+                                  E = a.E,
+                                  H = a.H,
+                                  C = a.C,
+                                  M = a.M,
+                                  B = a.B
+                              }).ToList();
+                rs.EnteredListLiveData = liveList;
+                //----------------------------------------------------------------------------------------------
                 var showDetail = (from a in UnitOfWork.ShowDateRepository.GetQuery()
                                   where a.HorseShowID == classResultData.ToList().FirstOrDefault().HorseShowId && a.RingID == classResultData.ToList().FirstOrDefault().RingId && a.ShowDate == classResultData.ToList().FirstOrDefault().ShowDate
                                   select new
@@ -741,46 +842,85 @@ namespace DataAccess.DAL
                                   RiderName = a.RiderName,
                                   Status = a.Status,
                                   Draw = a.Draw,
-                                  ScheduleID = a.ScheduleID
+                                  ScheduleID = a.ScheduleID,
+                                  ResultStatus = classResultData.ToList().FirstOrDefault().RingStatus
 
                               }).ToList();
 
                 rs.EnteredList = Result.Where(x => x.ClassID == classResultData.ToList().FirstOrDefault().ClassId).ToList();
             }
             rs.ClassName = classResultData.ToList().FirstOrDefault().ClassName;
+            rs.ClassId = classResultData.ToList().FirstOrDefault().ClassId;
             rs.HorseShowId = classResultData.ToList().FirstOrDefault().HorseShowId;
             rs.ModeID = classResultData.ToList().FirstOrDefault().ModeID;
-            if (rs.ModeID == 3 || rs.ModeID == 4 || rs.ModeID == 12)
+            if (classResultData.ToList().FirstOrDefault().RingStatus == "Gone")
             {
-                rs.EnteredList = rs.EnteredList.Where(a => a.Started == true && a.Scratched == false);
-            }
-            else
-            {
-                rs.EnteredList = rs.EnteredList.Where(a => a.Started == true && a.Scratched == false);
+                if (rs.ModeID == 3 || rs.ModeID == 4 || rs.ModeID == 12)
+                {
+                    rs.EnteredList = rs.EnteredList.Where(a => a.Started == true && a.Scratched == false);
+                }
+                else
+                {
+                    rs.EnteredList = rs.EnteredList.Where(a => a.Started == true && a.Scratched == false);
+                }
             }
 
             return rs;
         }
         #region For Showing List on My Video Page
-        public IEnumerable<ViewShowPurchaseViewModel> GetViewShowPurchase(int memberId)
+        public IEnumerable<ViewShowPurchaseViewModel> GetViewShowPurchase(int memberId, string ShowId)
         {
             try
             {
-                var ViewShowPurchaseList = (from vsp in UnitOfWork.ViewShowPurchaseRepository.GetQuery()
-                                            where vsp.MemberID == memberId
-                                            select new ViewShowPurchaseViewModel
-                                            {
-                                                PurchaseID = vsp.PurchaseID,
-                                                MemberID = vsp.MemberID,
-                                                HorseShowID = vsp.HorseShowID,
-                                                HorseShowName = vsp.HorseShowName,
-                                                StartDate = vsp.StartDate,
-                                                ProductID = vsp.ProductID,
-                                                AmountPaid = vsp.AmountPaid,
-                                                CircuitID = vsp.CircuitID,
-                                            }).ToList();
+                if (!string.IsNullOrWhiteSpace(ShowId))
+                {
+                    var ViewShowPurchaseList = (from vsp in UnitOfWork.ViewShowPurchaseRepository.GetQuery()
+                                                where vsp.MemberID == memberId
+                                                orderby vsp.StartDate
+                                                select new ViewShowPurchaseViewModel
+                                                {
+                                                    PurchaseID = vsp.PurchaseID,
+                                                    MemberID = vsp.MemberID,
+                                                    HorseShowID = vsp.HorseShowID,
+                                                    HorseShowName = vsp.HorseShowName,
+                                                    StartDate = vsp.StartDate,
+                                                    ProductID = vsp.ProductID,
+                                                    AmountPaid = vsp.AmountPaid,
+                                                    CircuitID = vsp.CircuitID,
+                                                }).ToList();
+                    return ViewShowPurchaseList;
+                }
+                else
+                {
 
-                return ViewShowPurchaseList;
+                    List<ViewShowPurchaseViewModel> vspVMList = new List<ViewShowPurchaseViewModel>();
+                    var list = (from mg in UnitOfWork.MemberGroupRepository.GetQuery()
+                                where mg.Member == memberId
+                                select new MemberGroupViewModel
+                                {
+                                    AssociatedMember = mg.AssociatedMember,
+                                }).ToList();
+                    foreach (var associateMember in list)
+                    {
+                        var vspVM = (from vsp in UnitOfWork.ViewShowPurchaseRepository.GetQuery()
+                                     where vsp.MemberID == associateMember.AssociatedMember
+                                     select new ViewShowPurchaseViewModel
+                                     {
+                                         PurchaseID = vsp.PurchaseID,
+                                         MemberID = vsp.MemberID,
+                                         HorseShowID = vsp.HorseShowID,
+                                         HorseShowName = vsp.HorseShowName,
+                                         StartDate = vsp.StartDate,
+                                         ProductID = vsp.ProductID,
+                                         AmountPaid = vsp.AmountPaid,
+                                         CircuitID = vsp.CircuitID,
+                                     }).ToList();
+                        vspVMList.AddRange(vspVM);
+
+                    }
+                    return vspVMList;
+                   
+                }
 
             }
             catch (Exception ex)

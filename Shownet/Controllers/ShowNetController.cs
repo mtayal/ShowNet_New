@@ -87,6 +87,7 @@ namespace Shownet.Controllers
 
         public ActionResult MyShowNet()
         {
+            string ShowId = string.Empty;
             if (Session["Emp_id"] != null)
             {
 
@@ -96,7 +97,7 @@ namespace Shownet.Controllers
                 memberDetailsViewModel = accountDa.EditMyShowNet(memberId);
                 memberDetailsViewModel.MemberGroupList = shownetDa.getMemberGroupList(memberId);
                 memberDetailsViewModel.PaymentCredit = shownetDa.GetUpdatePaymentCredit(memberId);
-                memberDetailsViewModel.ViewShowPurchaseList = shownetDa.GetViewShowPurchase(memberId);
+                memberDetailsViewModel.ViewShowPurchaseList = shownetDa.GetViewShowPurchase(memberId,ShowId);
                 return View(memberDetailsViewModel);
             }
             else
@@ -144,6 +145,13 @@ namespace Shownet.Controllers
 
             return View(rv);
         }
+        //public string ClassResultsCheckMode(int ringID, int horseShowID, int scheduleID, string classID)
+        //{
+
+        //    string s = shownetDa.checkModeForResults(ringID, horseShowID, scheduleID, classID);
+
+        //    return s;
+        //}
 
         public ActionResult DeleteAssociateMember(int id)
         {
@@ -195,6 +203,10 @@ namespace Shownet.Controllers
         public ActionResult Info()
         {
             return View("~/Views/ShowNet/Info.cshtml");
+        }
+        public ActionResult SearchResults(string SearchText, string SearchTypes)
+        {
+            return View();
         }
 
 

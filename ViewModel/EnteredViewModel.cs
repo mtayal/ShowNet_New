@@ -35,7 +35,7 @@ namespace ViewModel
         public bool HasVideo { get { return !string.IsNullOrEmpty(MediaID); } }
         public bool Scratched { get; set; }
         public string MediaID { get; set; }
-        //public string? TotalScore { get { return TotScore; } }
+        public decimal? TotalScore { get ;set; }
         public double? E { get; set; }
         public double? H { get; set; }
         public double? C { get; set; }
@@ -47,6 +47,7 @@ namespace ViewModel
      //   public string? TotScore { get; set; }
         public byte Status { get; set; }
         public int BackID { get; set; }
+        public string ResultStatus { get; set; }
         
     }
 

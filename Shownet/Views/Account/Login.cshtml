@@ -36,7 +36,7 @@
                     <input type="submit" value="submit"> <font color="red"><b>  @Html.ValidationSummary(true) </b></font>
                     <p>
                         No account? No worries! <a href="/Account/Registration">Sign up now!</a><br>
-                        <a href="javascript:void(0);">Forgot password?</a>
+                        <a href="@Url.Action("ForgotPassword","Account")">Forgot password?</a>
                     </p>
                 }
             </div>

@@ -3,6 +3,7 @@
     ViewBag.Title = "ClassResults";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <section id="contentPart">
     <div id="threeBoxes" class="newBackground">
         <div class="container">
@@ -26,41 +27,702 @@
         <div class="row">
             <div class="col-lg-12 col-sm-12 col-xs-12">
                 <div class="showDetailsContainer">
-                    <a id="HyperLinkReturnToSummary" href="/ShowNet/ShowDetails?HorseShowID=@Html.DisplayFor(model => model.HorseShowId)" style="color: Orange; font-size: 12px; float: right;">Back to Summary</a>
-                    <p><h2>Results : Class - @Html.DisplayFor(model => model.ClassId) ,@Html.DisplayFor(@model => model.ClassName)</h2></p>
-                    <div>
-                        <table align="center" class="table" cellpadding="0" cellspacing="0" border="0">
-                            <thead>
-                                <tr>
-                                    <th>Entry #</th>
-                                    <th>Horse Name</th>
-                                    <th>Rider Name</th>
-                                    
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in @Model.EnteredList)
-                                {
-                                    
-                                    <tr>
-                                        <td style='color:black;'>
-                                            @item.BackID
-                                        </td>
-                                        <td style='color:black;'>
-                                            @item.HorseName
-                                        </td>
-                                        <td style='color:black;'>
-                                            @item.RiderName
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-</div>
 
+
+                    <div class="table-responsive trainerDetails">
+                        <a id="HyperLinkReturnToSummary" href="/ShowNet/ShowDetails?HorseShowID=@Html.DisplayFor(model => model.HorseShowId)" style="color: Orange; font-size: 12px; float: right;">Back to Summary</a>
+                        @{
+                            string msg = "NO RIBBON";
+
+                            if (@Model.EnteredList.FirstOrDefault() != null)
+                            {
+
+                                if (@Model.EnteredList.FirstOrDefault().ResultStatus == "Entered")
+                                {
+                                    <p><h2>Order : Class - @Html.DisplayFor(@model => model.ClassId) ,@Html.DisplayFor(@model => model.ClassName)</h2></p>
+                            <p><hr /><h2>Post Order of Go</h2></p>
+                                    <table align="center" id="tblEntered" class="table" cellpadding="0" cellspacing="0" border="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Order</th>
+                                                <th>Entry #</th>
+                                                <th>Horse Name</th>
+                                                <th>Rider Name</th>
+                                                <th>Rank</th>
+                                                <th>Purchage</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach (var item in @Model.EnteredList)
+                                            {
+
+                                                <tr>
+                                                    <td style='color:black;'>
+                                                        @item.OrderIndex
+                                                    </td>
+                                                    <td style='color:black;'>
+                                                        @item.BackID
+                                                    </td>
+                                                    <td style='color:blue;'>
+                                                        <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                    </td>
+                                                    <td style='color:black;'>
+                                                        <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a> 
+                                                    </td>
+                                                    <td style='color:black;'>
+                                                        @{if (@item.Rank != 0)
+                                                          {
+                                                            @item.Rank
+                                                          }
+                                                          else
+                                                          {
+                                                            @msg
+                                                          }
+                                                        }
+
+                                                    </td>
+                                                    <td style='color:black;'></td>
+                                                </tr>
+                                            }
+                                        </tbody>
+                                    </table>
+                                }
+                                else if (@Model.EnteredList.FirstOrDefault().ResultStatus == "Gone")
+                                {
+                                    <p><h2>Result :Class-@Html.DisplayFor(@model => model.ClassId),@Html.DisplayFor(@model => model.ClassName)</h2></p>
+                                    if (@Model.EnteredList.FirstOrDefault().ModeID == 1 || @Model.EnteredList.FirstOrDefault().ModeID == 11)
+                                    {
+                                        <table align="center" id="tblGone" class="table" cellpadding="0" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Entry #</th>
+                                                    <th>Horse Name</th>
+                                                    <th>Rider Name</th>
+                                                    <th>StandBy</th>
+                                                    <th>Rank</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @Model.EnteredList)
+                                                {
+
+                                                    <tr>
+
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+
+                                                        <td style='color:black;'>
+                                                            @item.StandBy
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @{if (@item.Rank != 0)
+                                                              {
+                                                                @item.Rank
+                                                              }
+                                                              else
+                                                              {
+                                                                @msg
+                                                              }
+                                                            }
+                                                        </td>
+                                                    </tr>
+
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else if (@Model.EnteredList.FirstOrDefault().ModeID == 2 || @Model.EnteredList.FirstOrDefault().ModeID == 15)
+                                    {
+                                        int count = 1;
+
+                                        <table align="center" id="tblGone" class="table" cellpadding="0" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order</th>
+                                                    <th>Entry #</th>
+                                                    <th>Horse Name</th>
+                                                    <th>Rider Name</th>
+                                                    <th>Owner</th>
+                                                    <th>Score</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @Model.EnteredList)
+                                                {
+
+                                                    <tr>
+                                                        <td style='color:black;'>
+                                                            @count
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Owner
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Score
+                                                        </td>
+                                                    </tr>
+                                                    count++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else if (@Model.EnteredList.FirstOrDefault().ModeID == 3 || @Model.EnteredList.FirstOrDefault().ModeID == 4 || @Model.EnteredList.FirstOrDefault().ModeID == 10 || @Model.EnteredList.FirstOrDefault().ModeID == 12)
+                                    {
+                                        int count = 1;
+
+                                        <table align="center" id="tblGone" class="table" cellpadding="0" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order</th>
+                                                    <th>Entry #</th>
+                                                    <th>Horse Name</th>
+                                                    <th>Rider Name</th>
+                                                    <th>Owner</th>
+                                                    <th>JF1</th>
+                                                    <th>TF1</th>
+                                                    <th>SF1</th>
+                                                    <th>T1</th>
+                                                    <th>JF2</th>
+                                                    <th>TF2</th>
+                                                    <th>SF2</th>
+                                                    <th>T2</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @Model.EnteredList)
+                                                {
+
+                                                    <tr>
+                                                        <td style='color:black;'>
+                                                            @count
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Owner
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.JFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.TFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.AllFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Time1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.JFlts2
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.TFlts2
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.AllFlts2
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Time2
+                                                        </td>
+                                                    </tr>
+                                                    count++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+
+                                    else if (@Model.EnteredList.FirstOrDefault().ModeID == 5 || @Model.EnteredList.FirstOrDefault().ModeID == 13)
+                                    {
+                                        int count = 1;
+
+                                        <table align="center" id="tblGone" class="table" cellpadding="0" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order</th>
+                                                    <th>Entry #</th>
+                                                    <th>Horse Name</th>
+                                                    <th>Rider Name</th>
+                                                    <th>Owner</th>
+                                                    <th>JF1</th>
+                                                    <th>TF1</th>
+                                                    <th>SF1</th>
+                                                    <th>T1</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @Model.EnteredList)
+                                                {
+
+                                                    <tr>
+                                                        <td style='color:black;'>
+                                                            @count
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Owner
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.JFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.TFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.AllFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Time1
+                                                        </td>
+
+                                                    </tr>
+                                                    count++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else if (@Model.EnteredList.FirstOrDefault().ModeID == 6)
+                                    {
+                                        int count = 1;
+
+                                        <table align="center" id="tblGone" class="table" cellpadding="0" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order</th>
+                                                    <th>Entry #</th>
+                                                    <th>Horse Name</th>
+                                                    <th>Rider Name</th>
+                                                    <th>Owner</th>
+                                                    <th>JF1</th>
+                                                    <th>TF1</th>
+                                                    <th>SF1</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @Model.EnteredList)
+                                                {
+
+                                                    <tr>
+                                                        <td style='color:black;'>
+                                                            @count
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Owner
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.JFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.TFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.AllFlts1
+                                                        </td>
+                                                    </tr>
+                                                    count++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else if (@Model.EnteredList.FirstOrDefault().ModeID == 7)
+                                    {
+                                        int count = 1;
+
+                                        <table align="center" id="tblGone" class="table" cellpadding="0" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order</th>
+                                                    <th>Entry #</th>
+                                                    <th>Horse Name</th>
+                                                    <th>Rider Name</th>
+                                                    <th>Owner</th>
+                                                    <th>Score</th>
+                                                    <th>Score2</th>
+                                                    <th style='width:150px;'>Total Score</th>
+                                                    <th>Purchage</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @Model.EnteredList)
+                                                {
+
+                                                    <tr>
+                                                        <td style='color:black;'>
+                                                            @count
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Owner
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Score
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Score2
+                                                        </td>
+                                                        <td style='color:black; width:100px;'>
+                                                            @item.TotalScore%
+                                                        </td>
+                                                        <td style='color:black;'></td>
+                                                    </tr>
+                                                    count++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else if (@Model.EnteredList.FirstOrDefault().ModeID == 8)
+                                    {
+                                        int count = 1;
+
+                                        <table align="center" id="tblGone" class="table" cellpadding="0" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order</th>
+                                                    <th>Entry #</th>
+                                                    <th>Horse Name</th>
+                                                    <th>Rider Name</th>
+                                                    <th>Owner</th>
+                                                    <th>JF1</th>
+                                                    <th>TF1</th>
+                                                    <th>SF1</th>
+                                                    <th>T1</th>
+                                                    <th>JF2</th>
+                                                    <th>TF2</th>
+                                                    <th>SF2</th>
+                                                    <th>T2</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @Model.EnteredList)
+                                                {
+
+                                                    <tr>
+                                                        <td style='color:black;'>
+                                                            @count
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Owner
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.JFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.TFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.AllFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Time1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.JFlts2
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.TFlts2
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.AllFlts2
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Time2
+                                                        </td>
+                                                    </tr>
+                                                    count++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else if (@Model.EnteredList.FirstOrDefault().ModeID == 9)
+                                    {
+                                        int count = 1;
+
+                                        <table align="center" id="tblGone" class="table" cellpadding="0" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order</th>
+                                                    <th>Entry #</th>
+                                                    <th>Horse Name</th>
+                                                    <th>Rider Name</th>
+                                                    <th>Owner</th>
+                                                    <th>JF1</th>
+                                                    <th>TF1</th>
+                                                    <th>SF1</th>
+                                                    <th>T1</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @Model.EnteredList)
+                                                {
+
+                                                    <tr>
+                                                        <td style='color:black;'>
+                                                            @count
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Owner
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.JFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.TFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.AllFlts1
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Time1
+                                                        </td>
+
+                                                    </tr>
+                                                    count++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                    else if (@Model.EnteredList.FirstOrDefault().ModeID == 14)
+                                    {
+                                        int count = 1;
+
+                                        <table align="center" id="tblGone" class="table" cellpadding="0" cellspacing="0" border="0">
+                                            <thead>
+                                                <tr>
+                                                    <th>Order</th>
+                                                    <th>Entry #</th>
+                                                    <th>Horse Name</th>
+                                                    <th>Rider Name</th>
+                                                    <th>Owner</th>
+                                                    <th>E</th>
+                                                    <th>H</th>
+                                                    <th>C</th>
+                                                    <th>M</th>
+                                                    <th>B</th>
+                                                    <th style='width:150px;'>Total Score</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                @foreach (var item in @Model.EnteredList)
+                                                {
+
+                                                    <tr>
+                                                        <td style='color:black;'>
+                                                            @count
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Owner
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.E
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.H
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.C
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.M
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.B
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.TotalScore%
+                                                        </td>
+                                                    </tr>
+                                                    count++;
+                                                }
+                                            </tbody>
+                                        </table>
+                                    }
+                                }
+                                else
+                                {
+                                    <p><h2>Live : Class - @Html.DisplayFor(model => model.ClassId) ,@Html.DisplayFor(@model => model.ClassName)</h2></p>
+                                    int count = 1;
+                                    int count1 = 1;
+                                    string m = "OFFCRS";
+
+                                    <table align="center" id="tblLive1" class="table" cellpadding="0" cellspacing="0" border="0">
+                                        <thead>
+                                            <tr>
+                                                <th>Order</th>
+                                                <th>Entry #</th>
+                                                <th>Horse Name</th>
+                                                <th>Rider Name</th>
+                                                <th>Owner</th>
+                                                <th>Score</th>
+                                                <th>Purchage</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            
+                                                @foreach (var item in @Model.EnteredListLiveData)
+                                                {
+
+                                                    <tr>
+                                                        <td style='color:black;'>
+                                                            @count
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.BackID
+                                                        </td>
+                                                        <td style='color:blue;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @item.Owner
+                                                        </td>
+                                                        <td style='color:black;'>
+                                                            @{if (@item.Score < 1)
+                                                              {
+                                                                @m
+                                                              }
+                                                              else
+                                                              {
+                                                                @item.Score
+                                                              }
+                                                            }
+                                                        </td>
+                                                        <td style='color:black;'></td>
+                                                    </tr>
+                                                              count++;
+                                                }
+                                            
+                                            
+                                    </tbody>
+                                </table>
+                                                <p><hr /><h2>Live Order of Go</h2></p>
+                                                <table align="center" id="tblLive" class="table" cellpadding="0" cellspacing="0" border="0">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Order</th>
+                                                            <th>Entry #</th>
+                                                            <th>Horse Name</th>
+                                                            <th>Rider Name</th>
+
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach (var item in @Model.EnteredList)
+                                                        {
+
+                                                            <tr>
+                                                                <td style='color:black;'>
+                                                                    @count1
+                                                                </td>
+                                                                <td style='color:black;'>
+                                                                    @item.BackID
+                                                                </td>
+                                                                <td style='color:blue;'>
+                                                                    <a href="/ShowNet/SearchResults?SearchText=@item.HorseName &SearchTypes=HorseName" style="color: black;">@item.HorseName</a>
+                                                                </td>
+                                                                <td style='color:black;'>
+                                                                    <a href="/ShowNet/SearchResults?SearchText=@item.RiderName &SearchTypes=RiderName" style="color: black;">@item.RiderName</a>
+                                                                </td>
+                                                            </tr>
+                                                            count1++;
+                                                        }
+                                                    </tbody>
+                                                </table>
+                                }
+                            
+                                }
+                                }
+
+
+
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script src="~/Scripts/ShowDetail.js"></script>
